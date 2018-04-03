@@ -77,17 +77,17 @@
                         <a class="btn btn-navbar btn-navbar_" data-toggle="collapse" data-target=".nav-collapse_">Menu <span class="icon-bar"></span> </a>
                         <div class="nav-collapse nav-collapse_  collapse">
                             <ul class="nav sf-menu">
-                                <li><a href="" onclick="ale()">用户管理</a></li>
-                                <li><a href="UserWeatherModify.jsp">历史数据</a></li>
-                                <li class="active"><a href="UserHadoop.jsp">数据分析</a></li>
+                                <li><a href="UserEnroll.jsp" >用户管理</a></li>
+                                <li><a href="AdminWeatherModify.jsp">历史数据</a></li>
+                                <li class="active"><a href="Hadoop.jsp">数据分析</a></li>
                                 <li class="sub-menu"  ><a>文献资料</a>
                                     <ul>
-                                        <li><a href="UserUpLoad.jsp">文件上传</a></li>
-                                        <li><a href="servlet/UserListFileServlet">文件下载</a></li>
-                                        <li><a href="UserProcess3.jsp">可读文档</a></li>
+                                        <li><a href="AdminProcess1.jsp">文档一</a></li>
+                                        <li><a href="AdminProcess2.jsp">文档二</a></li>
+                                        <li><a href="AdminProcess3.jsp">文档三</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="UserMessageboard.jsp">意见反馈</a></li>
+                                <li><a href="AdminMessageboard.jsp">意见反馈</a></li>
                                 <%String name=(String)session.getAttribute("name"); %>
                                 <li><p3>欢迎，<%=name%></p3><button onclick="window.location.href='home.jsp'">退出</button> </li>
                             </ul>
