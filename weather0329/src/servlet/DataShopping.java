@@ -1,12 +1,13 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import bean.ShoppingItem;
 
 public class DataShopping extends HttpServlet {
 
@@ -27,9 +28,38 @@ public class DataShopping extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		System.out.println("test success");
+		response.setContentType("text/html;charset=utf-8");
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+
+		String[] elem = request.getParameterValues("elements");
+		String[] area = request.getParameterValues("area");
+		String[] frequency = request.getParameterValues("frequency");
+		if (elem.length <= 0 || area.length <= 0 || frequency.length <= 0) {
+			response.sendRedirect("");
+		}
+		String name = request.getParameter("name");
+		String phone = request.getParameter("phone");
+		String company = request.getParameter("company");
+		String email = request.getParameter("email");
+		String other = request.getParameter("other");
+		String strElem = "";
+		String strArea = "";
+		String strFrequency = "";
+
+		for (int i = 0; i < elem.length; i++) {
+			strElem += elem[i];
+		}
+		System.out.println(strElem);
+		for (int i = 0; i < area.length; i++) {
+			strArea += area[i];
+		}
+		for (int i = 0; i < frequency.length; i++) {
+			strElem += frequency[i];
+		}
+		ShoppingItem item = new ShoppingItem(strElem, strArea, strFrequency,
+				name, company, phone, email, other);
+
 	}
 
 	public void init() throws ServletException {
