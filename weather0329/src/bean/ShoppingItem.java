@@ -7,17 +7,28 @@ public class ShoppingItem implements Serializable {// 购物内容对象
 	private User user;
 	private String phoneNum;
 	private String email;
+	private String addRequest;// 客户的其他需求
 
 	public ShoppingItem() {
 		super();
 	}
 
-	public ShoppingItem(String elem, User user, String phoneNum, String email) {
+	public ShoppingItem(String elem, User user, String phoneNum, String email,
+			String addRequest) {
 		super();
 		this.elem = elem;
 		this.user = user;
 		this.phoneNum = phoneNum;
 		this.email = email;
+		this.addRequest = addRequest;
+	}
+
+	public String getAddRequest() {
+		return addRequest;
+	}
+
+	public void setAddRequest(String addRequest) {
+		this.addRequest = addRequest;
 	}
 
 	public String getElem() {
