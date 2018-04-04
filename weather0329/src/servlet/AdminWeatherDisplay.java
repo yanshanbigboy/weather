@@ -17,17 +17,22 @@ public class AdminWeatherDisplay extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
-		String provinceName = request.getParameter("provinceName");
-		System.out.println("this is servlet-weatherdisplay   " + provinceName);
+		String provinceName=request.getParameter("provinceName");
+		System.out.println("this is servlet-weatherdisplay   "+ provinceName);
 		request.setAttribute("provinceName", provinceName);
-		RequestDispatcher rd = request
-				.getRequestDispatcher("AdminWeatherDisplay.jsp");
-		rd.forward(request, response);
+		RequestDispatcher rd=request.getRequestDispatcher("AdminWeatherDisplay.jsp");
+	    rd.forward(request,response);
 		out.flush();
 		out.close();
 	}
 
+	/**
+	 * Initialization of the servlet. <br>
+	 *
+	 * @throws ServletException if an error occurs
+	 */
 	public void init() throws ServletException {
+		// Put your code here
 	}
 
 }
