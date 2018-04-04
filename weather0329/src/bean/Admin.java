@@ -1,4 +1,4 @@
-package bean;
+package bean；//1111
 
 public class Admin {
 	private int adminId;     //私有变量，仅有内部类和创建者可以调用
