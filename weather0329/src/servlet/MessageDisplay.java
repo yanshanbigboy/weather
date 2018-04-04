@@ -10,9 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 
 public class MessageDisplay extends HttpServlet {
 
+	/**
+	 * Constructor of the object.
+	 */
 	public MessageDisplay() {
 		super();
 	}
+
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -20,12 +24,13 @@ public class MessageDisplay extends HttpServlet {
 		doPost(request, response);
 	}
 
+	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-
+		
 	}
 
 }
