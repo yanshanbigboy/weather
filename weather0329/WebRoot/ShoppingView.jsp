@@ -56,6 +56,7 @@
 							value="avgHumidity">&nbsp;&nbsp;&nbsp;
 						&nbsp;&nbsp;&nbsp;风速<input type="checkbox" name="elements"
 							value="avgWindSpeed">
+						<br><br>
 						<h5>Step2.选择地区 Area Selection</h5>
 
 						北京 <input type="checkbox" name="area" value="beijing">
@@ -110,17 +111,15 @@
 							value="ningxia"> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 新疆<input
 							type="checkbox" name="area" value="xinjiang">
 						&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-
+						
+						<br><br>
 						<h5>Step3.选择频次 Frenquency Selection</h5>
-						逐月 <input type="checkbox" name="frenquency" value="eachMonth">
-						逐年 <input type="checkbox" name="frenquency" value="eachYear">
+						逐月 <input type="checkbox" name="frequency" value="eachMonth">
+						逐年 <input type="checkbox" name="frequency" value="eachYear">
+						<br><br>
 						<h5>Step4.选择时间 Time Selection</h5>
-							<input type="submit" value="选择时间">
-
-						<p>
-							日期：<input type="text" id="datepicker">
-						</p>
-
+						
+						<br><br>
 						<h5>Step5.请填写您的个人信息，我们将进一步与您沟通</h5>
 						姓名*： <input type="text" name="name"> <br> 单位*： <input
 							type="text" name="company"> <br> 联系电话*： <input

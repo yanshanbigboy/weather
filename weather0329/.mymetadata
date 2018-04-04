@@ -3,7 +3,7 @@
   type="WEB"
   name="weather0328"
   id="myeclipse.1493798710372"
-  context-root="/weather0403"
+  context-root="/weather0328"
   j2ee-spec="6.0"
   archive="weather0328.war">
   <attributes>
