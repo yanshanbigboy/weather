@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.User;
+
 import dao.UserDao;
 
 public class UserAdd extends HttpServlet {
@@ -21,10 +22,24 @@ public class UserAdd extends HttpServlet {
 		super();
 	}
 
+	/**
+	 * Destruction of the servlet. <br>
+	 */
 	public void destroy() {
 		super.destroy(); // Just puts "destroy" string in log
+		// Put your code here
 	}
 
+	/**
+	 * The doGet method of the servlet. <br>
+	 *
+	 * This method is called when a form has its tag value method equals to get.
+	 * 
+	 * @param request the request send by the client to the server
+	 * @param response the response send by the server to the client
+	 * @throws ServletException if an error occurred
+	 * @throws IOException if an error occurred
+	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -43,22 +58,32 @@ public class UserAdd extends HttpServlet {
 		out.close();
 	}
 
+	/**
+	 * The doPost method of the servlet. <br>
+	 *
+	 * This method is called when a form has its tag value method equals to post.
+	 * 
+	 * @param request the request send by the client to the server
+	 * @param response the response send by the server to the client
+	 * @throws ServletException if an error occurred
+	 * @throws IOException if an error occurred
+	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		String username = request.getParameter("username");
-		String userpassword = request.getParameter("userpassword");
-		User user = new User(username, userpassword);
-		int i = UserDao.addUser(user);
-		if (i == 1) {
+		String username=request.getParameter("username");
+		String userpassword=request.getParameter("userpassword");
+		User user=new User(username,userpassword);
+		int i=UserDao.addUser(user);
+		if(i==1){
 			System.out.println("更改成功");
-		} else {
+		}else{
 			System.out.println("更改失败");
 		}
 		request.setAttribute(username, userpassword);
-		RequestDispatcher rd = request.getRequestDispatcher("UserModify.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("UserModify.jsp");
 		rd.forward(request, response);
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<HTML>");
@@ -75,9 +100,8 @@ public class UserAdd extends HttpServlet {
 
 	/**
 	 * Initialization of the servlet. <br>
-	 * 
-	 * @throws ServletException
-	 *             if an error occurs
+	 *
+	 * @throws ServletException if an error occurs
 	 */
 	public void init() throws ServletException {
 		// Put your code here

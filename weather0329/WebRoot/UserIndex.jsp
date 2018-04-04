@@ -93,14 +93,14 @@
                                 <li><a href="404error.jsp" onclick="ale()">用户管理</a></li>
                                 <li><a href="UserWeatherModify.jsp">历史数据</a></li>
                                 <li><a href="UserHadoop.jsp">数据分析</a></li>
-                                <li class="sub-menu"><a >文献资料</a>
+                                <li class="sub-menu"><a >文件交换</a>
                                     <ul>
-                                        <li><a href="UserProcess1.jsp">文档一</a></li>
-                                        <li><a href="UserProcess2.jsp">文档二</a></li>
-                                        <li><a href="UserProcess3.jsp">文档三</a></li>
+                                        <li><a href="UserUpLoad.jsp">文件上传</a></li>
+                                        <li><a href="servlet/ListFileServlet">文件下载</a></li>
+                                        <li><a href="UserProcess3.jsp">可读文档</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="Messboard.jsp">意见反馈</a></li>
+                                <li><a href="UserMessageboard.jsp">意见反馈</a></li>
                                 <%String name=(String)session.getAttribute("name"); %>
                                 <li><p3>欢迎，<%=name%></p3><button onclick="window.location.href='Logout.jsp'">退出</button> </li>
                             </ul>

@@ -40,7 +40,7 @@ public class UserDao {
     	String userPasswordDB = null;
     	try{
     		conn=DBConnection.getConn();
-    		System.out.println("This is DAO ConnectionDB"+conn);
+    		System.out.println("This is UserDAO ConnectionDB"+conn);
     		sql="select userpassword from user where username=?";
     		pstmt=conn.prepareStatement(sql);
     		pstmt.setString(1, user.getUserName());
