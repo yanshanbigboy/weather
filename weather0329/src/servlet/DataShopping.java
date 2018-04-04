@@ -8,16 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class MessageDisplay extends HttpServlet {
+public class DataShopping extends HttpServlet {
 
-	public MessageDisplay() {
+	public DataShopping() {
 		super();
+	}
+
+	public void destroy() {
+		super.destroy();
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		doPost(request, response);
+		this.doPost(request, response);
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -25,7 +29,10 @@ public class MessageDisplay extends HttpServlet {
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
+		System.out.println("test success");
+	}
 
+	public void init() throws ServletException {
 	}
 
 }

@@ -82,12 +82,12 @@
                                 <li class="active"><a href="UserHadoop.jsp">数据分析</a></li>
                                 <li class="sub-menu"  ><a>文献资料</a>
                                     <ul>
-                                        <li><a href="UserUpLoad.jsp">文件上传</a></li>
-                                        <li><a href="servlet/UserListFileServlet">文件下载</a></li>
-                                        <li><a href="UserProcess3.jsp">可读文档</a></li>
+                                        <li><a href="UserProcess1.jsp">文档一</a></li>
+                                        <li><a href="UserProcess2.jsp">文档二</a></li>
+                                        <li><a href="UserProcess3.jsp">文档三</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="UserMessageboard.jsp">意见反馈</a></li>
+                                <li><a href="Messboard.jsp">意见反馈</a></li>
                                 <%String name=(String)session.getAttribute("name"); %>
                                 <li><p3>欢迎，<%=name%></p3><button onclick="window.location.href='home.jsp'">退出</button> </li>
                             </ul>
