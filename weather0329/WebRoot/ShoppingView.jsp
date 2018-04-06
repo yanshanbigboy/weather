@@ -7,15 +7,17 @@
 			+ path + "/";
 %>
 
-   <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.9.1.js"></script>
-  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-  <link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
-  <script>
-  $(function() {
-    $( "#datepicker" ).datepicker();
-  });
-  </script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.9.1.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<link rel="stylesheet"
+	href="http://jqueryui.com/resources/demos/style.css">
+<script>
+	$(function() {
+		$("#datepicker").datepicker();
+	});
+</script>
 <!--start of  content -->
 
 
@@ -47,7 +49,7 @@
 					<h6>4）数据格式：TXT</h6>
 					<br> <br>
 
-					<h5>Step1.选择要素 Element Selection</h5>
+					<h5>Step1.选择要素* Element Selection</h5>
 					<form action="DataShopping" method="post">
 						气温 <input type="checkbox" name="elements" value="avgTemperature">
 						&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 气压 <input type="checkbox"
@@ -57,9 +59,9 @@
 						&nbsp;&nbsp;&nbsp;湿度<input type="checkbox" name="elements"
 							value="avgHumidity">&nbsp;&nbsp;&nbsp;
 						&nbsp;&nbsp;&nbsp;风速<input type="checkbox" name="elements"
-							value="avgWindSpeed">
-						<br><br>
-						<h5>Step2.选择地区 Area Selection</h5>
+							value="avgWindSpeed"> <br>
+						<br>
+						<h5>Step2.选择地区* Area Selection</h5>
 
 						北京 <input type="checkbox" name="area" value="beijing">
 						&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;天津 <input type="checkbox"
@@ -112,16 +114,17 @@
 						&nbsp;&nbsp;&nbsp; 宁夏<input type="checkbox" name="area"
 							value="ningxia"> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 新疆<input
 							type="checkbox" name="area" value="xinjiang">
-						&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-						
-						<br><br>
-						<h5>Step3.选择频次 Frenquency Selection</h5>
+						&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br>
+						<br>
+						<h5>Step3.选择频次 *Frenquency Selection</h5>
 						逐月 <input type="checkbox" name="frequency" value="eachMonth">
 						逐年 <input type="checkbox" name="frequency" value="eachYear">
-						<br><br>
-						<h5>Step4.选择时间 Time Selection</h5>
-						
-						<br><br>
+						<br>
+						<br>
+						<h5>Step4.选择时间 *Time Selection</h5>
+						从<input type="text" name="startTime"> 到<input type="text"
+							name="endtime"> <br>
+						<br>
 						<h5>Step5.请填写您的个人信息，我们将进一步与您沟通</h5>
 						姓名*： <input type="text" name="name"> <br> 单位*： <input
 							type="text" name="company"> <br> 联系电话*： <input
@@ -155,28 +158,44 @@
 			<h3>Some quick links</h3>
 			<div class="wrapper">
 				<ul class="list list-pad">
-					<li><a href="#">Campaigns</a></li>
-					<li><a href="#">Portraits</a></li>
-					<li><a href="#">Fashion</a></li>
-					<li><a href="#">Fine Art</a></li>
+					<li><a href="#">Campaigns</a>
+					</li>
+					<li><a href="#">Portraits</a>
+					</li>
+					<li><a href="#">Fashion</a>
+					</li>
+					<li><a href="#">Fine Art</a>
+					</li>
 				</ul>
 				<ul class="list list-pad">
-					<li><a href="#">Campaigns</a></li>
-					<li><a href="#">Portraits</a></li>
-					<li><a href="#">Fashion</a></li>
-					<li><a href="#">Fine Art</a></li>
+					<li><a href="#">Campaigns</a>
+					</li>
+					<li><a href="#">Portraits</a>
+					</li>
+					<li><a href="#">Fashion</a>
+					</li>
+					<li><a href="#">Fine Art</a>
+					</li>
 				</ul>
 				<ul class="list list-pad">
-					<li><a href="#">Campaigns</a></li>
-					<li><a href="#">Portraits</a></li>
-					<li><a href="#">Fashion</a></li>
-					<li><a href="#">Fine Art</a></li>
+					<li><a href="#">Campaigns</a>
+					</li>
+					<li><a href="#">Portraits</a>
+					</li>
+					<li><a href="#">Fashion</a>
+					</li>
+					<li><a href="#">Fine Art</a>
+					</li>
 				</ul>
 				<ul class="list">
-					<li><a href="#">Advertising</a></li>
-					<li><a href="#">Lifestyle</a></li>
-					<li><a href="#">Love story</a></li>
-					<li><a href="#">Landscapes</a></li>
+					<li><a href="#">Advertising</a>
+					</li>
+					<li><a href="#">Lifestyle</a>
+					</li>
+					<li><a href="#">Love story</a>
+					</li>
+					<li><a href="#">Landscapes</a>
+					</li>
 				</ul>
 			</div>
 		</article>
@@ -189,10 +208,14 @@
 <footer>
 	<div class="container clearfix">
 		<ul class="list-social pull-right">
-			<li><a class="icon-1" href="#"></a></li>
-			<li><a class="icon-2" href="#"></a></li>
-			<li><a class="icon-3" href="#"></a></li>
-			<li><a class="icon-4" href="#"></a></li>
+			<li><a class="icon-1" href="#"></a>
+			</li>
+			<li><a class="icon-2" href="#"></a>
+			</li>
+			<li><a class="icon-3" href="#"></a>
+			</li>
+			<li><a class="icon-4" href="#"></a>
+			</li>
 		</ul>
 		<div class="privacy pull-left">
 			&copy; 2017 | <a href="http://www.google.com">Title : Online

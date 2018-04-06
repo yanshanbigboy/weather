@@ -32,11 +32,21 @@ public class DataShopping extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 
+		String path = request.getContextPath();
+		String url = request.getServletPath();
+		System.out.println(url);
+
 		String[] elem = request.getParameterValues("elements");
 		String[] area = request.getParameterValues("area");
 		String[] frequency = request.getParameterValues("frequency");
+		System.out.println("area.length===" + area.length);
 		if (elem.length <= 0 || area.length <= 0 || frequency.length <= 0) {
-			response.sendRedirect("");
+			String message = String.format(
+					"请填写完整信息<meta http-equiv='refresh' content='2;url=%s'/>",
+					path + "/ShoppingView.jsp");
+			request.setAttribute("message", message);
+			request.getRequestDispatcher("/Message.jsp").forward(request,
+					response);
 		}
 		String name = request.getParameter("name");
 		String phone = request.getParameter("phone");
@@ -51,6 +61,7 @@ public class DataShopping extends HttpServlet {
 			strElem += elem[i];
 		}
 		System.out.println(strElem);
+
 		for (int i = 0; i < area.length; i++) {
 			strArea += area[i];
 		}
