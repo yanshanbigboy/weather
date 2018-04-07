@@ -16,7 +16,7 @@
 	<jsp:include page="Header.jsp"></jsp:include>
 	<!-- end of content -->
 
-	<h1><%=message%></p>
+	<h3><%=message%></h3>
 
 		<!--  footer  -->
 		<footer>

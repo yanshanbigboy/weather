@@ -9,6 +9,8 @@
 	<classpathentry kind="lib" path="commons-io-1.3.1.jar"/>
 	<classpathentry kind="lib" path="javax.servlet.jar"/>
 	<classpathentry kind="lib" path="rt.jar"/>
+	<classpathentry kind="lib" path="activation.jar"/>
+	<classpathentry kind="lib" path="mail.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
