@@ -1,33 +1,33 @@
 package bean;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ShoppingItem implements Serializable {// 购物内容对象
 	private String elem;// 客户选取的天气数据元素,包涵气温，气压，湿度，降水量，风速
-	private String area;
-	private String frenquency;
+	private String area;// 客户选取的地区，陕西(shanxixi)
+	private String frequency;// 频次
 	private String name;
 	private String company;
 	private String phoneNum;
 	private String email;
 	private String addRequest;// 客户的其他需求
-
-	// 存储校验不通过时给用户的错误提示信息
+	// 存储错误提示用的Map,key为错误类型，value为错误提示
 	private Map<String, String> errors = new HashMap<String, String>();
 
 	public ShoppingItem() {
 		super();
 	}
 
-	public ShoppingItem(String elem, String area, String frenquency,
+	public ShoppingItem(String elem, String area, String frequency,
 			String name, String company, String phoneNum, String email,
 			String addRequest) {
 		super();
 		this.elem = elem;
 		this.area = area;
-		this.frenquency = frenquency;
+		this.frequency = frequency;
 		this.name = name;
 		this.company = company;
 		this.phoneNum = phoneNum;
@@ -55,12 +55,12 @@ public class ShoppingItem implements Serializable {// 购物内容对象
 		this.area = area;
 	}
 
-	public String getFrenquency() {
-		return frenquency;
+	public String getFrequency() {
+		return frequency;
 	}
 
-	public void setFrenquency(String frenquency) {
-		this.frenquency = frenquency;
+	public void setFrequency(String frequency) {
+		this.frequency = frequency;
 	}
 
 	public String getName() {
@@ -111,16 +111,40 @@ public class ShoppingItem implements Serializable {// 购物内容对象
 		this.errors = errors;
 	}
 
+	/**
+	 * 校验ShoppingItem对象的数据是否合法
+	 * 
+	 * @return
+	 */
 	public boolean validate() {
-
+		// 设置标志初始为true
 		boolean isOk = true;
+
+		// private String elem不可以为空
+		if (this.elem == null || this.elem.trim().equals("")) {
+			isOk = false;
+			errors.put("elem", "数据元素不能为空！！");
+		}
+
+		// private String area不可以为空
+		if (this.area == null || this.area.trim().equals("")) {
+			isOk = false;
+			errors.put("area", "地区不能为空！！");
+		}
+
+		// private String frequency不可以为空
+		if (this.frequency == null || this.frequency.trim().equals("")) {
+			isOk = false;
+			errors.put("frequency", "频次不能为空！！");
+		}
+
 		// private String name不可以为空
 		if (this.name == null || this.name.trim().equals("")) {
 			isOk = false;
 			errors.put("name", "姓名不能为空！！");
 		}
-		// private String company不可以为空
 
+		// private String company不可以为空
 		if (this.company == null || this.company.trim().equals("")) {
 			isOk = false;
 			errors.put("company", "公司地址不能为空！！");
@@ -150,6 +174,17 @@ public class ShoppingItem implements Serializable {// 购物内容对象
 			isOk = false;
 			errors.put("email", "邮箱不能为空！");
 		}
+
+		// private String addRequest可以为空,但是数据库该字段为varchar(255),因此要限制输入的汉字的字符数
+		try {
+			if ((this.addRequest.getBytes("utf-8").length) > 255) {
+				errors.put("addRequest", "输入的其他需求过长！");
+			}
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			errors.put("addRequest", "输入的其他需求有错误，请联系管理员");
+		}
+
 		return isOk;
 	}
 }

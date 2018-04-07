@@ -20,9 +20,7 @@
 </script>
 <!--start of  content -->
 
-
-<jsp:include page="/UserHeader.jsp"></jsp:include>
-
+<jsp:include page="/Header.jsp"></jsp:include>
 
 <!--end of  content -->
 
@@ -49,7 +47,7 @@
 					<h6>4）数据格式：TXT</h6>
 					<br> <br>
 
-					<h5>Step1.选择要素* Element Selection</h5>
+					<h5>Step1.选择要素* Element Selection</h5>${ShoppingItem.errors["elem"]}
 					<form action="DataShopping" method="post">
 						气温 <input type="checkbox" name="elements" value="avgTemperature">
 						&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 气压 <input type="checkbox"
@@ -61,7 +59,7 @@
 						&nbsp;&nbsp;&nbsp;风速<input type="checkbox" name="elements"
 							value="avgWindSpeed"> <br>
 						<br>
-						<h5>Step2.选择地区* Area Selection</h5>
+						<h5>Step2.选择地区* Area Selection</h5>${ShoppingItem.errors["area"]}<br>
 
 						北京 <input type="checkbox" name="area" value="beijing">
 						&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;天津 <input type="checkbox"
@@ -116,21 +114,18 @@
 							type="checkbox" name="area" value="xinjiang">
 						&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br>
 						<br>
-						<h5>Step3.选择频次 *Frenquency Selection</h5>
+						<h5>Step3.选择频次 *Frequency Selection</h5>${ShoppingItem.errors["frequency"]}<br>
 						逐月 <input type="checkbox" name="frequency" value="eachMonth">
 						逐年 <input type="checkbox" name="frequency" value="eachYear">
 						<br>
 						<br>
-						<h5>Step4.选择时间 *Time Selection</h5>
-						从<input type="text" name="startTime"> 到<input type="text"
-							name="endtime"> <br>
-						<br>
-						<h5>Step5.请填写您的个人信息，我们将进一步与您沟通</h5>
-						姓名*： <input type="text" name="name"> <br> 单位*： <input
-							type="text" name="company"> <br> 联系电话*： <input
-							type="text" name="phone"> <br> 邮箱*： <input
-							type="text" name="email"> <br>其他需求： <input
-							type="text" style="width:280px;height:150px;" name="other">
+					
+						<h5>Step4.请填写您的个人信息，我们将进一步与您沟通</h5>
+						姓名*： <input type="text" name="name">${ShoppingItem.errors["name"]} <br> 
+						单位*： <input type="text" name="company">${ShoppingItem.errors["company"]} <br> 
+						联系电话*： <input type="text" name="phone">${ShoppingItem.errors["phoneNum"]} <br> 
+						邮箱*： <input type="text" name="email">${ShoppingItem.errors["email"]} <br>
+						其他需求： <input type="text" style="width:280px;height:150px;" name="other">${ShoppingItem.errors["addRequest"]}
 						<br> <input type="submit" style="width:280px;" value="提交">
 					</form>
 			</div>

@@ -27,7 +27,7 @@ public class ShoppingItemDao {
 			pstmt.setInt(1, getMaxId());
 			pstmt.setString(2, item.getElem());
 			pstmt.setString(3, item.getArea());
-			pstmt.setString(4, item.getFrenquency());
+			pstmt.setString(4, item.getFrequency());
 			pstmt.setString(5, item.getName());
 			pstmt.setString(6, item.getCompany());
 			pstmt.setString(7, item.getPhoneNum());
