@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<body>
+<div style="height: 50px">
+    中国主要五大城市2017年平均气压图
+</div>
+
+<div id="main" style="height:400px"></div>
+
+<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+<script type="text/javascript">
+
+    require.config({
+        paths: {
+            echarts: 'http://echarts.baidu.com/build/dist'
+        }
+    });
+    require(
+        [
+            'echarts',
+            'echarts/chart/line',
+            'echarts/chart/bar'
+        ],
+        function (ec) {
+
+            var myChart = ec.init(document.getElementById('main'));
+
+            var option = {
+                tooltip : {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data:['哈尔滨','北京','上海','拉萨','广州']
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                calculable : true,
+                xAxis : [
+                    {
+                        type : 'category',
+                        boundaryGap : false,
+                        data : ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value'
+                    }
+                ],
+                series : [
+                    {
+                        name:'拉萨',
+                        type:'line',
+                        stack: '总量',
+                        data:[658.1, 657.1, 658.2, 659.8, 660.1, 659.6, 660.7,662.0,663.1,663.0,662.4,661.0]
+                    },
+                    {
+                        name:'哈尔滨',
+                        type:'line',
+                        stack: '总量',
+                        data:[1006.4, 1004.3, 999.8, 993.6, 990.4, 988.3, 987.4,991.0,996.5,1000.2,1003.5,1005.7]
+                    },
+                    {
+                        name:'广州',
+                        type:'line',
+                        stack: '总量',
+                        data:[1014.5, 1012.8, 1010.1, 1007.0, 1003.6, 1000.4, 999.9,999.6,1003.5,1008.8,1012.2,1015.2]
+                    },
+                    {
+                        name:'北京',
+                        type:'line',
+                        stack: '总量',
+                        data:[1022.7, 1020.0, 1015.1, 1008.4, 1003.9, 999.8, 998.3,1002.3,1009.1,1015.0,1019.3,1022.7]
+                    },
+                    {
+                        name:'上海',
+                        type:'line',
+                        stack: '总量',
+                        data:[1026.8, 1024.5, 1020.6, 1015.5, 1011.0, 1006.5, 1004.9,1006.4,1012.8,1019.5,1023.6,1026.8]
+                    },
+
+
+                ]
+            };
+            myChart.setOption(option)
+        }
+    );
+</script>
+</body>
+</html>
