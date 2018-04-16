@@ -34,4 +34,66 @@ public class ServletUtil {
 		Assert.assertEquals("beijing,tianjin", strtest);
 	}
 
+	// 将汉字省份转换成对应的表名
+	public static String ProRevert(String pre) {
+		if (pre.equals("北京"))
+			return "beijing";
+		if (pre.equals("安徽"))
+			return "anhui";
+		if (pre.equals("重庆"))
+			return "chongqing";
+		if (pre.equals("福建"))
+			return "fujian";
+		if (pre.equals("甘肃"))
+			return "gansu";
+		if (pre.equals("广东"))
+			return "guangdong";
+		if (pre.equals("广西"))
+			return "guangxi";
+		if (pre.equals("贵州"))
+			return "guizhou";
+		if (pre.equals("海南"))
+			return "hainan";
+		if (pre.equals("湖北"))
+			return "hubei";
+		if (pre.equals("湖南"))
+			return "hunan";
+		if (pre.equals("江苏"))
+			return "jiangsu";
+		if (pre.equals("江西"))
+			return "jiangxi";
+		if (pre.equals("吉林"))
+			return "jilin";
+		if (pre.equals("辽宁"))
+			return "liaoning";
+		if (pre.equals("内蒙古"))
+			return "neimenggu";
+		if (pre.equals("宁夏"))
+			return "ningxia";
+		if (pre.equals("青海"))
+			return "qinghai";
+		if (pre.equals("山东"))
+			return "shandong";
+		if (pre.equals("上海"))
+			return "shanghai";
+		if (pre.equals("山西"))
+			return "shanxi";
+		if (pre.equals("陕西"))
+			return "shanxixi";
+		if (pre.equals("四川"))
+			return "sichuan";
+		if (pre.equals("天津"))
+			return "tianjin";
+		if (pre.equals("西藏"))
+			return "xizang";
+		if (pre.equals("新疆"))
+			return "xinjiang";
+		if (pre.equals("云南"))
+			return "yunnan";
+		if (pre.equals("浙江"))
+			return "zhejiang";
+		if (pre.equals("黑龙江"))
+			return "heilongjiang";
+		return null;
+	}
 }

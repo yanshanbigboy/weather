@@ -3,8 +3,6 @@
 <%@ page isErrorPage="true" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<% String t=session.getAttribute("type").toString();
-   int type=Integer.parseInt(t);%>
 
 <script language="javascript">
  function ale()
@@ -66,62 +64,11 @@
 </head>
 <body>
 <div class="spinner"></div>
-<!--  header  -->
-<header>
-      <div class="container clearfix">
-    <div class="row">
-          <div class="span12">
-        <div class="navbar navbar_">
-              <div class="container">
-                <%if(type==0){ %>
-            <h1 class="brand brand_"><a href="AdminIndex.jsp"><img alt="" src="img/mine/icon.jpg"> </a></h1>
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse_">Menu <span class="icon-bar"></span> </a>
-            <div class="nav-collapse nav-collapse_  collapse">
-                  <ul class="nav sf-menu">
-                <li class="active"><a href="UserModify.jsp">用户管理</a></li>
-                <li><a href="AdminWeatherModify.jsp">历史数据</a></li>
-                <li><a href="Hadoop.jsp">数据分析</a></li>
-                <li class="sub-menu"><a >文献资料</a>
-                      <ul>
-                          <li><a href="AdminProcess1.jsp">文档一</a></li>
-                          <li><a href="AdminProcess2.jsp">文档二</a></li>
-                          <li><a href="AdminProcess3.jsp">文档三</a></li>
-                  </ul>
-                    </li>
-                <li><a href="contact.html">意见反馈</a></li>
-                <%String name=(String)session.getAttribute("name"); %>
-                                <li><p3>欢迎，<%=name%></p3><button onclick="window.location.href='home.jsp'">退出</button></li>
-              </ul>
-                </div>
-                <% }%>
-                
-                <%if(type==1){ %>
-                <h1 class="brand brand_"><a href="UserIndex.jsp"><img alt="" src="img/mine/icon.jpg"> </a></h1>
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse_">Menu <span class="icon-bar"></span> </a>
-                <div class="nav-collapse nav-collapse_  collapse">
-                  <ul class="nav sf-menu">
-                <li class="active"><a href="" onlick="ale()" >用户管理</a></li>
-                <li><a href="UserWeatherModify.jsp">历史数据</a></li>
-                <li><a href="blog.html">数据分析</a></li>
-                <li class="sub-menu"><a >文献资料</a>
-                      <ul>
-                          <li><a href="UserProcess1.jsp">文档一</a></li>
-                          <li><a href="UserProcess2.jsp">文档二</a></li>
-                          <li><a href="UserProcess3.jsp">文档三</a></li>
-                  </ul>
-                    </li>
-                <li><a href="contact.html">意见反馈</a></li>
-                <%String name=(String)session.getAttribute("name"); %>
-                                <li><p3>欢迎，<%=name%></p3><button onclick="window.location.href='home.jsp'">退出</button></li>
-              </ul>
-                </div>
-                <%} %>
-          </div>
-            </div>
-      </div>
-        </div>
-  </div>
-    </header>
+
+<!-- start of header -->
+<jsp:include page="/pattern/Header.jsp"></jsp:include>
+<!-- end of header -->
+
 <div class="bg-content">  
 
 <!--  content  -->

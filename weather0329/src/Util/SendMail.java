@@ -26,6 +26,14 @@ public class SendMail extends Thread {// ·¢ËÍÓÊ¼şÊÇÒ»¼şºÄÊ±µÄÊÂ£¬Òò´ËÉè¼ÆÒ»¸öÏß³
 		this.item = item;
 	}
 
+	public ShoppingItem getItem() {
+		return item;
+	}
+
+	public void setItem(ShoppingItem item) {
+		this.item = item;
+	}
+
 	public void run() {
 		try {
 
@@ -72,14 +80,14 @@ public class SendMail extends Thread {// ·¢ËÍÓÊ¼şÊÇÒ»¼şºÄÊ±µÄÊÂ£¬Òò´ËÉè¼ÆÒ»¸öÏß³
 			 * ÕâÀïÎÒÃÇ·¢ËÍ¸øÎÒÃÇµÄqqÓÊÏä
 			 */
 
-			message.setRecipient(RecipientType.TO, new InternetAddress(
-					"416034116@qq.com"));
+			message.setRecipient(RecipientType.TO,
+					new InternetAddress(item.getEmail()));
 			// 2.3 Ö÷Ìâ£¨±êÌâ£©
-			message.setSubject("ÓÊ¼şµÄ±êÌâ");
+			message.setSubject("É½¶«²Æ¾­´óÑ§ÆøÏó´óÊı¾İÖĞĞÄ");
 			// 2.4 ÕıÎÄ
-			String str = "ÀîËÄ£º <br/>" + "ÄúºÃ£¬ÄúÔÚ±¾ÂÛÌ³×¢²áÓÃ»§£¬µã»÷ÏÂÃæurl½øĞĞ¼¤»î<br/>"
-					+ "http://ww......<br/>" + "Èç¹û²»ÄÜµã»÷£¬Çë¸´ÖÆÖ±½Ó¼¤»î<br/>"
-					+ "Èç¹û²»ÊÇ±¾ÈË£¬ÇëÉ¾³ıÓÊ¼ş";
+			String str = "×ğ¾´µÄ¿Í»§" + item.getName() + "£º <br/>"
+					+ "ÄúºÃ£¬ÄúÔÚ±¾ÍøÕ¾ÉêÇë¹ºÂòÒÔÏÂÆøÏóÊı¾İ£º<br/>" + "ÆøÏóÔªËØ£º" + item.getElem()
+					+ "<br/>µØÇø£º" + item.getArea();
 			// ÉèÖÃ±àÂë£¬·ÀÖ¹·¢ËÍµÄÄÚÈİÖĞÎÄÂÒÂë¡£
 			message.setContent(str, "text/html;charset=UTF-8");
 
@@ -89,4 +97,7 @@ public class SendMail extends Thread {// ·¢ËÍÓÊ¼şÊÇÒ»¼şºÄÊ±µÄÊÂ£¬Òò´ËÉè¼ÆÒ»¸öÏß³
 			throw new RuntimeException();
 		}
 	}
+
+	// ½«ËùÑ¡Ó¢ÎÄ±äÁ¿Ãû×ª»»³É¶ÔÓ¦µÄÖĞÎÄÃû³Æ
+
 }

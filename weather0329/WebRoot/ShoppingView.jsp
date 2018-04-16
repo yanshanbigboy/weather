@@ -20,7 +20,7 @@
 </script>
 <!--start of  content -->
 
-<jsp:include page="/Header.jsp"></jsp:include>
+<jsp:include page="/pattern/Header.jsp"></jsp:include>
 
 <!--end of  content -->
 
@@ -47,7 +47,8 @@
 					<h6>4）数据格式：TXT</h6>
 					<br> <br>
 
-					<h5>Step1.选择要素* Element Selection</h5>${ShoppingItem.errors["elem"]}
+					<h5>选择要素* Element Selection</h5>
+					${ShoppingItem.errors["elem"]}
 					<form action="DataShopping" method="post">
 						气温 <input type="checkbox" name="elements" value="avgTemperature">
 						&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 气压 <input type="checkbox"
@@ -57,23 +58,22 @@
 						&nbsp;&nbsp;&nbsp;湿度<input type="checkbox" name="elements"
 							value="avgHumidity">&nbsp;&nbsp;&nbsp;
 						&nbsp;&nbsp;&nbsp;风速<input type="checkbox" name="elements"
-							value="avgWindSpeed"> <br>
-						<br>
-						<h5>Step2.选择地区* Area Selection</h5>${ShoppingItem.errors["area"]}<br>
-
-						北京 <input type="checkbox" name="area" value="beijing">
-						&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;天津 <input type="checkbox"
-							name="area" value="tianjin"> &nbsp;&nbsp;&nbsp;
-						&nbsp;&nbsp;&nbsp;河北 <input type="checkbox" name="area"
-							value="hebei"> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;山西 <input
-							type="checkbox" name="area" value="shanxi">
-						&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 内蒙古<input type="checkbox"
-							name="area" value="neimenggu"> &nbsp;&nbsp;&nbsp;
-						&nbsp;&nbsp;&nbsp; 辽宁<input type="checkbox" name="area"
-							value="liaoning"> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-						吉林<input type="checkbox" name="area" value="jilin">
-						&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 黑龙江<input type="checkbox"
-							name="area" value="heilongjiang"> &nbsp;&nbsp;&nbsp;
+							value="avgWindSpeed"> <br> <br>
+						<h5>选择地区* Area Selection</h5>
+						${ShoppingItem.errors["area"]}<br> 北京 <input type="checkbox"
+							name="area" value="beijing"> &nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;天津 <input type="checkbox" name="area"
+							value="tianjin"> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;河北
+						<input type="checkbox" name="area" value="hebei">
+						&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;山西 <input type="checkbox"
+							name="area" value="shanxi"> &nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp; 内蒙古<input type="checkbox" name="area"
+							value="neimenggu"> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+						辽宁<input type="checkbox" name="area" value="liaoning">
+						&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 吉林<input type="checkbox"
+							name="area" value="jilin"> &nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp; 黑龙江<input type="checkbox" name="area"
+							value="heilongjiang"> &nbsp;&nbsp;&nbsp;
 						&nbsp;&nbsp;&nbsp; 上海<input type="checkbox" name="area"
 							value="shanghai"> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
 						江苏<input type="checkbox" name="area" value="jiangsu">
@@ -112,20 +112,20 @@
 						&nbsp;&nbsp;&nbsp; 宁夏<input type="checkbox" name="area"
 							value="ningxia"> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 新疆<input
 							type="checkbox" name="area" value="xinjiang">
-						&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br>
+						&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br> <br>
+						<h5>选择频次 *Frequency Selection</h5>
+						${ShoppingItem.errors["frequency"]}<br> 逐月 <input
+							type="checkbox" name="frequency" value="eachMonth"> 逐年 <input
+							type="checkbox" name="frequency" value="eachYear"> <br>
 						<br>
-						<h5>Step3.选择频次 *Frequency Selection</h5>${ShoppingItem.errors["frequency"]}<br>
-						逐月 <input type="checkbox" name="frequency" value="eachMonth">
-						逐年 <input type="checkbox" name="frequency" value="eachYear">
-						<br>
-						<br>
-					
-						<h5>Step4.请填写您的个人信息，我们将进一步与您沟通</h5>
-						姓名*： <input type="text" name="name">${ShoppingItem.errors["name"]} <br> 
-						单位*： <input type="text" name="company">${ShoppingItem.errors["company"]} <br> 
-						联系电话*： <input type="text" name="phone">${ShoppingItem.errors["phoneNum"]} <br> 
-						邮箱*： <input type="text" name="email">${ShoppingItem.errors["email"]} <br>
-						其他需求： <input type="text" style="width:280px;height:150px;" name="other">${ShoppingItem.errors["addRequest"]}
+
+						<h5>请填写您的个人信息，我们将进一步与您沟通</h5>
+						姓名*： <input type="text" name="name">${ShoppingItem.errors["name"]}
+						<br> 单位*： <input type="text" name="company">${ShoppingItem.errors["company"]}
+						<br> 联系电话*： <input type="text" name="phone">${ShoppingItem.errors["phoneNum"]}
+						<br> 邮箱*： <input type="text" name="email">${ShoppingItem.errors["email"]}
+						<br> 其他需求： <input type="text"
+							style="width:280px;height:150px;" name="other">${ShoppingItem.errors["addRequest"]}
 						<br> <input type="submit" style="width:280px;" value="提交">
 					</form>
 			</div>
@@ -153,44 +153,28 @@
 			<h3>Some quick links</h3>
 			<div class="wrapper">
 				<ul class="list list-pad">
-					<li><a href="#">Campaigns</a>
-					</li>
-					<li><a href="#">Portraits</a>
-					</li>
-					<li><a href="#">Fashion</a>
-					</li>
-					<li><a href="#">Fine Art</a>
-					</li>
+					<li><a href="#">Campaigns</a></li>
+					<li><a href="#">Portraits</a></li>
+					<li><a href="#">Fashion</a></li>
+					<li><a href="#">Fine Art</a></li>
 				</ul>
 				<ul class="list list-pad">
-					<li><a href="#">Campaigns</a>
-					</li>
-					<li><a href="#">Portraits</a>
-					</li>
-					<li><a href="#">Fashion</a>
-					</li>
-					<li><a href="#">Fine Art</a>
-					</li>
+					<li><a href="#">Campaigns</a></li>
+					<li><a href="#">Portraits</a></li>
+					<li><a href="#">Fashion</a></li>
+					<li><a href="#">Fine Art</a></li>
 				</ul>
 				<ul class="list list-pad">
-					<li><a href="#">Campaigns</a>
-					</li>
-					<li><a href="#">Portraits</a>
-					</li>
-					<li><a href="#">Fashion</a>
-					</li>
-					<li><a href="#">Fine Art</a>
-					</li>
+					<li><a href="#">Campaigns</a></li>
+					<li><a href="#">Portraits</a></li>
+					<li><a href="#">Fashion</a></li>
+					<li><a href="#">Fine Art</a></li>
 				</ul>
 				<ul class="list">
-					<li><a href="#">Advertising</a>
-					</li>
-					<li><a href="#">Lifestyle</a>
-					</li>
-					<li><a href="#">Love story</a>
-					</li>
-					<li><a href="#">Landscapes</a>
-					</li>
+					<li><a href="#">Advertising</a></li>
+					<li><a href="#">Lifestyle</a></li>
+					<li><a href="#">Love story</a></li>
+					<li><a href="#">Landscapes</a></li>
 				</ul>
 			</div>
 		</article>
@@ -199,27 +183,10 @@
 </div>
 </div>
 
-<!-- footer -->
-<footer>
-	<div class="container clearfix">
-		<ul class="list-social pull-right">
-			<li><a class="icon-1" href="#"></a>
-			</li>
-			<li><a class="icon-2" href="#"></a>
-			</li>
-			<li><a class="icon-3" href="#"></a>
-			</li>
-			<li><a class="icon-4" href="#"></a>
-			</li>
-		</ul>
-		<div class="privacy pull-left">
-			&copy; 2017 | <a href="http://www.google.com">Title : Online
-				Weather Forecast</a> | <a href="http://twitter.github.com/bootstrap/"
-				target="_blank">Bootstrap</a> | Demo Illustrations by <a
-				href="http://www.sdufe.edu.cn" target="_blank">Liuzhen Xingyao</a>
-		</div>
-	</div>
-</footer>
+<!--start of footer  -->
+<jsp:include page="/pattern/Footer.jsp"></jsp:include>
+<!--end of footer  -->
+
 <script type="text/javascript" src="js/bootstrap.js"></script>
 </body>
 </html>

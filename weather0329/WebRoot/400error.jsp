@@ -67,64 +67,10 @@
 <body>
 <div class="spinner"></div>
 <!--  header  -->
-<header>
-      <div class="container clearfix">
-    <div class="row">
-          <div class="span12">
-        <div class="navbar navbar_">
-              <div class="container">
-                <%if(type==0){ %>
-            <h1 class="brand brand_"><a href="AdminIndex.jsp"><img alt="" src="img/mine/icon.jpg"> </a></h1>
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse_">Menu <span class="icon-bar"></span> </a>
-            <div class="nav-collapse nav-collapse_  collapse">
-                  <ul class="nav sf-menu">
-                <li class="active"><a href="UserModify.jsp">用户管理</a></li>
-                <li><a href="AdminWeatherModify.jsp">历史数据</a></li>
-                <li><a href="Hadoop.jsp">数据分析</a></li>
-                <li class="sub-menu"><a >文献资料</a>
-                      <ul>
-                          <li><a href="AdminProcess1.jsp">文档一</a></li>
-                          <li><a href="AdminProcess2.jsp">文档二</a></li>
-                          <li><a href="AdminProcess3.jsp">文档三</a></li>
-                  </ul>
-                    </li>
-                <li><a href="contact.html">意见反馈</a></li>
-                <%String name=(String)session.getAttribute("name"); %>
-                                <li><p3>欢迎，<%=name%></p3><button onclick="window.location.href='home.jsp'">退出</button></li>
-              </ul>
-                </div>
-                <% }%>
-                
-                <%if(type==1){ %>
-                 <h1 class="brand brand_"><a href="UserIndex.jsp"><img alt="" src="img/mine/icon.jpg"> </a></h1>
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse_">Menu <span class="icon-bar"></span> </a>
-                <div class="nav-collapse nav-collapse_  collapse">
-                  <ul class="nav sf-menu">
-                <li class="active"><a href="" onlick="ale()" >用户管理</a></li>
-                <li><a href="UserWeatherModify.jsp">历史数据</a></li>
-                <li><a href="blog.html">数据分析</a></li>
-                <li class="sub-menu"><a >文献资料</a>
-                      <ul>
-                          <li><a href="UserProcess1.jsp">文档一</a></li>
-                          <li><a href="UserProcess2.jsp">文档二</a></li>
-                          <li><a href="UserProcess3.jsp">文档三</a></li>
-                  </ul>
-                    </li>
-                <li><a href="contact.html">意见反馈</a></li>
-                <%String name=(String)session.getAttribute("name"); %>
-                                <li><p3>欢迎，<%=name%></p3><button onclick="window.location.href='home.jsp'">退出</button></li>
-              </ul>
-                </div>
-                <%} %>
-          </div>
-            </div>
-      </div>
-        </div>
-  </div>
-    </header>
+
 <div class="bg-content">  
 
-<!--  content  -->
+<!-- start of   content  -->
 
 <div id="content"> 
   <div class="container">
@@ -152,18 +98,9 @@
 </div>  
 </div>
 </div>
-<!--  footer  -->
-<footer>
-      <div class="container clearfix">
-    <ul class="list-social pull-right">
-          <li><a class="icon-1" href="#"></a></li>
-          <li><a class="icon-2" href="#"></a></li>
-          <li><a class="icon-3" href="#"></a></li>
-          <li><a class="icon-4" href="#"></a></li>
-        </ul>
-    <div class="privacy pull-left">&copy; 2017 | <a href="http://www.google.com">Title : Online Weather Forecast</a> | <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a> | Demo Illustrations by <a href="http://www.sdufe.edu.cn" target="_blank">Liuzhen Xingyao</a></div>
-  </div>
-    </footer>
+<!--start of footer  -->
+<jsp:include page="/pattern/Footer.jsp"></jsp:include>
+<!--end of footer  -->
 <script type="text/javascript" src="js/bootstrap.js"></script>
 </body>
 </body>
