@@ -20,7 +20,7 @@
 </script>
 <!--start of  content -->
 
-<jsp:include page="/Header.jsp"></jsp:include>
+<jsp:include page="/pattern/Header.jsp"></jsp:include>
 
 <!--end of  content -->
 
