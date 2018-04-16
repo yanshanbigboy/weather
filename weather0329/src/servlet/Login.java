@@ -57,7 +57,7 @@ public class Login extends HttpServlet {
 							options[0]);
 					request.setAttribute(name, password);
 					RequestDispatcher rd = request
-							.getRequestDispatcher("Login.jsp");
+							.getRequestDispatcher("/WEB-INF/pages/Login.jsp");
 					rd.forward(request, response);
 				} else if (!adminPasswordDB.equals(password)) {
 					System.out.println("ÃÜÂë´íÎó+µÇÂ½Ê§°Ü");
@@ -68,7 +68,7 @@ public class Login extends HttpServlet {
 							options[0]);
 					request.setAttribute(name, password);
 					RequestDispatcher rd = request
-							.getRequestDispatcher("home.jsp");
+							.getRequestDispatcher("/WEB-INF/pages/Login.jsp");
 					rd.forward(request, response);
 				} else {
 					System.out.println("ÓÃ»§Ãû´íÎó+µÇÂ½Ê§°Ü");
@@ -79,7 +79,7 @@ public class Login extends HttpServlet {
 							options[0]);
 					request.setAttribute(name, password);
 					RequestDispatcher rd = request
-							.getRequestDispatcher("Login.jsp");
+							.getRequestDispatcher("/WEB-INF/pages/Login.jsp");
 					rd.forward(request, response);
 				}
 			}
@@ -108,7 +108,7 @@ public class Login extends HttpServlet {
 							options[0]);
 					request.setAttribute(name, password);
 					RequestDispatcher rd = request
-							.getRequestDispatcher("Login.jsp");
+							.getRequestDispatcher("/WEB-INF/pages/Login.jsp");
 					rd.forward(request, response);
 
 				} else if (!userPasswordDB.equals(password)) {
@@ -121,7 +121,7 @@ public class Login extends HttpServlet {
 							options[0]);
 					request.setAttribute(name, password);
 					RequestDispatcher rd = request
-							.getRequestDispatcher("Login.jsp");
+							.getRequestDispatcher("/WEB-INF/pages/Login.jsp");
 					rd.forward(request, response);
 
 				} else {
@@ -134,7 +134,7 @@ public class Login extends HttpServlet {
 							options[0]);
 					request.setAttribute(name, password);
 					RequestDispatcher rd = request
-							.getRequestDispatcher("Login.jsp");
+							.getRequestDispatcher("/WEB-INF/pages/Login.jsp");
 					rd.forward(request, response);
 				}
 			}
@@ -145,7 +145,8 @@ public class Login extends HttpServlet {
 					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 					null, options, options[0]);
 			request.setAttribute(name, password);
-			RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
+			RequestDispatcher rd = request
+					.getRequestDispatcher("/WEB-INF/pages/Login.jsp");
 			rd.forward(request, response);
 		}
 

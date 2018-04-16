@@ -134,7 +134,6 @@ public class WeatherDao {
 			DBConnection.close(pstmt, conn);
 		}
 		return weathersList;
-
 	}
 
 }
