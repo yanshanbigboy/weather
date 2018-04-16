@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8" errorPage="error.jsp"%>
+<%@ page import="bean.Province"%>
+<%@ page import="dao.ProvinceDao"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -11,16 +15,17 @@
 	<div class="container">
 		<div class="row">
 			<div class="span12">
-
+			
 				<!--start of slider-->
 				<jsp:include page="/pattern/Slider.jsp"></jsp:include>
 				<!--end of slider-->
-
+				
 				<span id="responsiveFlag"></span>
 
 			</div>
 		</div>
 	</div>
+
 	<!-- content -->
 
 	<div id="content" class="content-extra">
@@ -37,42 +42,69 @@
 							bordercolor="#FFFFFF" bordercolordark="#F6B83B"
 							bordercolorlight="#FFFFFF">
 							<tr align="center" bgcolor="#e3F4F7">
-								<td width="10%" bgcolor="#e7e8e8">姓名</td>
+								<td width="10%" bgcolor="#e7e8e8">省份</td>
 
-								<td width="12%" bgcolor="#e7e8e8">密码</td>
+								<td width="12%" bgcolor="#e7e8e8">人口(万人)</td>
 
 							</tr>
-							
-							<c:forEach var="user" items="${userList}">
+							<%
+								List<Province> provincesList = ProvinceDao.printProvince();
+							%>
+							<%
+								for (Province province : provincesList) {
+							%>
 							<tr align="center">
-								<td style="padding:5px;">${user.userName }</td>
-								<td style="padding:5px;">${user.userPassword }</a>
-								</td>
+								<td style="padding:5px;"><%=province.getProvinceName()%></td>
+								<td style="padding:5px;"><%=province.getPopulation()%></a></td>
 							</tr>
-							</c:forEach>
+							<%
+								}
+							%>
 						</table>
-
-						<br>
-						<h3>=========================</h3>
-						<h2>添加新用户</h2>
-						<form action="add.user" method="post">
-							请输入用户名：<input type="text" name="username"><br>
-							请输入密码：<input type="text" name="userpassword"><br> <input
-								type="submit" value="提交">
+						<form action="query.weather" method="post">
+							<h3>数据查询：请输入要查询的省份</h3>
+							<input type="text" name="provinceName"></br> <input
+								type="Submit" value="确定">
 						</form>
-						<h3>=========================</h3>
-						<h2>更改用户密码</h2>
-						<form action="update.user" method="post">
-							请输入用户名：<input type="text" name="username"><br>
-							请输入新密码：<input type="text" name="userpassword"><br> <input
-								type="submit" value="提交">
-						</form>
-						<h3>=========================</h3>
-						<h2>删除用户</h2>
-						<form action="del.user" method="post">
-							请输入用户名：<input type="text" name="username"><br> <input
-								type="submit" value="删除">
-						</form>
+						<c:if test="${sessionScope.admin!=null }">
+							<h3>========================</h3>
+							<br>
+							<form action="add.province" method="post">
+								<h3>增加省份：请输入要添加的省份</h3>
+								省份：<input type="text" name="provinceName"></br> 人口（万人）：<input
+									type="text" name="population"></br> <input type="Submit"
+									value="确定">
+							</form>
+							<h3>========================</h3>
+							<br>
+							<form action="del.province" method="post">
+								<h3>请输入要删除的省份</h3>
+								<input type="text" name="provinceName"></br> <input
+									type="Submit" value="确定">
+							</form>
+							<h3>========================</h3>
+							<br>
+							<form action="add.weather" method="post">
+								<h3>添加省份天气数据</h3>
+								月份：<input type="text" name="month"><br> 省份：<input
+									type="text" name="province"><br> 平均气压（单位百帕）：<input
+									type="text" name="avgPressure"><br> 平均气温（单位℃）：<input
+									type="text" name="avgTemperature"><br> 平均湿度（单位%）：<input
+									type="text" name="avgHumidity"><br> 平均降水量（单位mm）：<input
+									type="text" name="avgPrecipitation"><br>
+								平均风速（单位m/s）：<input type="text" name="avgWindSpeed"><br>
+								<input type="Submit" value="确定">
+							</form>
+							<h3>========================</h3>
+							<br>
+							<form action="WeatherDel" method="post">
+								<h3>天气数据删除：请输入省份和要删除数据的月份</h3>
+								省份：<input type="text" name="provinceName"><br> 月份：<input
+									type="text" name="month"><br> <input type="Submit"
+									value="确定">
+							</form>
+							</br>
+						</c:if>
 					</ul>
 				</div>
 			</div>
@@ -110,7 +142,8 @@
 								<div class="clear"></div>
 								<p>Vivamus sollicitudin libero auctor arcu pulvinar commodo.</p>
 								<a href="#" class="btn btn-1">Read More</a> </section>
-							</div></li>
+							</div>
+						</li>
 						<li class="span3">
 							<div class="thumbnail thumbnail-1">
 								<h3>Graphics</h3>
@@ -129,7 +162,8 @@
 								<div class="clear"></div>
 								<p>Vestibulum volutpat urna sed sapien vehicula varius.</p>
 								<a href="#" class="btn btn-1">Read More</a> </section>
-							</div></li>
+							</div>
+						</li>
 						<li class="span3">
 							<div class="thumbnail thumbnail-1">
 								<h3>Social Media</h3>
@@ -149,7 +183,8 @@
 								<p>Pellentesque mi justo, laoreet non bibendum non, auctor
 									imperdiet eros.</p>
 								<a href="#" class="btn btn-1">Read More</a> </section>
-							</div></li>
+							</div>
+						</li>
 						<li class="span3">
 							<div class="thumbnail thumbnail-1">
 								<h3 class="title-1 extra">Photography</h3>
@@ -168,7 +203,8 @@
 								<div class="clear"></div>
 								<p>Vestibulum volutpat urna sed sapien vehicula varius.</p>
 								<a href="#" class="btn btn-1">Read More</a> </section>
-							</div></li>
+							</div>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -192,44 +228,28 @@
 				<h3>Some quick links</h3>
 				<div class="wrapper">
 					<ul class="list list-pad">
-						<li><a href="#">Campaigns</a>
-						</li>
-						<li><a href="#">Portraits</a>
-						</li>
-						<li><a href="#">Fashion</a>
-						</li>
-						<li><a href="#">Fine Art</a>
-						</li>
+						<li><a href="#">Campaigns</a></li>
+						<li><a href="#">Portraits</a></li>
+						<li><a href="#">Fashion</a></li>
+						<li><a href="#">Fine Art</a></li>
 					</ul>
 					<ul class="list list-pad">
-						<li><a href="#">Campaigns</a>
-						</li>
-						<li><a href="#">Portraits</a>
-						</li>
-						<li><a href="#">Fashion</a>
-						</li>
-						<li><a href="#">Fine Art</a>
-						</li>
+						<li><a href="#">Campaigns</a></li>
+						<li><a href="#">Portraits</a></li>
+						<li><a href="#">Fashion</a></li>
+						<li><a href="#">Fine Art</a></li>
 					</ul>
 					<ul class="list list-pad">
-						<li><a href="#">Campaigns</a>
-						</li>
-						<li><a href="#">Portraits</a>
-						</li>
-						<li><a href="#">Fashion</a>
-						</li>
-						<li><a href="#">Fine Art</a>
-						</li>
+						<li><a href="#">Campaigns</a></li>
+						<li><a href="#">Portraits</a></li>
+						<li><a href="#">Fashion</a></li>
+						<li><a href="#">Fine Art</a></li>
 					</ul>
 					<ul class="list">
-						<li><a href="#">Advertising</a>
-						</li>
-						<li><a href="#">Lifestyle</a>
-						</li>
-						<li><a href="#">Love story</a>
-						</li>
-						<li><a href="#">Landscapes</a>
-						</li>
+						<li><a href="#">Advertising</a></li>
+						<li><a href="#">Lifestyle</a></li>
+						<li><a href="#">Love story</a></li>
+						<li><a href="#">Landscapes</a></li>
 					</ul>
 				</div>
 				</article>
@@ -238,10 +258,10 @@
 	</div>
 </div>
 
-
 <!--start of footer  -->
 <jsp:include page="/pattern/Footer.jsp"></jsp:include>
 <!--end of footer  -->
+
 <script type="text/javascript" src="js/bootstrap.js"></script>
 </body>
 </html>
