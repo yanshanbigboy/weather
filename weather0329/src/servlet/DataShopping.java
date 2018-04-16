@@ -63,7 +63,8 @@ public class DataShopping extends HttpServlet {
 		send.start();
 		String message = "恭喜您，注册成功，我们已经发了一封带了注册信息的电子邮件，请查收，如果没有收到，可能是网络原因，过一会儿就收到了！！";
 		request.setAttribute("message", message);
-		request.getRequestDispatcher("/Message.jsp").forward(request, response);
+		request.getRequestDispatcher("/pattern/Message.jsp").forward(request,
+				response);
 		// 验证数据的合法性(封装在ShoppingItem对象中的方法)
 
 		/*

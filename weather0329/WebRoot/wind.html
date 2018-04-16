@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<body>
+<div style="height: 50px"></div>
+
+<div id="main" style="height:400px"></div>
+
+<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+<script type="text/javascript">
+
+    require.config({
+        paths: {
+            echarts: 'http://echarts.baidu.com/build/dist'
+        }
+    });
+    require(
+        [
+            'echarts',
+            'echarts/chart/line',
+            'echarts/chart/bar'
+        ],
+        function (ec) {
+
+            var myChart = ec.init(document.getElementById('main'));
+
+            var option = {
+                title : {
+                    text: '2017年各大城市平均风速',
+                    subtext: ''
+                },
+                tooltip : {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data:['哈尔滨','北京','拉萨','广州']
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        magicType : {show: true, type: ['line', 'bar']},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                calculable : true,
+                xAxis : [
+                    {
+                        type : 'category',
+                        data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value'
+                    }
+                ],
+                series : [
+                    {
+                        name:'哈尔滨',
+                        type:'bar',
+                        data:[2.5, 2.6, 3.3, 3.7, 3.5, 3.0, 2.7, 2.4, 2.6, 2.9, 3.1, 2.5],
+                        markPoint : {
+                            data : [
+                                {type : 'max', name: '最大值'},
+                                {type : 'min', name: '最小值'}
+                            ]
+                        },
+                        markLine : {
+                            data : [
+                                {type : 'average', name : '平均值'}
+                            ]
+                        }
+                    },
+                    {
+                        name:'北京',
+                        type:'bar',
+                        data:[2.4, 2.7, 3.0, 3.1, 2.8,2.3, 2.0, 1.8, 1.9, 2.0, 2.3,2.4],
+                        markPoint : {
+                            data : [
+                                {type : 'max', name: '最大值'},
+                                {type : 'min', name: '最小值'}
+                            ]
+                        },
+                        markLine : {
+                            data : [
+                                {type : 'average', name: '平均值'}
+                            ]
+                        }
+                    },
+                    {
+                        name:'拉萨',
+                        type:'bar',
+                        data:[2.1, 2.9, 3.0, 2.8, 2.5, 2.3, 2.1, 2.1, 1.9, 2.1, 1.8, 1.6],
+                        markPoint : {
+                            data : [
+                                {type : 'max', name: '最大值'},
+                                {type : 'min', name: '最小值'}
+                            ]
+                        },
+                        markLine : {
+                            data : [
+                                {type : 'average', name : '平均值'}
+                            ]
+                        }
+                    },
+                    {
+                        name:'广州',
+                        type:'bar',
+                        data:[2.4, 2.5, 2.7, 2.9, 3.1, 3.2, 3.3, 3.0, 3.1, 3.2, 2.7, 2.4],
+                        markPoint : {
+                            data : [
+                                {type : 'max', name: '最大值'},
+                                {type : 'min', name: '最小值'}
+                            ]
+                        },
+                        markLine : {
+                            data : [
+                                {type : 'average', name: '平均值'}
+                            ]
+                        }
+                    },
+
+                ]
+            };
+            myChart.setOption(option)
+        }
+    );
+</script>
+</body>
+</html>
