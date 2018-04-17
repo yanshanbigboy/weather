@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,9 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import Util.SendMail;
 import Util.ServletUtil;
 import bean.ShoppingItem;
-import bean.Weather;
-import dao.ShoppingItemDao;
-import dao.WeatherDao;
 
 public class DataShopping extends HttpServlet {
 
@@ -71,34 +67,32 @@ public class DataShopping extends HttpServlet {
 				response);
 		// 验证数据的合法性(封装在ShoppingItem对象中的方法)
 
-		if (item.validate() != false) {
-			// 数据合理，验证通过 写入数据库的购物表
-			int count = ShoppingItemDao.addItem(item);
-			// 将收到的用户需求查询数据库(本来应该有逻辑业务层，判断用户需求，这里就不在另开一层了)
+		// if (item.validate() != false) {
+		// // 数据合理，验证通过 写入数据库的购物表
+		// int count = ShoppingItemDao.addItem(item);
+		// // 将收到的用户需求查询数据库(本来应该有逻辑业务层，判断用户需求，这里就不在另开一层了)
+		//
+		// // 先判断频次
+		// if (strFrequency.equals("eachMonth")) {
+		// for (int i = 0; i < area.length; i++) {
+		// WeatherDao dao = new WeatherDao();
+		// List<Weather> weathersList = dao.priProWeaByElem(area[i],
+		// strElem);
 
-			// 先判断频次
-			if (strFrequency.equals("eachMonth")) {
-				for (int i = 0; i < area.length; i++) {
-					WeatherDao dao = new WeatherDao();
-					List<Weather> weathersList = dao.priProWeaByElem(area[i],
-							strElem);
-					// 遍历查询到的链表
-					for (Weather weathers : weathersList) {
-						System.out.println(weathers.getProvince());
-						// 这里写入文件
-					}
-				}
-			} else if (strFrequency.equals("eachYear")) {
-
-			} else {
-
-			}
-
-		} else {// 验证不通过,将原对象的数据转发回ShoppingView页面
-			request.setAttribute("ShoppingItem", item);
-			request.getRequestDispatcher("/ShoppingView.jsp").forward(request,
-					response);
-		}
+		// // 这里写入文件
+		// }
+		// }
+		// } else if (strFrequency.equals("eachYear")) {
+		//
+		// } else {
+		//
+		// }
+		//
+		// } else {// 验证不通过,将原对象的数据转发回ShoppingView页面
+		// request.setAttribute("ShoppingItem", item);
+		// request.getRequestDispatcher("/ShoppingView.jsp").forward(request,
+		// response);
+		// }
 
 	}
 

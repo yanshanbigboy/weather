@@ -1,15 +1,26 @@
 package Util;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Properties;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.mail.Authenticator;
 import javax.mail.Message;
-import javax.mail.Message.RecipientType;
+import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.mail.internet.MimeUtility;
 
 import bean.ShoppingItem;
 
@@ -18,7 +29,6 @@ public class SendMail extends Thread {// ·¢ËÍÓÊ¼şÊÇÒ»¼şºÄÊ±µÄÊÂ£¬Òò´ËÉè¼ÆÒ»¸öÏß³
 	private String username = "vyumin";// ÓÊÏäµÄÓÃ»§Ãû
 
 	private String password = "200271400";// ÓÊÏäµÄÃÜÂë
-	private String host = "smtp.163.com";// 163ÓÊÏäsmtp·şÎñÆ÷µÄµØÖ·
 
 	private ShoppingItem item;
 
@@ -37,69 +47,120 @@ public class SendMail extends Thread {// ·¢ËÍÓÊ¼şÊÇÒ»¼şºÄÊ±µÄÊÂ£¬Òò´ËÉè¼ÆÒ»¸öÏß³
 	public void run() {
 		try {
 
-			// È·¶¨Á¬½ÓÎ»ÖÃ
-			Properties prop = new Properties();
-			// »ñÈ¡163ÓÊÏäsmtp·şÎñÆ÷µÄµØÖ·
-			prop.setProperty("mail.host", host);
-			prop.setProperty("mail.transport.protocol", "smtp");
-			// ÊÇ·ñ½øĞĞÈ¨ÏŞÑéÖ¤
-			prop.setProperty("mail.smtp.auth", "true");
+			// »·¾³
+			Session session = Session.getDefaultInstance(new Properties());
 
-			// 0.2È·¶¨È¨ÏŞ£¨ÕËºÅºÍÃÜÂë£©
-			Authenticator authenticator = new Authenticator() {
+			// ÓÊ¼ş
+			MimeMessage msg = new MimeMessage(session);
+			// ÉèÖÃÖ÷Ìâ
+			msg.setSubject("É½¶«²Æ¾­´óÑ§ÆøÏó´óÊı¾İÖĞĞÄÆøÏóÊı¾İ");
+			// ·¢¼şÈË£¬×¢ÒâÖĞÎÄµÄ´¦Àí
+			msg.setFrom(new InternetAddress("\""
+					+ MimeUtility.encodeText("É½¶«²Æ¾­´óÑ§ÆøÏó´óÊı¾İÖĞĞÄ")
+					+ "\"<vyumin@163.com>"));
+
+			// Õû·âÓÊ¼şµÄMINEÏûÏ¢Ìå
+			MimeMultipart msgMultipart = new MimeMultipart("mixed");// »ìºÏµÄ×éºÏ¹ØÏµ
+			// ÉèÖÃÓÊ¼şµÄMINEÏûÏ¢Ìå
+			msg.setContent(msgMultipart);
+
+			// ¸½¼ş1
+			MimeBodyPart attch1 = new MimeBodyPart();
+			// ¸½¼ş2
+			// MimeBodyPart attch2 = new MimeBodyPart();
+			// ÕıÎÄÄÚÈİ
+			MimeBodyPart content = new MimeBodyPart();
+
+			// °ÑÄÚÈİ£¬¸½¼ş1£¬¸½¼ş2¼ÓÈëµ½ MINEÏûÏ¢ÌåÖĞ
+			msgMultipart.addBodyPart(attch1);
+			// msgMultipart.addBodyPart(attch2);
+			msgMultipart.addBodyPart(content);
+
+			// °ÑÎÄ¼ş£¬Ìí¼Óµ½¸½¼ş1ÖĞ
+			// Êı¾İÔ´
+			DataSource ds1 = new FileDataSource(new File("C:/demo/demo.txt"));
+			// Êı¾İ´¦ÀíÆ÷
+			DataHandler dh1 = new DataHandler(ds1);
+			// ÉèÖÃµÚÒ»¸ö¸½¼şµÄÊı¾İ
+			attch1.setDataHandler(dh1);
+			// ÉèÖÃµÚÒ»¸ö¸½¼şµÄÎÄ¼şÃû
+			attch1.setFileName("file1.txt");
+
+			// °ÑÎÄ¼ş£¬Ìí¼Óµ½¸½¼ş2ÖĞ
+			// DataSource ds2 = new FileDataSource(new File(
+			// "C:/Users/H__D/Desktop/2.txt"));
+			// DataHandler dh2 = new DataHandler(ds2);
+			// attch2.setDataHandler(dh2);
+			// attch2.setFileName(MimeUtility.encodeText("ÎÄ¼ş2.jpg"));
+
+			// ÕıÎÄ£¨Í¼Æ¬ºÍÎÄ×Ö²¿·Ö£©
+			MimeMultipart bodyMultipart = new MimeMultipart("related");
+			// ÉèÖÃÄÚÈİÎªÕıÎÄ
+			content.setContent(bodyMultipart);
+
+			// html´úÂë²¿·Ö
+			MimeBodyPart htmlPart = new MimeBodyPart();
+			// htmlÖĞÇ¶Ì×µÄÍ¼Æ¬²¿·Ö
+			// MimeBodyPart imgPart = new MimeBodyPart();
+
+			// ÕıÎÄÌí¼ÓÍ¼Æ¬ºÍhtml´úÂë
+			bodyMultipart.addBodyPart(htmlPart);
+			// bodyMultipart.addBodyPart(imgPart);
+
+			// °ÑÎÄ¼ş£¬Ìí¼Óµ½Í¼Æ¬ÖĞ
+			// DataSource imgds = new FileDataSource(new File(
+			// "C:/Users/H__D/Desktop/logo.png"));
+			// DataHandler imgdh = new DataHandler(imgds);
+			// imgPart.setDataHandler(imgdh);
+			// ËµÃ÷htmlÖĞµÄimg±êÇ©µÄsrc£¬ÒıÓÃµÄÊÇ´ËÍ¼Æ¬
+			// imgPart.setHeader("Content-Location",
+			// "http://sunteam.cc/logo.jsg");
+
+			// html´úÂë
+			htmlPart.setContent(
+					"<span style='color:red'>¸ĞĞ»Äú¹ºÂòÉ½¶«²Æ¾­´óÑ§ÆøÏó´óÊı¾İÖĞĞÄµÄÆøÏóÊı¾İ£¬ÈçÓĞĞèÒªÇëÖ±½ÓÓëÎÒÃÇÁªÏµ¡£</span>",
+					"text/html;charset=utf-8");
+
+			// Éú³ÉÎÄ¼şÓÊ¼ş
+			msg.saveChanges();
+
+			// Êä³ö
+			OutputStream os = new FileOutputStream("C:/demo/demo.eml");
+			msg.writeTo(os);
+			os.close();
+
+			// ÊôĞÔ¶ÔÏó
+			Properties properties = new Properties();
+			// ¿ªÆôdebugµ÷ÊÔ £¬´òÓ¡ĞÅÏ¢
+			properties.setProperty("mail.debug", "true");
+			// ·¢ËÍ·şÎñÆ÷ĞèÒªÉí·İÑéÖ¤
+			properties.setProperty("mail.smtp.auth", "true");
+			// ·¢ËÍ·şÎñÆ÷¶Ë¿Ú£¬¿ÉÒÔ²»ÉèÖÃ£¬Ä¬ÈÏÊÇ25
+			properties.setProperty("mail.smtp.port", "25");
+			// ·¢ËÍÓÊ¼şĞ­ÒéÃû³Æ
+			properties.setProperty("mail.transport.protocol", "smtp");
+			// ÉèÖÃÓÊ¼ş·şÎñÆ÷Ö÷»úÃû
+			properties.setProperty("mail.host", "smtp.163.com");
+			// »·¾³ĞÅÏ¢
+			session = Session.getInstance(properties, new Authenticator() {
 				@Override
-				public PasswordAuthentication getPasswordAuthentication() {
-					// ÌîĞ´×Ô¼ºµÄ163ÓÊÏäµÄµÇÂ¼ÕÊºÅºÍÊÚÈ¨ÃÜÂë£¬ÊÚÈ¨ÃÜÂëµÄ»ñÈ¡£¬ÔÚºóÃæ»á½øĞĞ½²½â¡£
-					// return new PasswordAuthentication("vyumin@163.com",
-					// "ÊÚÈ¨Âë");
-					return new PasswordAuthentication("vyumin@163.com",
-							"18746ajq13");
+				protected PasswordAuthentication getPasswordAuthentication() {
+					// ÔÚsessionÖĞÉèÖÃÕË»§ĞÅÏ¢£¬Transport·¢ËÍÓÊ¼şÊ±»áÊ¹ÓÃ,ÕâÀïÊÇÕË»§ÃûºÍÊÚÈ¨ÃÜÂë£¬¶ø²»ÊÇÓÊÏäÃÜÂë
+					return new PasswordAuthentication(username, "18746ajq13");
 				}
-			};
+			});
 
-			// 1 »ñµÃÁ¬½Ó
-			/**
-			 * props£º°üº¬ÅäÖÃĞÅÏ¢µÄ¶ÔÏó£¬PropertiesÀàĞÍ ÅäÖÃÓÊÏä·şÎñÆ÷µØÖ·¡¢ÅäÖÃÊÇ·ñ½øĞĞÈ¨ÏŞÑéÖ¤(ÕÊºÅÃÜÂëÑéÖ¤)µÈ
-			 * 
-			 * authenticator£ºÈ·¶¨È¨ÏŞ(ÕÊºÅºÍÃÜÂë)
-			 * 
-			 * ËùÒÔ¾ÍÒªÔÚÉÏÃæ¹¹½¨ÕâÁ½¸ö¶ÔÏó¡£
-			 */
+			// ¶ÁÈ¡±¾µØÓÊ¼ş
+			Message message = new MimeMessage(session, new FileInputStream(
+					new File("C:/demo/demo.eml")));
 
-			Session session = Session.getDefaultInstance(prop, authenticator);
-			// 2 ´´½¨ÏûÏ¢
-			Message message = new MimeMessage(session);
-			// 2.1 ·¢¼şÈË xxx@163.com ÎÒÃÇ×Ô¼ºµÄÓÊÏäµØÖ·£¬¾ÍÊÇÃû³Æ
-			message.setFrom(new InternetAddress("vyumin@163.com"));
-			/**
-			 * 2.2 ÊÕ¼şÈË µÚÒ»¸ö²ÎÊı£º RecipientType.TO ´ú±íÊÕ¼şÈË RecipientType.CC ³­ËÍ
-			 * RecipientType.BCC °µËÍ ±ÈÈçAÒª¸øB·¢ÓÊ¼ş£¬µ«ÊÇA¾õµÃÓĞ±ØÒª¸øÒªÈÃCÒ²¿´¿´ÆäÄÚÈİ£¬¾ÍÔÚ¸øB·¢ÓÊ¼şÊ±£¬
-			 * ½«ÓÊ¼şÄÚÈİ³­ËÍ¸øC£¬ÄÇÃ´CÒ²ÄÜ¿´µ½ÆäÄÚÈİÁË£¬µ«ÊÇBÒ²ÄÜÖªµÀA¸øC³­ËÍ¹ı¸Ã·âÓÊ¼ş
-			 * ¶øÈç¹ûÊÇ°µËÍ(ÃÜËÍ)¸øCµÄ»°£¬ÄÇÃ´B¾Í²»ÖªµÀA¸øC·¢ËÍ¹ı¸Ã·âÓÊ¼ş¡£ µÚ¶ş¸ö²ÎÊı
-			 * ÊÕ¼şÈËµÄµØÖ·£¬»òÕßÊÇÒ»¸öAddress[]£¬ÓÃÀ´×°³­ËÍ»òÕß°µËÍÈËµÄÃûµ¥¡£»òÕßÓÃÀ´Èº·¢¡£¿ÉÒÔÊÇÏàÍ¬ÓÊÏä·şÎñÆ÷µÄ£¬Ò²¿ÉÒÔÊÇ²»Í¬µÄ
-			 * ÕâÀïÎÒÃÇ·¢ËÍ¸øÎÒÃÇµÄqqÓÊÏä
-			 */
+			// ·¢ËÍÓÊ¼ş
+			Transport.send(message, InternetAddress.parse(item.getEmail()));
 
-			message.setRecipient(RecipientType.TO,
-					new InternetAddress(item.getEmail()));
-			// 2.3 Ö÷Ìâ£¨±êÌâ£©
-			message.setSubject("É½¶«²Æ¾­´óÑ§ÆøÏó´óÊı¾İÖĞĞÄ");
-			// 2.4 ÕıÎÄ
-			String str = "Deer "
-					+ item.getName()
-					+ "£º <br/>"
-					+ "It is an great honor to receive your data purchasing intention.Please inform us if there is any mistake in the form you fill in£º<br/>"
-					+ "ÆøÏóÔªËØ£º" + item.getElem() + "<br/>µØÇø£º" + item.getArea();
-			// ÉèÖÃ±àÂë£¬·ÀÖ¹·¢ËÍµÄÄÚÈİÖĞÎÄÂÒÂë¡£
-			message.setContent(str, "text/html;charset=UTF-8");
-
-			// 3·¢ËÍÏûÏ¢
-			Transport.send(message);
-		} catch (Exception e) {
-			throw new RuntimeException();
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
-
-	// ½«ËùÑ¡Ó¢ÎÄ±äÁ¿Ãû×ª»»³É¶ÔÓ¦µÄÖĞÎÄÃû³Æ
-
 }
