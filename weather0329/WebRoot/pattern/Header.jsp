@@ -126,7 +126,7 @@
 										<li><a href="AdminProcess3.jsp">可读文档</a>
 										</li>
 									</ul></li>
-								<li><a href="Messboard.jsp">意见反馈</a>
+								<li><a href="Messageboard.jsp">意见反馈</a>
 								</li>
 
 								<li><c:if test="${user!=null}">

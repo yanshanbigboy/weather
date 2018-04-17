@@ -61,11 +61,22 @@
 								}
 							%>
 						</table>
-						<form action="query.weather" method="post">
-							<h3>数据查询：请输入要查询的省份</h3>
-							<input type="text" name="provinceName"></br> <input
+						<c:choose>
+						  <c:when test="${sessionScope.admin!=null }">
+						     <form action="query.weather" method="post">
+							     <h3>数据查询：请输入要查询的省份</h3>
+							     <input type="text" name="provinceName"></br> <input
 								type="Submit" value="确定">
-						</form>
+						     </form>
+						  </c:when>
+						  <c:otherwise>  
+						     <form action="query2.weather" method="post">
+							     <h3>数据查询：请输入要查询的省份</h3>
+							     <input type="text" name="provinceName"></br> <input
+								type="Submit" value="确定">
+						     </form>
+						  </c:otherwise>
+						</c:choose>
 						<c:if test="${sessionScope.admin!=null }">
 							<h3>========================</h3>
 							<br>
@@ -118,97 +129,101 @@
 			</div>
 		</div>
 		<div class="row-1">
-			<div class="container">
-				<div class="row">
-					<article class="span12">
-					<h4>From blog</h4>
-					</article>
-					<ul class="thumbnails thumbnails-1">
-						<li class="span3">
-							<div class="thumbnail thumbnail-1">
-								<h3>Web Design</h3>
-								<img src="img/mine/graph5.jpg" alt="">
-								<section> <a href="#"><h3>At vero eos et
-										accusamus et iusto</h3> </a>
-								<div class="meta">
-									<time datetime="2012-11-09" class="date-1"> <i
-										class="icon-calendar"></i> 9.11.2012</time>
-									<div class="name-author">
-										<i class="icon-user"></i> <a href="#">Admin</a>
+				<div class="container">
+					<div class="row">
+						<article class="span12">
+						<h4>网站简介</h4>
+						</article>
+						<ul class="thumbnails thumbnails-1">
+							<li class="span3">
+								<div class="thumbnail thumbnail-1">
+									<h3>Web Design</h3>
+									<img src="img/mine/graph5.jpg" alt="">
+									<section> <a href="#"><h3>前端使用bootstrap框架
+									http://www.bootcss.com/</h3> </a>
+									<div class="meta">
+										<time datetime="2018-04-17" class="date-1"> <i
+											class="icon-calendar"></i> 17.04.2018</time>
+										<div class="name-author">
+											<i class="icon-user"></i> <a href="#">Admin</a>
+										</div>
+										<a href="Messageboard.jsp" class="comments"><i
+											class="icon-comment"></i> 7 comments</a>
 									</div>
-									<a href="#" class="comments"><i class="icon-comment"></i> 7
-										comments</a>
+									
+									<div class="clear"></div>
+									<p>设计者：刘震，邢尧，张博文</p>
+									<a href="http://www.bootcss.com/" class="btn btn-1">Read
+										more</a> </section>
 								</div>
-								<div class="clear"></div>
-								<p>Vivamus sollicitudin libero auctor arcu pulvinar commodo.</p>
-								<a href="#" class="btn btn-1">Read More</a> </section>
-							</div>
-						</li>
-						<li class="span3">
-							<div class="thumbnail thumbnail-1">
-								<h3>Graphics</h3>
-								<img src="img/mine/graph6.jpg" alt="">
-								<section> <a href="#"><h3>Deleniti atque
-										corrupti quos</h3> </a>
-								<div class="meta">
-									<time datetime="2012-11-09" class="date-1"> <i
-										class="icon-calendar"></i> 9.11.2012</time>
-									<div class="name-author">
-										<i class="icon-user"></i> <a href="#">Admin</a>
+							</li>
+							<li class="span3">
+								<div class="thumbnail thumbnail-1">
+									<h3>Graphics</h3>
+									<img src="img/mine/graph6.jpg" alt="">
+									<section> <a href="#"><h3>图片来源于500px网站
+									https://500px.com/</h3> </a>
+									<div class="meta">
+										<time datetime="2018-04-17" class="date-1"> <i
+											class="icon-calendar"></i> 17.04.2018</time>
+										<div class="name-author">
+											<i class="icon-user"></i> <a href="#">Admin</a>
+										</div>
+										<a href="Messageboard.jsp" class="comments"><i
+											class="icon-comment"></i> 4 comments</a>
 									</div>
-									<a href="#" class="comments"><i class="icon-comment"></i> 4
-										comments</a>
+									<div class="clear"></div>
+									<p>表格创意来源于echarts插件</p>
+									<a href="http://echarts.baidu.com/" class="btn btn-1">Read
+										More</a> </section>
 								</div>
-								<div class="clear"></div>
-								<p>Vestibulum volutpat urna sed sapien vehicula varius.</p>
-								<a href="#" class="btn btn-1">Read More</a> </section>
-							</div>
-						</li>
-						<li class="span3">
-							<div class="thumbnail thumbnail-1">
-								<h3>Social Media</h3>
-								<img src="img/mine/graph7.jpg" alt="">
-								<section> <a href="#"><h3>Similique sunt in
-										culpa qui officia</h3> </a>
-								<div class="meta">
-									<time datetime="2012-11-09" class="date-1"> <i
-										class="icon-calendar"></i> 9.11.2012</time>
-									<div class="name-author">
-										<i class="icon-user"></i> <a href="#">Admin</a>
+							</li>
+							<li class="span3">
+								<div class="thumbnail thumbnail-1">
+									<h3>Social Media</h3>
+									<img src="img/mine/graph7.jpg" alt="">
+									<section> <a href="#"><h3>项目Github：https://github.com/yanshanbigboy/weather</h3>
+									</a>
+									<div class="meta">
+										<time datetime="2018-04-17" class="date-1"> <i
+											class="icon-calendar"></i> 17.04.2018</time>
+										<div class="name-author">
+											<i class="icon-user"></i> <a href="#">Admin</a>
+										</div>
+										<a href="Messageboard.jsp" class="comments"><i
+											class="icon-comment"></i> 9 comments</a>
 									</div>
-									<a href="#" class="comments"><i class="icon-comment"></i> 9
-										comments</a>
+									<div class="clear"></div>
+									<p>网站已发布，项目也已开源到Github网站</p>
+									<a href="https://github.com/yanshanbigboy/weather"
+										class="btn btn-1">Read More</a> </section>
 								</div>
-								<div class="clear"></div>
-								<p>Pellentesque mi justo, laoreet non bibendum non, auctor
-									imperdiet eros.</p>
-								<a href="#" class="btn btn-1">Read More</a> </section>
-							</div>
-						</li>
-						<li class="span3">
-							<div class="thumbnail thumbnail-1">
-								<h3 class="title-1 extra">Photography</h3>
-								<img src="img/mine/graph8.jpg" alt="">
-								<section> <a href="#"><h3>Similique sunt in
-										culpa qui officia</h3> </a>
-								<div class="meta">
-									<time datetime="2012-11-09" class="date-1"> <i
-										class="icon-calendar"></i> 9.11.2012</time>
-									<div class="name-author">
-										<i class="icon-user"></i> <a href="#">Admin</a>
+							</li>
+							<li class="span3">
+								<div class="thumbnail thumbnail-1">
+									<h3 class="title-1 extra">Research Data</h3>
+									<img src="img/mine/graph8.jpg" alt="">
+									<section> <a href="#"><h3>数据主要来源于美国国家海洋和大气管理局和中国气象局</h3>
+									</a>
+									<div class="meta">
+										<time datetime="2018-04-17" class="date-1"> <i
+											class="icon-calendar"></i> 17.04.2018</time>
+										<div class="name-author">
+											<i class="icon-user"></i> <a href="#">Admin</a>
+										</div>
+										<a href="Messageboard.jsp" class="comments"><i
+											class="icon-comment"></i> 1 comment</a>
 									</div>
-									<a href="#" class="comments"><i class="icon-comment"></i> 1
-										comment</a>
+									<div class="clear"></div>
+									<p>Noaa气象数据下载，详见Read more</p>
+									<a href="ftp://ftp.ncdc.noaa.gov/pub/data/noaa"
+										class="btn btn-1">Read More</a> </section>
 								</div>
-								<div class="clear"></div>
-								<p>Vestibulum volutpat urna sed sapien vehicula varius.</p>
-								<a href="#" class="btn btn-1">Read More</a> </section>
-							</div>
-						</li>
-					</ul>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
-		</div>
 
 		<div class="container">
 			<div class="row">
