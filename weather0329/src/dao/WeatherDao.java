@@ -167,5 +167,40 @@ public class WeatherDao {
 		}
 		return weathersList;
 	}
+    
+	public static List<Weather> printProvinceWeatherUser(Weather weather) {
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet rs = null;
+		List<Weather> weathersList = new ArrayList<Weather>();
+		String sql = "";
+		try {
+			conn = DBConnection.getConn();
+			Statement stmt = conn.createStatement();
+			sql = "select * from "
+					+ ServletUtil.ProRevert(weather.getProvince())+" "+"where month < 7";
+			System.out
+					.println("this is WeatherDao PrintProvinceWeather " + sql);
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				Weather weathers = new Weather(rs.getInt("month"),
+						rs.getString("province"), rs.getDouble("avgpressure"),
+						rs.getDouble("avgtemperature"),
+						rs.getInt("avghumidity"),
+						rs.getDouble("avgprecipitation"),
+						rs.getDouble("avgwindspeed"));
+				weathersList.add(weathers);
+			}// rs.get~()，括号里表示的是列名
+			for (Weather weatherss : weathersList) {
+				System.out.println(weatherss.getProvince());
+			}
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnection.close(pstmt, conn);
+		}
+		return weathersList;
+	}
+	
 }
