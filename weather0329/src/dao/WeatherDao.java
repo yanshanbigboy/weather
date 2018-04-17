@@ -101,6 +101,38 @@ public class WeatherDao {
 		return count;
 	}
 
+	public static List<Weather> priProWeaByElem(String area, String elem) {
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet rs = null;
+		List<Weather> weathersList = new ArrayList<Weather>();
+		String sql = "";
+		try {
+			conn = DBConnection.getConn();
+			Statement stmt = conn.createStatement();
+			sql = "select" + elem + "from " + area;
+			System.out.println("this is WeatherDao priProWeaByElem " + sql);
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				Weather weathers = new Weather(rs.getInt("month"),
+						rs.getString("province"), rs.getDouble("avgpressure"),
+						rs.getDouble("avgtemperature"),
+						rs.getInt("avghumidity"),
+						rs.getDouble("avgprecipitation"),
+						rs.getDouble("avgwindspeed"));
+				weathersList.add(weathers);
+			}// rs.get~()，括号里表示的是列名
+			for (Weather weathers : weathersList) {
+				System.out.println(weathers.getProvince());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnection.close(pstmt, conn);
+		}
+		return weathersList;
+	}
+
 	public static List<Weather> printProvinceWeather(Weather weather) {
 		PreparedStatement pstmt = null;
 		Connection conn = null;

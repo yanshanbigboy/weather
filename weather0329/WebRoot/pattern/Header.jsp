@@ -109,28 +109,36 @@
 						</a>
 						<div class="nav-collapse nav-collapse_  collapse">
 							<ul class="nav sf-menu">
-								<li><a href="home.jsp">首页</a></li>
-								<li><a href="display.user">用户管理</a></li>
-								<li><a href="WeatherModify.jsp">历史数据</a></li>
-								<li><a href="Hadoop.jsp">数据分析</a></li>
+								<li><a href="home.jsp">首页</a>
+								</li>
+								<li><a href="display.user">用户管理</a>
+								</li>
+								<li><a href="WeatherModify.jsp">历史数据</a>
+								</li>
+								<li><a href="Hadoop.jsp">数据分析</a>
+								</li>
 								<li class="sub-menu"><a>文献资料</a>
 									<ul>
-										<li><a href="Upload.jsp">文档上传</a></li>
-										<li><a href="ListFileServlet">文档下载</a></li>
-										<li><a href="AdminProcess3.jsp">可读文档</a></li>
-									</ul>
+										<li><a href="Upload.jsp">文档上传</a>
+										</li>
+										<li><a href="ListFileServlet">文档下载</a>
+										</li>
+										<li><a href="AdminProcess3.jsp">可读文档</a>
+										</li>
+									</ul></li>
+								<li><a href="Messboard.jsp">意见反馈</a>
 								</li>
-								<li><a href="Messboard.jsp">意见反馈</a></li>
 
 								<li><c:if test="${user!=null}">
 										<p3 style="color:white;">&nbsp&nbsp欢迎你，${user.userName} </p3>
-										<button onclick="window.location.href='home.jsp'">注销</button>
+										<button onclick="javascript:location.href='logout.listener'">注销</button>
 									</c:if> <c:if test="${admin!=null}">
 										<p3 style="color:white;">&nbsp&nbsp欢迎你，${admin.adminName}
-										<button onclick="window.location.href='home.jsp'">注销
-										
+										<button onclick="javascript:location.href='logout.listener'">注销</button>
+
 										</p3>
-									</c:if></li>
+									</c:if>
+								</li>
 							</ul>
 						</div>
 					</div>

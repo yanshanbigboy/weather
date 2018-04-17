@@ -30,9 +30,10 @@ public class OnlineUserBindingListener implements HttpSessionBindingListener {
 	public void valueBound(HttpSessionBindingEvent event) {
 		HttpSession session = event.getSession();
 		ServletContext application = session.getServletContext();
-		List<OnlineUserBindingListener> onlineUserList = (List) application.getAttribute("onlineUserList");
+		List<OnlineUserBindingListener> onlineUserList = (List<OnlineUserBindingListener>) application
+				.getAttribute("onlineUserList");
 		if (onlineUserList == null) {
-			onlineUserList = new ArrayList();
+			onlineUserList = new ArrayList<OnlineUserBindingListener>();
 			application.setAttribute("onlineUserList", onlineUserList);
 			System.out.println("sbsbsbsbsbsbsbsb");
 		}
