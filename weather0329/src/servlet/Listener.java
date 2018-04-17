@@ -42,11 +42,13 @@ public class Listener extends HttpServlet {
 			HttpSession session = request.getSession();
 			if ((session.getAttribute("user")) != null) {
 				User user = (User) session.getAttribute("user");
-				session.invalidate();
 				// 获取application对象
-				ServletContext application = this.getServletContext();
-				List onlineUserList = (List) application
-						.getAttribute("onLineUserList");
+				ServletContext application = session.getServletContext();
+				List<OnlineUserBindingListener> onlineUserList = (List<OnlineUserBindingListener>) application
+						.getAttribute("onlineUserList");
+				if (onlineUserList != null) {
+					System.out.println("onlineUserList!=null");
+				}
 				Iterator<OnlineUserBindingListener> it = onlineUserList
 						.iterator();
 				while (it.hasNext()) {
@@ -55,6 +57,8 @@ public class Listener extends HttpServlet {
 						it.remove();
 					}
 				}
+				session.removeAttribute("user");
+				// 不要使用session.invalidate();全部数据丢失
 				response.sendRedirect("home.jsp");
 			}
 			if ((session.getAttribute("admin")) != null) {

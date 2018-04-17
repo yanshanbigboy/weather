@@ -85,9 +85,11 @@ public class SendMail extends Thread {// ·¢ËÍÓÊ¼şÊÇÒ»¼şºÄÊ±µÄÊÂ£¬Òò´ËÉè¼ÆÒ»¸öÏß³
 			// 2.3 Ö÷Ìâ£¨±êÌâ£©
 			message.setSubject("É½¶«²Æ¾­´óÑ§ÆøÏó´óÊı¾İÖĞĞÄ");
 			// 2.4 ÕıÎÄ
-			String str = "×ğ¾´µÄ¿Í»§" + item.getName() + "£º <br/>"
-					+ "ÄúºÃ£¬ÄúÔÚ±¾ÍøÕ¾ÉêÇë¹ºÂòÒÔÏÂÆøÏóÊı¾İ£º<br/>" + "ÆøÏóÔªËØ£º" + item.getElem()
-					+ "<br/>µØÇø£º" + item.getArea();
+			String str = "Deer "
+					+ item.getName()
+					+ "£º <br/>"
+					+ "It is an great honor to receive your data purchasing intention.Please inform us if there is any mistake in the form you fill in£º<br/>"
+					+ "ÆøÏóÔªËØ£º" + item.getElem() + "<br/>µØÇø£º" + item.getArea();
 			// ÉèÖÃ±àÂë£¬·ÀÖ¹·¢ËÍµÄÄÚÈİÖĞÎÄÂÒÂë¡£
 			message.setContent(str, "text/html;charset=UTF-8");
 
