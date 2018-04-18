@@ -7,17 +7,7 @@
 			+ path + "/";
 %>
 
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.9.1.js"></script>
-<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-<link rel="stylesheet"
-	href="http://jqueryui.com/resources/demos/style.css">
-<script>
-	$(function() {
-		$("#datepicker").datepicker();
-	});
-</script>
+
 <!--start of  content -->
 
 <jsp:include page="/pattern/Header.jsp"></jsp:include>
@@ -35,16 +25,15 @@
 					<br>
 				</article>
 				<div class="clear"></div>
-				<h6>
+				<h6 style="color:red;font-size:15px">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					地面气候统计产品包括1951年以来的中国范围县市级气象站（2400站）和全球范围重点城市8000气象站的本站气压、
-					气温、相对湿度、降水量、风向风速、地温、水汽压、日照时数、天气现象等数据。
-					其中天气现象为日值数据，包括扬沙、浮尘、露、霜、结冰、霾、雾、大风、雷暴等天气现象及出现时间。<br> <br>
+					地面气候统计产品包括最近10年以来的中国范围县市级气象站（2400站）本站气压、
+					气温、相对湿度、降水量、风向风速、地温、水汽压、日照时数、天气现象等数据。 <br> <br>
 					<h5>数据描述Data Description</h5>
-					<h6>1）频次：中国日值、旬值、候值、月值、年值；全球日值、月值</h6>
-					<h6>2）空间范围：中国、全球范围</h6>
-					<h6>3）更新时次：1951年1月1日至今</h6>
-					<h6>4）数据格式：TXT</h6>
+					<h6 style="color:red;font-size:15px">1）频次：中国月值、年值</p3>
+					<h6 style="color:red;font-size:15px">2）空间范围：中国范围</h6>
+					<h6 style="color:red;font-size:15px">3）更新时次：2007年至今</h6>
+					<h6 style="color:red;font-size:15px">4）数据格式：.xls</h6>
 					<br> <br>
 
 					<h5>选择要素* Element Selection</h5>
@@ -153,28 +142,44 @@
 			<h3>Some quick links</h3>
 			<div class="wrapper">
 				<ul class="list list-pad">
-					<li><a href="#">Campaigns</a></li>
-					<li><a href="#">Portraits</a></li>
-					<li><a href="#">Fashion</a></li>
-					<li><a href="#">Fine Art</a></li>
+					<li><a href="#">Campaigns</a>
+					</li>
+					<li><a href="#">Portraits</a>
+					</li>
+					<li><a href="#">Fashion</a>
+					</li>
+					<li><a href="#">Fine Art</a>
+					</li>
 				</ul>
 				<ul class="list list-pad">
-					<li><a href="#">Campaigns</a></li>
-					<li><a href="#">Portraits</a></li>
-					<li><a href="#">Fashion</a></li>
-					<li><a href="#">Fine Art</a></li>
+					<li><a href="#">Campaigns</a>
+					</li>
+					<li><a href="#">Portraits</a>
+					</li>
+					<li><a href="#">Fashion</a>
+					</li>
+					<li><a href="#">Fine Art</a>
+					</li>
 				</ul>
 				<ul class="list list-pad">
-					<li><a href="#">Campaigns</a></li>
-					<li><a href="#">Portraits</a></li>
-					<li><a href="#">Fashion</a></li>
-					<li><a href="#">Fine Art</a></li>
+					<li><a href="#">Campaigns</a>
+					</li>
+					<li><a href="#">Portraits</a>
+					</li>
+					<li><a href="#">Fashion</a>
+					</li>
+					<li><a href="#">Fine Art</a>
+					</li>
 				</ul>
 				<ul class="list">
-					<li><a href="#">Advertising</a></li>
-					<li><a href="#">Lifestyle</a></li>
-					<li><a href="#">Love story</a></li>
-					<li><a href="#">Landscapes</a></li>
+					<li><a href="#">Advertising</a>
+					</li>
+					<li><a href="#">Lifestyle</a>
+					</li>
+					<li><a href="#">Love story</a>
+					</li>
+					<li><a href="#">Landscapes</a>
+					</li>
 				</ul>
 			</div>
 		</article>
