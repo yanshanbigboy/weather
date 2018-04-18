@@ -17,17 +17,21 @@
 		<div class="ic"></div>
 		<div class="container">
 			<div class="row">
-				<article class="span8">
-					<h3>Contact us</h3>
-					<div class="inner-1">
-						<form action="MessageAdd" method="post">
-							<!--   姓名：<input type="text" name="name"></br> -->
-							 E-mail:<input
-								type="text" name="email"> </br> 内容：<input type="text"
-								name="content"> </br> <input class="cheng" type="submit">Send</input>
-						</form>
-					</div>
+			<article class="span8">
+		
+						
+							<h3>Contact us</h3>
+							<div class="inner-1">
+								<form action="MessageAdd" method="post">
+									<!--   姓名：<input type="text" name="name"></br> -->
+									E-mail:<input type="text" name="email"> </br> 内容：<input
+										type="text" name="content"> </br> <input class="cheng"
+										type="submit">Send</input>
+								</form>
+							</div>
+					
 				</article>
+
 				<article class="span4">
 					<h3>Contact info</h3>
 					<div class="map">
