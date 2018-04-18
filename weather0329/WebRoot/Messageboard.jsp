@@ -22,7 +22,7 @@
 					<div class="inner-1">
 						<form action="MessageAdd" method="post">
 							<!--   姓名：<input type="text" name="name"></br> -->
-							手机号：<input type="text" name="telephone"> </br> E-mail:<input
+							 E-mail:<input
 								type="text" name="email"> </br> 内容：<input type="text"
 								name="content"> </br> <input class="cheng" type="submit">Send</input>
 						</form>

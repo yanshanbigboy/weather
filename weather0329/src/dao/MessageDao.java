@@ -51,7 +51,7 @@ public class MessageDao {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, msg.getName());
 			pstmt.setString(2, msg.getContent());
-			pstmt.setInt(3, msg.getTelephone());
+			pstmt.setString(3, msg.getTelephone());
 			pstmt.setString(4, msg.getEmail());
 			count=pstmt.executeUpdate();
 		} catch (SQLException e) {

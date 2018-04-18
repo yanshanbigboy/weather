@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Util.SendMail;
-import Util.ServletUtil;
+import Util.StringUtil;
 import bean.ShoppingItem;
 
 public class DataShopping extends HttpServlet {
@@ -51,9 +51,9 @@ public class DataShopping extends HttpServlet {
 		String email = request.getParameter("email");
 		String other = request.getParameter("other");
 		// 将String数组转换成字符串
-		String strElem = ServletUtil.revert(elem);
-		String strArea = ServletUtil.revert(area);
-		String strFrequency = ServletUtil.revert(frequency);
+		String strElem = StringUtil.revert(elem);
+		String strArea = StringUtil.revert(area);
+		String strFrequency = StringUtil.revert(frequency);
 		// 生成ShoppingItem对象
 		ShoppingItem item = new ShoppingItem(strElem, strArea, strFrequency,
 				name, company, phone, email, other);

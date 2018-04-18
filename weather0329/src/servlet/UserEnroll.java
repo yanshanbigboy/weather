@@ -37,7 +37,7 @@ public class UserEnroll extends HttpServlet {
 		int i = UserDao.addUser(user);
 		if (i == 1) {
 			out.print("用户添加成功");
-			RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/pages/Login.jsp");
 			rd.forward(request, response);
 		} else {
 			out.print("用户添加失败");

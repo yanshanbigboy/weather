@@ -8,7 +8,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import Util.ServletUtil;
+import org.junit.Test;
+
+import Util.StringUtil;
 import bean.Weather;
 import connection.DBConnection;
 
@@ -143,7 +145,7 @@ public class WeatherDao {
 			conn = DBConnection.getConn();
 			Statement stmt = conn.createStatement();
 			sql = "select * from "
-					+ ServletUtil.ProRevert(weather.getProvince());
+					+ StringUtil.ProRevert(weather.getProvince());
 			System.out
 					.println("this is WeatherDao PrintProvinceWeather " + sql);
 			rs = stmt.executeQuery(sql);
@@ -178,7 +180,7 @@ public class WeatherDao {
 			conn = DBConnection.getConn();
 			Statement stmt = conn.createStatement();
 			sql = "select * from "
-					+ ServletUtil.ProRevert(weather.getProvince())+" "+"where month < 7";
+					+ StringUtil.ProRevert(weather.getProvince())+" "+"where month < 7";
 			System.out
 					.println("this is WeatherDao PrintProvinceWeather " + sql);
 			rs = stmt.executeQuery(sql);
@@ -202,5 +204,9 @@ public class WeatherDao {
 		}
 		return weathersList;
 	}
+	
+
+		
+
 	
 }

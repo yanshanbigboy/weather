@@ -30,10 +30,10 @@ public class MessageAdd extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		// String name=request.getParameter("name");
-		String name = (String) session.getAttribute("name");
+		String name = (String) session.getAttribute("user");
 		String content = request.getParameter("content");
 		System.out.println("ĞÕÃû" + name + "ÄÚÈİ" + content);
-		int telephone = Integer.parseInt(request.getParameter("telephone"));
+		String telephone = request.getParameter("telephone");
 		String email = request.getParameter("email");
 		Message msg = new Message(name, content, telephone, email);
 		int count1 = MessageDao.addMessage(msg);
