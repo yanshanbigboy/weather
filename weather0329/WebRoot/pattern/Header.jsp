@@ -123,10 +123,10 @@
 										</li>
 										<li><a href="ListFileServlet">文档下载</a>
 										</li>
-										<li><a href="AdminProcess3.jsp">可读文档</a>
+										<li><a href="ShoppingView.jsp">气象数据购买</a>
 										</li>
 									</ul></li>
-								<li><a href="Messboard.jsp">意见反馈</a>
+								<li><a href="Messageboard.jsp">意见反馈</a>
 								</li>
 
 								<li><c:if test="${user!=null}">
