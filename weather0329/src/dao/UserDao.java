@@ -47,6 +47,8 @@ public class UserDao {
             rs=pstmt.executeQuery();
             if (rs.next()) {
 				userPasswordDB=rs.getString("userpassword");
+			}else{
+				userPasswordDB="nothing";
 			}
     	}catch(SQLException e){
     		e.printStackTrace();

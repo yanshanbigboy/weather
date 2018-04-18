@@ -39,41 +39,10 @@ public class Login extends HttpServlet {
 			if (enrolleeType.equals("admin")) {
 				Admin admin = new Admin(name, password);
 				String adminPasswordDB = AdminDao.adminLogin(admin);
-				System.out.println("this is servlet_Login adminPasswordDb "
-						+ adminPasswordDB);
-				if (adminPasswordDB != null && adminPasswordDB.equals(password)
-						&& validateCode.equalsIgnoreCase(validation_code)) {
-
-					System.out.println("登陆成功");
-					session.setAttribute("admin", admin);
-					request.getRequestDispatcher("home.jsp").forward(request,
-							response);
-				} else if (!validateCode.equalsIgnoreCase(validation_code)) {
-					System.out.println("密码正确+验证码错误");
-					Object[] options = { "确定", "取消" };
-					JOptionPane.showOptionDialog(null, "验证码错误", "Warning",
-							JOptionPane.DEFAULT_OPTION,
-							JOptionPane.WARNING_MESSAGE, null, options,
-							options[0]);
-					request.setAttribute(name, password);
-					RequestDispatcher rd = request
-							.getRequestDispatcher("/WEB-INF/pages/Login.jsp");
-					rd.forward(request, response);
-				} else if (!adminPasswordDB.equals(password)) {
-					System.out.println("密码错误+登陆失败");
-					Object[] options = { "确定", "取消" };
-					JOptionPane.showOptionDialog(null, "  用户名或密码错误", "警告",
-							JOptionPane.DEFAULT_OPTION,
-							JOptionPane.WARNING_MESSAGE, null, options,
-							options[0]);
-					request.setAttribute(name, password);
-					RequestDispatcher rd = request
-							.getRequestDispatcher("/WEB-INF/pages/Login.jsp");
-					rd.forward(request, response);
-				} else {
+				if (adminPasswordDB.equals("nothing")) {
 					System.out.println("用户名错误+登陆失败");
 					Object[] options = { "确定", "取消" };
-					JOptionPane.showOptionDialog(null, "  用户名或密码错误", "警告",
+					JOptionPane.showOptionDialog(null, "  用户名错误，未找到该用户", "警告",
 							JOptionPane.DEFAULT_OPTION,
 							JOptionPane.WARNING_MESSAGE, null, options,
 							options[0]);
@@ -81,6 +50,52 @@ public class Login extends HttpServlet {
 					RequestDispatcher rd = request
 							.getRequestDispatcher("/WEB-INF/pages/Login.jsp");
 					rd.forward(request, response);
+
+				} else {
+					System.out.println("this is servlet_Login adminPasswordDb "
+							+ adminPasswordDB);
+					if (adminPasswordDB != null
+							&& adminPasswordDB.equals(password)
+							&& validateCode.equalsIgnoreCase(validation_code)) {
+
+						System.out.println("登陆成功");
+						session.setAttribute("admin", admin);
+						request.getRequestDispatcher("home.jsp").forward(
+								request, response);
+					} else if (!validateCode.equalsIgnoreCase(validation_code)) {
+						System.out.println("验证码错误");
+						Object[] options = { "确定", "取消" };
+						JOptionPane.showOptionDialog(null, "验证码错误", "Warning",
+								JOptionPane.DEFAULT_OPTION,
+								JOptionPane.WARNING_MESSAGE, null, options,
+								options[0]);
+						request.setAttribute(name, password);
+						RequestDispatcher rd = request
+								.getRequestDispatcher("/WEB-INF/pages/Login.jsp");
+						rd.forward(request, response);
+					} else if (!adminPasswordDB.equals(password)) {
+						System.out.println("密码错误+登陆失败");
+						Object[] options = { "确定", "取消" };
+						JOptionPane.showOptionDialog(null, "  用户名或密码错误", "警告",
+								JOptionPane.DEFAULT_OPTION,
+								JOptionPane.WARNING_MESSAGE, null, options,
+								options[0]);
+						request.setAttribute(name, password);
+						RequestDispatcher rd = request
+								.getRequestDispatcher("/WEB-INF/pages/Login.jsp");
+						// rd.forward(request, response);
+					} else {
+						System.out.println("用户名错误+登陆失败");
+						Object[] options = { "确定", "取消" };
+						JOptionPane.showOptionDialog(null, "  用户名错误，未找到该用户",
+								"警告", JOptionPane.DEFAULT_OPTION,
+								JOptionPane.WARNING_MESSAGE, null, options,
+								options[0]);
+						request.setAttribute(name, password);
+						RequestDispatcher rd = request
+								.getRequestDispatcher("/WEB-INF/pages/Login.jsp");
+						rd.forward(request, response);
+					}
 				}
 			}
 
@@ -88,34 +103,10 @@ public class Login extends HttpServlet {
 			if (enrolleeType.equals("user")) {
 				User user = new User(name, password);
 				String userPasswordDB = UserDao.userLogin(user);
-				if (userPasswordDB != null && userPasswordDB.equals(password)
-						&& validateCode.equalsIgnoreCase(validation_code)) {
-					System.out.println("登陆成功");
-					session.setAttribute("user", user);
-					session.setAttribute("onlineUserBindingListener",
-							new OnlineUserBindingListener(name));
-
-					request.getRequestDispatcher("home.jsp").forward(request,
-							response);
-
-				} else if (!validateCode.equalsIgnoreCase(validation_code)) {
-
-					System.out.println("密码正确+验证码错误");
+				if (userPasswordDB.equals("nothing")) {
+					System.out.println("用户名错误+登陆失败");
 					Object[] options = { "确定", "取消" };
-					JOptionPane.showOptionDialog(null, "  用户名或密码错误", "警告",
-							JOptionPane.DEFAULT_OPTION,
-							JOptionPane.WARNING_MESSAGE, null, options,
-							options[0]);
-					request.setAttribute(name, password);
-					RequestDispatcher rd = request
-							.getRequestDispatcher("/WEB-INF/pages/Login.jsp");
-					rd.forward(request, response);
-
-				} else if (!userPasswordDB.equals(password)) {
-
-					System.out.println("密码错误+登陆失败");
-					Object[] options = { "确定", "取消" };
-					JOptionPane.showOptionDialog(null, "  用户名或密码错误", "警告",
+					JOptionPane.showOptionDialog(null, "  用户名错误，未找到该用户", "警告",
 							JOptionPane.DEFAULT_OPTION,
 							JOptionPane.WARNING_MESSAGE, null, options,
 							options[0]);
@@ -125,21 +116,61 @@ public class Login extends HttpServlet {
 					rd.forward(request, response);
 
 				} else {
+					if (userPasswordDB != null
+							&& userPasswordDB.equals(password)
+							&& validateCode.equalsIgnoreCase(validation_code)) {
+						System.out.println("登陆成功");
+						session.setAttribute("user", user);
+						session.setAttribute("onlineUserBindingListener",
+								new OnlineUserBindingListener(name));
 
-					System.out.println("用户名错误+登陆失败");
-					Object[] options = { "确定", "取消" };
-					JOptionPane.showOptionDialog(null, "  用户名或密码错误", "警告",
-							JOptionPane.DEFAULT_OPTION,
-							JOptionPane.WARNING_MESSAGE, null, options,
-							options[0]);
-					request.setAttribute(name, password);
-					RequestDispatcher rd = request
-							.getRequestDispatcher("/WEB-INF/pages/Login.jsp");
-					rd.forward(request, response);
+						request.getRequestDispatcher("home.jsp").forward(
+								request, response);
+
+					} else if (!validateCode.equalsIgnoreCase(validation_code)) {
+
+						System.out.println("密码正确+验证码错误");
+						Object[] options = { "确定", "取消" };
+						JOptionPane.showOptionDialog(null, "  用户名或密码错误", "警告",
+								JOptionPane.DEFAULT_OPTION,
+								JOptionPane.WARNING_MESSAGE, null, options,
+								options[0]);
+						request.setAttribute(name, password);
+						RequestDispatcher rd = request
+								.getRequestDispatcher("/WEB-INF/pages/Login.jsp");
+						rd.forward(request, response);
+
+					} else if (!userPasswordDB.equals(password)) {
+
+						System.out.println("密码错误+登陆失败");
+						Object[] options = { "确定", "取消" };
+						JOptionPane.showOptionDialog(null, "  用户名或密码错误", "警告",
+								JOptionPane.DEFAULT_OPTION,
+								JOptionPane.WARNING_MESSAGE, null, options,
+								options[0]);
+						request.setAttribute(name, password);
+						RequestDispatcher rd = request
+								.getRequestDispatcher("/WEB-INF/pages/Login.jsp");
+						rd.forward(request, response);
+
+					} else {
+
+						System.out.println("用户名错误+登陆失败");
+						Object[] options = { "确定", "取消" };
+						JOptionPane.showOptionDialog(null, "  用户名或密码错误", "警告",
+								JOptionPane.DEFAULT_OPTION,
+								JOptionPane.WARNING_MESSAGE, null, options,
+								options[0]);
+						request.setAttribute(name, password);
+						RequestDispatcher rd = request
+								.getRequestDispatcher("/WEB-INF/pages/Login.jsp");
+						rd.forward(request, response);
+					}
 				}
+
 			}
 
-		} else {
+		} else { // 用户名密码为空
 			Object[] options = { "确定", "取消" };
 			JOptionPane.showOptionDialog(null, "  用户名或密码错误", "警告",
 					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
@@ -147,12 +178,12 @@ public class Login extends HttpServlet {
 			request.setAttribute(name, password);
 			RequestDispatcher rd = request
 					.getRequestDispatcher("/WEB-INF/pages/Login.jsp");
-			rd.forward(request, response);
+			// rd.forward(request, response);
 		}
 
 		out.flush();
 		out.close();
-	}
+	}// doPost
 
 	public void init() throws ServletException {
 	}
