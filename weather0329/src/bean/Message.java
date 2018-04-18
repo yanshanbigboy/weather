@@ -3,7 +3,7 @@ package bean;
 public class Message {
      String name;
      String content;
-     int telephone;
+     String telephone;
      String email;
      
      public Message(){
@@ -15,7 +15,7 @@ public class Message {
     	 this.content=content;
      }
      
-     public Message(String name,String content,int telephone,String email){
+     public Message(String name,String content,String telephone,String email){
     	 this.name=name;
          this.content=content;
          this.telephone=telephone;
@@ -38,11 +38,11 @@ public class Message {
 		this.content = content;
 	}
 
-	public int getTelephone() {
+	public String getTelephone() {
 		return telephone;
 	}
 
-	public void setTelephone(int telephone) {
+	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
 
