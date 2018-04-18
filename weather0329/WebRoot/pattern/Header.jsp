@@ -123,7 +123,7 @@
 										</li>
 										<li><a href="ListFileServlet">文档下载</a>
 										</li>
-										<li><a href="AdminProcess3.jsp">可读文档</a>
+										<li><a href="Shoppingview.jsp">购买气象数据</a>
 										</li>
 									</ul></li>
 								<li><a href="Messageboard.jsp">意见反馈</a>
