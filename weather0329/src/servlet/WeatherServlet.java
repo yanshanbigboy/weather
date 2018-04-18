@@ -53,7 +53,23 @@ public class WeatherServlet extends HttpServlet {
 			out.flush();
 			out.close();
 		}
-
+		
+		if (url.equals("/query2.weather")) {            
+			response.setContentType("text/html;charset=utf-8");
+			request.setCharacterEncoding("UTF-8");
+			response.setCharacterEncoding("UTF-8");
+			PrintWriter out = response.getWriter();
+			String provinceName = request.getParameter("provinceName");
+			System.out.println("this is servlet-weatherdisplay   "
+					+ provinceName);
+			request.setAttribute("provinceName", provinceName);
+			RequestDispatcher rd = request
+					.getRequestDispatcher("WeatherDisplay2.jsp");
+			rd.forward(request, response);
+			out.flush();
+			out.close();
+		}
+		
 		if (url.equals("/add.weather")) {
 			response.setContentType("text/html");
 			request.setCharacterEncoding("UTF-8");

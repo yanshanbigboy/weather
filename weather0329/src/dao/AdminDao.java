@@ -45,9 +45,10 @@ public class AdminDao {
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				adminPasswordDB = rs.getString("adminpassword");
+			}else{
+				adminPasswordDB="nothing";
 			}
-			System.out
-					.println("this is AdminDao adminLogin " + adminPasswordDB);
+			System.out.println("this is AdminDao adminLogin " + adminPasswordDB);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
