@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.Message;
+import bean.User;
 import dao.MessageDao;
 
 public class MessageAdd extends HttpServlet {
@@ -30,7 +31,9 @@ public class MessageAdd extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		// String name=request.getParameter("name");
-		String name = (String) session.getAttribute("user");
+		User user = (User) session.getAttribute("user");
+		System.out.println(user.getUserName());
+		String name=user.getUserName();
 		String content = request.getParameter("content");
 		System.out.println("ÐÕÃû" + name + "ÄÚÈÝ" + content);
 		String telephone = request.getParameter("telephone");
