@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -44,17 +45,29 @@ public class WeatherServlet extends HttpServlet {
 			response.setCharacterEncoding("UTF-8");
 			PrintWriter out = response.getWriter();
 			String provinceName = request.getParameter("provinceName");
+			Weather weather = new Weather(provinceName);
 			System.out.println("this is servlet-weatherdisplay   "
 					+ provinceName);
-			request.setAttribute("provinceName", provinceName);
-			RequestDispatcher rd = request
-					.getRequestDispatcher("WeatherDisplay.jsp");
-			rd.forward(request, response);
-			out.flush();
-			out.close();
+			try {
+				List<Weather> weatherList = WeatherDao
+						.printProvinceWeather(weather);
+				request.setAttribute("weatherList", weatherList);
+				request.getRequestDispatcher("WeatherDisplay.jsp").forward(
+						request, response);
+				out.flush();
+				out.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+				String message = String
+						.format("您输入的省份有误，请输入省份中文名称！<meta http-equiv='refresh' content='3;url=%s'/>",
+								request.getContextPath() + "/WeatherModify.jsp");
+				request.setAttribute("message", message);
+				request.getRequestDispatcher("/pattern/Message.jsp").forward(
+						request, response);
+			}
 		}
-		
-		if (url.equals("/query2.weather")) {            
+
+		if (url.equals("/query2.weather")) {
 			response.setContentType("text/html;charset=utf-8");
 			request.setCharacterEncoding("UTF-8");
 			response.setCharacterEncoding("UTF-8");
@@ -69,7 +82,7 @@ public class WeatherServlet extends HttpServlet {
 			out.flush();
 			out.close();
 		}
-		
+
 		if (url.equals("/add.weather")) {
 			response.setContentType("text/html");
 			request.setCharacterEncoding("UTF-8");

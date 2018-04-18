@@ -6,6 +6,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="java.util.List"%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <!-- start of header -->
@@ -36,7 +37,12 @@
 				<div class="row">
 					<article class="span12">
 					<h4>数据展示</h4>
-					</article>
+					<c:if test="${sessionScope.admin==null&&sessionScope.user!=null }">
+						<h6>
+							普通用户只能查看前六个月信息，您可以选择购买数据，来获得完整数据 <input type="button"
+								onclick="location.href='ShoppingView.jsp'" value="现在购买"></input>
+						</h6>
+					</c:if> </article>
 					<div class="clear"></div>
 					<ul class="portfolio clearfix">
 						<table width="90%" border="1" cellpadding="0" cellspacing="0"
@@ -52,35 +58,17 @@
 								<td width="12%" bgcolor="#e7e8e8">累年月平均风速（米/秒）</td>
 
 							</tr>
-							<%
-								String provinceName = (String) request.getAttribute("provinceName");
-							%>
-							<%
-								Weather weather = new Weather(provinceName);
-							%>
-							<%
-								List<Weather> weatherList = WeatherDao
-										.printProvinceWeather(weather);
-							%>
-							<%
-								for (Weather weathers : weatherList) {
-								}
-							%>
-							<%
-								for (Weather weathers : weatherList) {
-							%>
+							<c:forEach var="weather" items="${weatherList }">
 							<tr align="center">
-								<td style="padding:5px;"><%=weathers.getProvince()%></td>
-								<td style="padding:5px;"><%=weathers.getMonth()%></td>
-								<td style="padding:5px;"><%=weathers.getAvgPressure()%></td>
-								<td style="padding:5px;"><%=weathers.getAvgTemperature()%></td>
-								<td style="padding:5px;"><%=weathers.getAvgHumidity()%></td>
-								<td style="padding:5px;"><%=weathers.getAvgPrecipitation()%></td>
-								<td style="padding:5px;"><%=weathers.getAvgWindSpeed()%></td>
+								<td style="padding:5px;">${weather.Province }</td>
+								<td style="padding:5px;">${weather.month }</td>
+								<td style="padding:5px;">${weather.avgPressure }</td>
+								<td style="padding:5px;">${weather.avgTemperature }</td>
+								<td style="padding:5px;">${weather.avgHumidity }</td>
+								<td style="padding:5px;">${weather.avgPrecipitation }</td>
+								<td style="padding:5px;">${weather.avgWindSpeed }</td>
 							</tr>
-							<%
-								}
-							%>
+							</c:forEach>
 							</ul>
 							</div>
 							</div>
