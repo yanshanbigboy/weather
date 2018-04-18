@@ -26,14 +26,13 @@ import bean.ShoppingItem;
 
 public class SendMail extends Thread {// ·¢ËÍÓÊ¼şÊÇÒ»¼şºÄÊ±µÄÊÂ£¬Òò´ËÉè¼ÆÒ»¸öÏß³ÌÀà·¢ËÍÓÊ¼ş
 	private String from = "vyumin@163.com";// ÓÃÓÚ¸øÓÃ»§·¢ËÍÓÊ¼şµÄÓÊÏä
-	private String username = "vyumin";// ÓÊÏäµÄÓÃ»§Ãû
-
-	private String password = "200271400";// ÓÊÏäµÄÃÜÂë
-
 	private ShoppingItem item;
+	private String fileAddress;
 
-	public SendMail(ShoppingItem item) {
+	public SendMail(ShoppingItem item, String fileAddress) {
+		super();
 		this.item = item;
+		this.fileAddress = fileAddress;
 	}
 
 	public ShoppingItem getItem() {
@@ -78,13 +77,13 @@ public class SendMail extends Thread {// ·¢ËÍÓÊ¼şÊÇÒ»¼şºÄÊ±µÄÊÂ£¬Òò´ËÉè¼ÆÒ»¸öÏß³
 
 			// °ÑÎÄ¼ş£¬Ìí¼Óµ½¸½¼ş1ÖĞ
 			// Êı¾İÔ´
-			DataSource ds1 = new FileDataSource(new File("C:/demo/demo.txt"));
+			DataSource ds1 = new FileDataSource(new File(fileAddress));
 			// Êı¾İ´¦ÀíÆ÷
 			DataHandler dh1 = new DataHandler(ds1);
 			// ÉèÖÃµÚÒ»¸ö¸½¼şµÄÊı¾İ
 			attch1.setDataHandler(dh1);
 			// ÉèÖÃµÚÒ»¸ö¸½¼şµÄÎÄ¼şÃû
-			attch1.setFileName("file1.txt");
+			attch1.setFileName("data.xls");
 
 			// °ÑÎÄ¼ş£¬Ìí¼Óµ½¸½¼ş2ÖĞ
 			// DataSource ds2 = new FileDataSource(new File(
@@ -118,14 +117,14 @@ public class SendMail extends Thread {// ·¢ËÍÓÊ¼şÊÇÒ»¼şºÄÊ±µÄÊÂ£¬Òò´ËÉè¼ÆÒ»¸öÏß³
 
 			// html´úÂë
 			htmlPart.setContent(
-					"<span style='color:red'>¸ĞĞ»Äú¹ºÂòÉ½¶«²Æ¾­´óÑ§ÆøÏó´óÊı¾İÖĞĞÄµÄÆøÏóÊı¾İ£¬ÈçÓĞĞèÒªÇëÖ±½ÓÓëÎÒÃÇÁªÏµ¡£</span>",
+					"<span style='color:red'>¸ĞĞ»Äú¹ºÂòÉ½¶«²Æ¾­´óÑ§ÆøÏó´óÊı¾İÖĞĞÄµÄÆøÏóÊı¾İ£¬ÈçÓĞÆäËûĞèÒªÇëÖ±½ÓÓëÎÒÃÇÁªÏµ¡£</span>",
 					"text/html;charset=utf-8");
 
 			// Éú³ÉÎÄ¼şÓÊ¼ş
 			msg.saveChanges();
 
 			// Êä³ö
-			OutputStream os = new FileOutputStream("C:/demo/demo.eml");
+			OutputStream os = new FileOutputStream("E:/demo/demo.eml");
 			msg.writeTo(os);
 			os.close();
 
@@ -146,13 +145,13 @@ public class SendMail extends Thread {// ·¢ËÍÓÊ¼şÊÇÒ»¼şºÄÊ±µÄÊÂ£¬Òò´ËÉè¼ÆÒ»¸öÏß³
 				@Override
 				protected PasswordAuthentication getPasswordAuthentication() {
 					// ÔÚsessionÖĞÉèÖÃÕË»§ĞÅÏ¢£¬Transport·¢ËÍÓÊ¼şÊ±»áÊ¹ÓÃ,ÕâÀïÊÇÕË»§ÃûºÍÊÚÈ¨ÃÜÂë£¬¶ø²»ÊÇÓÊÏäÃÜÂë
-					return new PasswordAuthentication(username, "18746ajq13");
+					return new PasswordAuthentication(from, "18746ajq13");
 				}
 			});
 
 			// ¶ÁÈ¡±¾µØÓÊ¼ş
 			Message message = new MimeMessage(session, new FileInputStream(
-					new File("C:/demo/demo.eml")));
+					new File("E:/demo/demo.eml")));
 
 			// ·¢ËÍÓÊ¼ş
 			Transport.send(message, InternetAddress.parse(item.getEmail()));
