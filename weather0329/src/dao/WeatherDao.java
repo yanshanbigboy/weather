@@ -143,7 +143,7 @@ public class WeatherDao {
 		List<Weather> weathersList = new ArrayList<Weather>();
 		String sql = "";
 		conn = DBConnection.getConn();
-		Statement stmt = conn.createStatement();
+		Statement stmt = conn.createStatement();		
 		sql = "select * from " + StringUtil.ProRevert(weather.getProvince());
 		System.out.println("this is WeatherDao PrintProvinceWeather " + sql);
 		rs = stmt.executeQuery(sql);
@@ -155,6 +155,7 @@ public class WeatherDao {
 					rs.getDouble("avgwindspeed"));
 			weathersList.add(weathers);
 		}// rs.get~()，括号里表示的是列名
+		
 		for (Weather weatherss : weathersList) {
 			System.out.println(weatherss.getProvince());
 		}
@@ -173,7 +174,7 @@ public class WeatherDao {
 		Statement stmt = conn.createStatement();
 		sql = "select * from " + StringUtil.ProRevert(weather.getProvince())
 				+ " " + "where month < 7";
-		System.out.println("this is WeatherDao PrintProvinceWeather " + sql);
+		System.out.println("this is WeatherDao PrintProvinceWeatherUser " + sql);
 		rs = stmt.executeQuery(sql);
 		while (rs.next()) {
 			Weather weathers = new Weather(rs.getInt("month"),
