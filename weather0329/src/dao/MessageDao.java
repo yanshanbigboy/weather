@@ -20,36 +20,45 @@ public class MessageDao {
 		String sql = "";
 		List<Message> messageList = new ArrayList<Message>();
 		ResultSet rs = null;
-		int pre = 0;
+
 		try {
+			int pre = DBUtil.getMinId("message", "send_id");
+			System.out.println("pre==" + pre);
 			conn = DBConnection.getConn();
 			sql = "select * from message,reply where message.send_id=reply.send_id";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-
-				if (pre == rs.getInt("send_id")) {// 说明是之前一个结果的send_id与现在send_id相同
+				System.out.println("id===" + rs.getInt("send_id"));
+				if (pre == rs.getInt("send_id") && messageList.size() != 0) {// 说明是之前一个结果的send_id与现在send_id相同
 					// 说明是针对同一个留言的回复
 					// 获取messageList中Message对象包涵的replyList对象
 					List<Reply> replyList = ((Message) (messageList
 							.get(messageList.size() - 1))).getReplyList();
-					if (replyList == null) {
+					if (messageList.size() == 0) { // 说明肯定没有replyList对象
 						replyList = new ArrayList<Reply>();
 						Reply reply = new Reply(rs.getInt("reply_id"),
 								rs.getString("reply_name"),
 								rs.getString("reply_content"));
 						replyList.add(reply);
+						Message message = (Message) (messageList
+								.get(messageList.size() - 1));
+						message.setReplyList(replyList);
+						messageList.add(message);
+						pre = rs.getInt("send_id");
 					} else {
 						Reply reply = new Reply(rs.getInt("reply_id"),
 								rs.getString("reply_name"),
 								rs.getString("reply_content"));
 						replyList.add(reply);
+						pre = rs.getInt("send_id");
 					}
 				} else {// 前一个结果的send_id与现在的send_id不同，说明不是针对同一个留言的回复
 					Message msg = new Message(rs.getInt("send_id"),
 							rs.getString("send_name"),
 							rs.getString("send_content"));
 					messageList.add(msg);
+					pre = rs.getInt("send_id");
 				}
 			}
 		} catch (SQLException e) {
