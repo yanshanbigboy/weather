@@ -1,58 +1,33 @@
 package bean;
 
 public class Message {
-     String name;
-     String content;
-     String telephone;
-     String email;
-     
-     public Message(){
-    	 
-     }
-     
-     public Message(String name,String content){
-    	 this.name=name;
-    	 this.content=content;
-     }
-     
-     public Message(String name,String content,String telephone,String email){
-    	 this.name=name;
-         this.content=content;
-         this.telephone=telephone;
-         this.email=email;
-     }
+	private String sendName;
+	private String sendContent;
 
-	public String getName() {
-		return name;
+	public Message() {
+
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public Message(String sendName, String sendContent) {
+		super();
+		this.sendName = sendName;
+		this.sendContent = sendContent;
 	}
 
-	public String getContent() {
-		return content;
+	public String getSendName() {
+		return sendName;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setSendName(String sendName) {
+		this.sendName = sendName;
 	}
 
-	public String getTelephone() {
-		return telephone;
+	public String getSendContent() {
+		return sendContent;
 	}
 
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
+	public void setSendContent(String sendContent) {
+		this.sendContent = sendContent;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-     
 }
-

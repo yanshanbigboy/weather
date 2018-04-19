@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Util.DBUtil;
 import Util.SendMail;
 import Util.StringUtil;
 import bean.ShoppingItem;
@@ -71,7 +72,8 @@ public class DataShopping extends HttpServlet {
 				// 将收到的用户需求查询数据库(本来应该有逻辑业务层，判断用户需求，这里就不在另开一层了)
 				// 生成导出查询结果的xls文件地址
 				String fileAddress = "E://"
-						+ Integer.toString((itemDao.getMaxId() + 1)) + ".xls";
+						+ Integer.toString((DBUtil.getNextId("shoppingitem",
+								"num") + 1)) + ".xls";
 				// 按要求查询各地数据表并生成地址
 				WeatherDao.priProWeaByElem(area, strElem, fileAddress);
 				// 给用户的邮箱发送邮件，并携带有该生成的xls文件的附件
@@ -88,7 +90,8 @@ public class DataShopping extends HttpServlet {
 				int count = itemDao.addItem(item);
 				// 生成导出查询结果的xls文件地址
 				String fileAddress = "E://"
-						+ Integer.toString((itemDao.getMaxId() + 1)) + ".xls";
+						+ Integer.toString((DBUtil.getNextId("shoppingitem",
+								"num") + 1)) + ".xls";
 				// 按要求查询avg_year表并生成地址
 				WeatherDao.printAvgYearWeather(strElem, area, fileAddress);
 				// 给用户的邮箱发送邮件，并携带有该生成的xls文件的附件
@@ -110,7 +113,8 @@ public class DataShopping extends HttpServlet {
 				itemDao.addItem(item);
 				// 生成导出查询结果的xls文件地址
 				String fileAddress = "E://"
-						+ Integer.toString((itemDao.getMaxId() + 1)) + ".xls";
+						+ Integer.toString((DBUtil.getNextId("shoppingitem",
+								"num") + 1)) + ".xls";
 				// 按要求查询各地数据表并生成地址
 				WeatherDao.priProWeaByElem(area, strElem, fileAddress);
 				System.out.println("fileAddress ==" + fileAddress);
@@ -124,8 +128,8 @@ public class DataShopping extends HttpServlet {
 					itemDao.addItem(item1);
 					// 生成导出查询结果的xls文件地址
 					String fileAddress1 = "E://"
-							+ Integer.toString((itemDao.getMaxId() + 1))
-							+ ".xls";
+							+ Integer.toString((DBUtil.getNextId(
+									"shoppingitem", "num") + 1)) + ".xls";
 					System.out.println("fileAddress1==" + fileAddress1);
 					// 按要求查询avg_year表并生成地址
 					WeatherDao.printAvgYearWeather(strElem, area, fileAddress1);
