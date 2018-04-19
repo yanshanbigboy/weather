@@ -155,6 +155,7 @@ public class WeatherDao {
 					rs.getDouble("avgwindspeed"));
 			weathersList.add(weathers);
 		}// rs.get~()，括号里表示的是列名
+		
 		for (Weather weatherss : weathersList) {
 			System.out.println(weatherss.getProvince());
 		}
