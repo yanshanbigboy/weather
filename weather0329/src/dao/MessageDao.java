@@ -9,6 +9,7 @@ import java.util.List;
 
 import Util.DBUtil;
 import bean.Message;
+import bean.Reply;
 import connection.DBConnection;
 
 public class MessageDao {
@@ -19,15 +20,37 @@ public class MessageDao {
 		String sql = "";
 		List<Message> messageList = new ArrayList<Message>();
 		ResultSet rs = null;
+		int pre = 0;
 		try {
 			conn = DBConnection.getConn();
-			sql = "select * from message";
+			sql = "select * from message,reply where message.send_id=reply.send_id";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				Message msg = new Message(rs.getString("send_name"),
-						rs.getString("send_content"));
-				messageList.add(msg);
+
+				if (pre == rs.getInt("send_id")) {// 说明是之前一个结果的send_id与现在send_id相同
+					// 说明是针对同一个留言的回复
+					// 获取messageList中Message对象包涵的replyList对象
+					List<Reply> replyList = ((Message) (messageList
+							.get(messageList.size() - 1))).getReplyList();
+					if (replyList == null) {
+						replyList = new ArrayList<Reply>();
+						Reply reply = new Reply(rs.getInt("reply_id"),
+								rs.getString("reply_name"),
+								rs.getString("reply_content"));
+						replyList.add(reply);
+					} else {
+						Reply reply = new Reply(rs.getInt("reply_id"),
+								rs.getString("reply_name"),
+								rs.getString("reply_content"));
+						replyList.add(reply);
+					}
+				} else {// 前一个结果的send_id与现在的send_id不同，说明不是针对同一个留言的回复
+					Message msg = new Message(rs.getInt("send_id"),
+							rs.getString("send_name"),
+							rs.getString("send_content"));
+					messageList.add(msg);
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
