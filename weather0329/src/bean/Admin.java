@@ -1,6 +1,6 @@
 package bean;
 
-public class Admin {// bowen test
+public class Admin {// bowen test1
 	private int adminId; // 私有变量，仅有内部类和创建者可以调用
 	private String adminName;
 	private String adminPassword;
