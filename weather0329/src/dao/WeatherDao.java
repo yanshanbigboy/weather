@@ -93,7 +93,7 @@ public class WeatherDao {
 			conn = DBConnection.getConn();
 			Statement stmt = conn.createStatement();
 			sql = "drop table " + provinceName;
-			System.out.println("this is WeatherDao addProvinceTable " + sql);
+			System.out.println("this is WeatherDao ProvinceTable " + sql);
 			count = stmt.executeUpdate(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();

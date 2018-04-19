@@ -152,6 +152,7 @@ public class WeatherServlet extends HttpServlet {
 			out.flush();
 			out.close();
 		}
+		
 	}
 
 	public void init() throws ServletException {
