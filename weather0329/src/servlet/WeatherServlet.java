@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -56,8 +57,9 @@ public class WeatherServlet extends HttpServlet {
 						request, response);
 				out.flush();
 				out.close();
-			} catch (Exception e) {
+			} catch (SQLException e) {
 				e.printStackTrace();
+				System.out.println("11111");
 				String message = String
 						.format("您输入的省份有误，请输入省份中文名称！<meta http-equiv='refresh' content='3;url=%s'/>",
 								request.getContextPath() + "/WeatherModify.jsp");
@@ -75,12 +77,25 @@ public class WeatherServlet extends HttpServlet {
 			String provinceName = request.getParameter("provinceName");
 			System.out.println("this is servlet-weatherdisplay   "
 					+ provinceName);
-			request.setAttribute("provinceName", provinceName);
-			RequestDispatcher rd = request
-					.getRequestDispatcher("WeatherDisplay2.jsp");
-			rd.forward(request, response);
-			out.flush();
-			out.close();
+			Weather weather = new Weather(provinceName);
+			try {
+				List<Weather> weatherList = WeatherDao
+						.printProvinceWeatherUser(weather);
+				request.setAttribute("weatherList", weatherList);
+				request.getRequestDispatcher("WeatherDisplay.jsp").forward(
+						request, response);
+				out.flush();
+				out.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("11111");
+				String message = String
+						.format("您输入的省份有误，请输入省份中文名称！<meta http-equiv='refresh' content='3;url=%s'/>",
+								request.getContextPath() + "/WeatherModify.jsp");
+				request.setAttribute("message", message);
+				request.getRequestDispatcher("/pattern/Message.jsp").forward(
+						request, response);
+			}
 		}
 
 		if (url.equals("/add.weather")) {
