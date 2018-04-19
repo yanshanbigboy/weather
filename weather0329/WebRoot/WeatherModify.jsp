@@ -10,7 +10,18 @@
 <!-- start of header -->
 <jsp:include page="/pattern/Header.jsp"></jsp:include>
 <!-- end of header -->
-
+<script language=javascript>
+function onlyNum()
+{
+if(!((event.keyCode>=48&&event.keyCode<=57)||(event.keyCode>=96&&event.keyCode<=105)))
+//考虑小键盘上的数字键
+event.returnvalue=false;
+}
+function isNumber(){
+ isNum = /^[0-9]*$/;
+ alert(isNum.test(Form1.InputBox.value));
+}
+</script>
 <div class="bg-content">
 	<div class="container">
 		<div class="row">
@@ -65,14 +76,14 @@
 						  <c:when test="${sessionScope.admin!=null }">
 						     <form action="query.weather" method="post">
 							     <h3>数据查询：请输入要查询的省份</h3>
-							     <input type="text" name="provinceName"></br> <input
-								type="Submit" value="确定">
+							     <input type="text" name="provinceName"  onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')"  value="请输入中文" onfocus="if(this.value == '请输入中文') this.value = ''" onblur="if(this.value =='') this.value = '请输入中文'"></br>
+							      <input type="Submit" value="确定">
 						     </form>
 						  </c:when>
 						  <c:otherwise>  
 						     <form action="query2.weather" method="post">
 							     <h3>数据查询：请输入要查询的省份</h3>
-							     <input type="text" name="provinceName"></br> <input
+							     <input type="text" name="provinceName" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')"  value="请输入中文" onfocus="if(this.value == '请输入中文') this.value = ''" onblur="if(this.value =='') this.value = '请输入中文'"></br> <input
 								type="Submit" value="确定">
 						     </form>
 						  </c:otherwise>
@@ -82,36 +93,44 @@
 							<br>
 							<form action="add.province" method="post">
 								<h3>增加省份：请输入要添加的省份</h3>
-								省份：<input type="text" name="provinceName"></br> 人口（万人）：<input
-									type="text" name="population"></br> <input type="Submit"
+								省份：<input type="text" name="provinceName"  onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')"  value="请输入中文" onfocus="if(this.value == '请输入中文') this.value = ''" onblur="if(this.value =='') this.value = '请输入中文'"></br> 人口（万人）：<input
+									type="text" name="population" onkeyup="value=value.replace(/[^\d\.]/g,'')"
+       value="请输入数字" onfocus="if(this.value == '请输入数字') this.value = ''" onblur="if(this.value =='') this.value = '请输入数字'"></br> <input type="Submit"
 									value="确定">
 							</form>
 							<h3>========================</h3>
 							<br>
 							<form action="del.province" method="post">
 								<h3>请输入要删除的省份</h3>
-								<input type="text" name="provinceName"></br> <input
+								<input type="text" name="provinceName"  onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')"  value="请输入中文" onfocus="if(this.value == '请输入中文') this.value = ''" onblur="if(this.value =='') this.value = '请输入中文'"></br> <input
 									type="Submit" value="确定">
 							</form>
 							<h3>========================</h3>
 							<br>
 							<form action="add.weather" method="post">
 								<h3>添加省份天气数据</h3>
-								月份：<input type="text" name="month"><br> 省份：<input
-									type="text" name="province"><br> 平均气压（单位百帕）：<input
-									type="text" name="avgPressure"><br> 平均气温（单位℃）：<input
-									type="text" name="avgTemperature"><br> 平均湿度（单位%）：<input
-									type="text" name="avgHumidity"><br> 平均降水量（单位mm）：<input
-									type="text" name="avgPrecipitation"><br>
-								平均风速（单位m/s）：<input type="text" name="avgWindSpeed"><br>
+								月份：<input type="text" name="month" onkeyup="value=value.replace(/[^\d\.]/g,'')"
+       value="请输入数字" onfocus="if(this.value == '请输入数字') this.value = ''" onblur="if(this.value =='') this.value = '请输入数字'"><br> 省份：<input
+									type="text" name="province"  onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')"  value="请输入中文" onfocus="if(this.value == '请输入中文') this.value = ''" onblur="if(this.value =='') this.value = '请输入中文'"><br> 平均气压（单位百帕）：<input
+									type="text" name="avgPressure" onkeyup="value=value.replace(/[^\d\.]/g,'')"
+       value="请输入数字" onfocus="if(this.value == '请输入数字') this.value = ''" onblur="if(this.value =='') this.value = '请输入数字'"><br> 平均气温（单位℃）：<input
+									type="text" name="avgTemperature" onkeyup="value=value.replace(/[^\d\.]/g,'')"
+       value="请输入数字" onfocus="if(this.value == '请输入数字') this.value = ''" onblur="if(this.value =='') this.value = '请输入数字'"><br> 平均湿度（单位%）：<input
+									type="text" name="avgHumidity" onkeyup="value=value.replace(/[^\d\.]/g,'')"
+       value="请输入数字" onfocus="if(this.value == '请输入数字') this.value = ''" onblur="if(this.value =='') this.value = '请输入数字'"><br> 平均降水量（单位mm）：<input
+									type="text" name="avgPrecipitation" onkeyup="value=value.replace(/[^\d\.]/g,'')"
+       value="请输入数字" onfocus="if(this.value == '请输入数字') this.value = ''" onblur="if(this.value =='') this.value = '请输入数字'"><br>
+								平均风速（单位m/s）：<input type="text" name="avgWindSpeed" onkeyup="value=value.replace(/[^\d\.]/g,'')"
+       value="请输入数字" onfocus="if(this.value == '请输入数字') this.value = ''" onblur="if(this.value =='') this.value = '请输入数字'"><br>
 								<input type="Submit" value="确定">
 							</form>
 							<h3>========================</h3>
 							<br>
-							<form action="WeatherDel" method="post">
+							<form action="del.weather" method="post">
 								<h3>天气数据删除：请输入省份和要删除数据的月份</h3>
-								省份：<input type="text" name="provinceName"><br> 月份：<input
-									type="text" name="month"><br> <input type="Submit"
+								省份：<input type="text" name="provinceName"  onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')"  value="请输入中文" onfocus="if(this.value == '请输入中文') this.value = ''" onblur="if(this.value =='') this.value = '请输入中文'"><br> 月份：<input
+									type="text" name="month"  onkeyup="value=value.replace(/[^\d\.]/g,'')"
+       value="请输入数字" onfocus="if(this.value == '请输入数字') this.value = ''" onblur="if(this.value =='') this.value = '请输入数字'"><br> <input type="Submit"
 									value="确定">
 							</form>
 							</br>
