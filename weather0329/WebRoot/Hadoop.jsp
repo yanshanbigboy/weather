@@ -11,12 +11,12 @@
 	<p style="color: #FF4500;font-size:35px; margin-left: 5px; position: relative;top:20px;">基于Hadoop的大数据处理<p>
 	<!-- content-->
 	<br>
-	<h5 style="color: #FF4500;position: relative;top:20px;left:5px">2017全国平均温度（摄氏度）</h5>
-	<h5 style="position: relative;top:10px;left:5px">数据来自国家气象局</h5>
+	<h5 style="position: relative;top:30px;left:5px">2017全国平均温度（摄氏度）</h5>
+	<h6 style="position: relative;top:20px;left:5px">数据来自国家气象局</h5>
 	<div style="height: 50px"></div>
 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 
-<div id="main" style="height:600px"></div>
+<div id="main" style="height:400px"></div>
 <!-- ECharts单文件引入 -->
 <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
 <script type="text/javascript">
@@ -53,7 +53,7 @@
                     min: 3,
                     max: 25,
                     text:['高','低'],           // 文本，默认为数值文本
-                    splitNumber:0,
+                    splitNumber:0
                 },
                 toolbox: {
                     show : true,
