@@ -2,9 +2,9 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import Util.DBUtil;
 import bean.ShoppingItem;
 import connection.DBConnection;
 
@@ -24,7 +24,7 @@ public class ShoppingItemDao {
 			conn = DBConnection.getConn();
 			sql = "insert into shoppingitem (num,elem,area,frequency,name,company,phoneNUm,email,addRequest) values(?,?,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, getMaxId());
+			pstmt.setInt(1, DBUtil.getNextId("shoppingitem", "num"));
 			pstmt.setString(2, item.getElem());
 			pstmt.setString(3, item.getArea());
 			pstmt.setString(4, item.getFrequency());
@@ -42,30 +42,4 @@ public class ShoppingItemDao {
 		return count;
 	}
 
-	/**
-	 * 获取购物车最大ID,在最大ID基础上+1
-	 * 
-	 * @return
-	 */
-	public static int getMaxId() {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "";
-		int maxId = 0;
-		try {
-			conn = DBConnection.getConn();
-			sql = "select max(num) from shoppingitem";
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				maxId = rs.getInt(1);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConnection.close(rs, pstmt, conn);
-		}
-		return maxId + 1;
-	}
 }
