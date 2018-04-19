@@ -1,7 +1,7 @@
 package bean;
 
 public class Reply {
-	private String sendName;
+	private int replyId;
 	private String replyName;
 	private String replyContent;
 
@@ -9,19 +9,19 @@ public class Reply {
 		super();
 	}
 
-	public Reply(String sendName, String replyName, String replyContent) {
+	public Reply(int replyId, String replyName, String replyContent) {
 		super();
-		this.sendName = sendName;
+		this.replyId = replyId;
 		this.replyName = replyName;
 		this.replyContent = replyContent;
 	}
 
-	public String getSendName() {
-		return sendName;
+	public int getReplyId() {
+		return replyId;
 	}
 
-	public void setSendName(String sendName) {
-		this.sendName = sendName;
+	public void setReplyId(int replyId) {
+		this.replyId = replyId;
 	}
 
 	public String getReplyName() {
