@@ -82,7 +82,7 @@
       <img class="img-404" src="img/404.jpg" alt="">       
     	<div class="box-404">
         	<h2>Oopss!</h2>
-<h3>404 page not found</h3>        	
+<h3>404 page not found！</h3>        	
            
             <p>Nam liber tempor cum soluta nobis eleifend option congue nihil doming id quod mazim placerat facer possim assum orem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy euismod.</p>
            
