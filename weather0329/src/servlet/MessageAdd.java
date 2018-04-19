@@ -30,14 +30,15 @@ public class MessageAdd extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
+		// String name=request.getParameter("name");
 		User user = (User) session.getAttribute("user");
 		System.out.println(user.getUserName());
-		String name = user.getUserName();
+		String name=user.getUserName();
 		String content = request.getParameter("content");
 		System.out.println("姓名" + name + "内容" + content);
 		String telephone = request.getParameter("telephone");
 		String email = request.getParameter("email");
-		Message msg = new Message(name, content);
+		Message msg = new Message(name, content, telephone, email);
 		int count1 = MessageDao.addMessage(msg);
 		if (count1 == 1) {
 			System.out.println("添加留言板成功");

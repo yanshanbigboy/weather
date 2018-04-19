@@ -76,14 +76,14 @@ public class Login extends HttpServlet {
 					} else if (!adminPasswordDB.equals(password)) {
 						System.out.println("密码错误+登陆失败");
 						Object[] options = { "确定", "取消" };
-						JOptionPane.showOptionDialog(null, "  用户名或密码错误", "警告",
+						JOptionPane.showOptionDialog(null, "  密码错误", "警告",
 								JOptionPane.DEFAULT_OPTION,
 								JOptionPane.WARNING_MESSAGE, null, options,
 								options[0]);
 						request.setAttribute(name, password);
 						RequestDispatcher rd = request
 								.getRequestDispatcher("/WEB-INF/pages/Login.jsp");
-						// rd.forward(request, response);
+						 rd.forward(request, response);
 					} else {
 						System.out.println("用户名错误+登陆失败");
 						Object[] options = { "确定", "取消" };
@@ -129,9 +129,9 @@ public class Login extends HttpServlet {
 
 					} else if (!validateCode.equalsIgnoreCase(validation_code)) {
 
-						System.out.println("密码正确+验证码错误");
+						System.out.println("验证码错误");
 						Object[] options = { "确定", "取消" };
-						JOptionPane.showOptionDialog(null, "  用户名或密码错误", "警告",
+						JOptionPane.showOptionDialog(null, "  验证码错误", "警告",
 								JOptionPane.DEFAULT_OPTION,
 								JOptionPane.WARNING_MESSAGE, null, options,
 								options[0]);
@@ -144,7 +144,7 @@ public class Login extends HttpServlet {
 
 						System.out.println("密码错误+登陆失败");
 						Object[] options = { "确定", "取消" };
-						JOptionPane.showOptionDialog(null, "  用户名或密码错误", "警告",
+						JOptionPane.showOptionDialog(null, "  密码错误", "警告",
 								JOptionPane.DEFAULT_OPTION,
 								JOptionPane.WARNING_MESSAGE, null, options,
 								options[0]);
