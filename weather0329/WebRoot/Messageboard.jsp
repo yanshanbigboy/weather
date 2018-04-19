@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8" %>
+	pageEncoding="utf-8" errorPage="error.jsp"%>
 <%@ page import="bean.Message"%>
 <%@ page import="dao.MessageDao"%>
 <%@ page import="java.util.*"%>
@@ -17,19 +17,19 @@
 		<div class="ic"></div>
 		<div class="container">
 			<div class="row">
-				<article class="span8">
-
-
-					<h3>Contact us</h3>
-					<div class="inner-1">
-						<form action="MessageAdd" method="post">
-							<!--   姓名：<input type="text" name="name"></br> -->
-							E-mail:<input type="text" name="email"> </br> 内容：<input
-								type="text" name="content"> </br> <input class="cheng"
-								type="submit">Send</input>
-						</form>
-					</div>
-
+			<article class="span8">
+		
+						
+							<h3>Contact us</h3>
+							<div class="inner-1">
+								<form action="MessageAdd" method="post">
+									<!--   姓名：<input type="text" name="name"></br> -->
+									E-mail:<input type="text" name="email"> </br> 内容：<input
+										type="text" name="content"> </br> <input class="cheng"
+										type="submit">Send</input>
+								</form>
+							</div>
+					
 				</article>
 
 				<article class="span4">
@@ -65,8 +65,9 @@
 							bordercolorlight="#FFFFFF">
 							<tr align="center" bgcolor="#e3F4F7">
 								<td width="10%" bgcolor="#e7e8e8">姓名</td>
+
 								<td width="12%" bgcolor="#e7e8e8">留言信息</td>
-								<td width="12%" bgcolor="#e7e8e8">回复</td>
+
 							</tr>
 
 							<%
@@ -76,9 +77,8 @@
 								for (Message msg : messageList) {
 							%>
 							<tr align="center">
-								<td style="padding:5px"><%=msg.getSendName()%></td>
-								<td style="padding:5px"><%=msg.getSendContent()%></td>
-								<td style="padding:5px"><%=msg.getAllReply()%></td>
+								<td style="padding:5px"><%=msg.getName()%></td>
+								<td style="padding:5px"><%=msg.getContent()%></td>
 								<%
 									}
 								%>
