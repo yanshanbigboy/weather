@@ -1,58 +1,70 @@
 package bean;
 
+import java.util.List;
+
 public class Message {
-     String name;
-     String content;
-     String telephone;
-     String email;
-     
-     public Message(){
-    	 
-     }
-     
-     public Message(String name,String content){
-    	 this.name=name;
-    	 this.content=content;
-     }
-     
-     public Message(String name,String content,String telephone,String email){
-    	 this.name=name;
-         this.content=content;
-         this.telephone=telephone;
-         this.email=email;
-     }
+	private int sendId;
+	private String sendName;
+	private String sendContent;
+	private List<Reply> replyList;
 
-	public String getName() {
-		return name;
+	public String getAllReply() {
+		for (Reply reply : replyList) {
+			return reply.getReplyName() + ":" + reply.getReplyContent() + ";";
+		}
+		return "";
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public Message() {
+
 	}
 
-	public String getContent() {
-		return content;
+	public Message(int sendId, String sendName, String sendContent) {
+		super();
+		this.sendId = sendId;
+		this.sendName = sendName;
+		this.sendContent = sendContent;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public Message(int sendId, String sendName, String sendContent,
+			List<Reply> replyList) {
+		super();
+		this.sendId = sendId;
+		this.sendName = sendName;
+		this.sendContent = sendContent;
+		this.replyList = replyList;
 	}
 
-	public String getTelephone() {
-		return telephone;
+	public int getSendId() {
+		return sendId;
 	}
 
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
+	public void setSendId(int sendId) {
+		this.sendId = sendId;
 	}
 
-	public String getEmail() {
-		return email;
+	public List<Reply> getReplyList() {
+		return replyList;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setReplyList(List<Reply> replyList) {
+		this.replyList = replyList;
 	}
-     
+
+	public String getSendName() {
+		return sendName;
+	}
+
+	public void setSendName(String sendName) {
+		this.sendName = sendName;
+	}
+
+	public String getSendContent() {
+		return sendContent;
+	}
+
+	public void setSendContent(String sendContent) {
+		this.sendContent = sendContent;
+	}
+
 }
-

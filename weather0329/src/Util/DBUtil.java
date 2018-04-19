@@ -44,4 +44,5 @@ public class DBUtil {
 		int i = getNextId(dbName, columName);
 		System.out.println("i===" + i);
 	}
+
 }
