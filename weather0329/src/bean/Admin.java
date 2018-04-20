@@ -29,4 +29,11 @@ public class Admin {
 	public void setadminPassword(String adminPassword) {
 		this.adminPassword = adminPassword;
 	}
+	public int getAdminId() {
+		return adminId;
+	}
+
+	public void setAdminId(int adminId) {
+		this.adminId = adminId;
+	}
 }
