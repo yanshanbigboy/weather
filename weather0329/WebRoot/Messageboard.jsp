@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8" errorPage="error.jsp"%>
+	pageEncoding="utf-8"%>
 <%@ page import="bean.Message"%>
 <%@ page import="dao.MessageDao"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.util.List"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 
 <!-- start of header -->
@@ -17,19 +17,19 @@
 		<div class="ic"></div>
 		<div class="container">
 			<div class="row">
-			<article class="span8">
-		
-						
-							<h3>Contact us</h3>
-							<div class="inner-1">
-								<form action="MessageAdd" method="post">
-									<!--   姓名：<input type="text" name="name"></br> -->
-									E-mail:<input type="text" name="email"> </br> 内容：<input
-										type="text" name="content"> </br> <input class="cheng"
-										type="submit">Send</input>
-								</form>
-							</div>
-					
+				<article class="span8">
+
+
+					<h3>Contact us</h3>
+					<div class="inner-1">
+						<form action="MessageAdd" method="post">
+							<!--   姓名：<input type="text" name="name"></br> -->
+							E-mail:<input type="text" name="email"> </br> 内容：<input
+								type="text" name="content"> </br> <input class="cheng"
+								type="submit">Send</input>
+						</form>
+					</div>
+
 				</article>
 
 				<article class="span4">
@@ -64,25 +64,27 @@
 							bordercolor="#FFFFFF" bordercolordark="#F6B83B"
 							bordercolorlight="#FFFFFF">
 							<tr align="center" bgcolor="#e3F4F7">
+								<td width="10%" bgcolor="#e7e8e8">留言序号</td>
 								<td width="10%" bgcolor="#e7e8e8">姓名</td>
-
-								<td width="12%" bgcolor="#e7e8e8">留言信息</td>
-
+								<td width="18%" bgcolor="#e7e8e8">留言信息</td>
+								<td width="18%" bgcolor="#e7e8e8">回复</td>
+								<td width="18%" bgcolor="#e7e8e8">添加回复</td>
 							</tr>
 
-							<%
-								List<Message> messageList = MessageDao.printMessage();
-							%>
-							<%
-								for (Message msg : messageList) {
-							%>
-							<tr align="center">
-								<td style="padding:5px"><%=msg.getName()%></td>
-								<td style="padding:5px"><%=msg.getContent()%></td>
-								<%
-									}
-								%>
-							</tr>
+							<c:forEach var="message" items="${messageList }">
+								<tr align="center">
+									<td style="padding:5px">${message.sendId }</td>
+									<td style="padding:5px">${message.sendName }</td>
+									<td style="padding:5px">${message.sendContent }</td>
+									<td style="padding:5px">${message.allReply }</td>
+									<td style="padding:5px"><form action="addreply.message">
+											<input type="text" name="reply_Content"> <input
+												type="hidden" name="send_id" value="${message.sendId }"><input
+												type="submit" value="添加">
+										</form>
+									</td>
+								</tr>
+							</c:forEach>
 						</table>
 					</ul>
 				</div>
