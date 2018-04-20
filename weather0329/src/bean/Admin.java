@@ -1,7 +1,7 @@
 package bean;
 
-public class Admin {// bowen test1
-	private int adminId; // Ë½ÓĞ±äÁ¿£¬½öÓĞÄÚ²¿ÀàºÍ´´½¨Õß¿ÉÒÔµ÷ÓÃ
+public class Admin {
+	private int adminId; // ç§æœ‰å˜é‡ï¼Œä»…æœ‰å†…éƒ¨ç±»å’Œåˆ›å»ºè€…å¯ä»¥è°ƒç”¨
 	private String adminName;
 	private String adminPassword;
 
