@@ -29,14 +29,16 @@ public class MessageDao {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				System.out.println("id===" + rs.getInt("send_id"));
+				System.out.println("id===" + rs.getInt("send_id")
+						+ "reply content==" + rs.getString("reply_content"));
+
 				if (pre == rs.getInt("send_id") && messageList.size() != 0) {// 说明是之前一个结果的send_id与现在send_id相同
 					// 说明是针对同一个留言的回复
 					// 获取messageList中Message对象包涵的replyList对象111
 					List<Reply> replyList = ((Message) (messageList
 							.get(messageList.size() - 1))).getReplyList();
-					if (messageList.size() == 0) { // 说明肯定没有replyList对象
-						replyList = new ArrayList<Reply>();
+					if (replyList != null) { // 说明有replyList对象
+						System.out.println("replyList != null");
 						Reply reply = new Reply(rs.getInt("reply_id"),
 								rs.getString("reply_name"),
 								rs.getString("reply_content"));
@@ -44,21 +46,37 @@ public class MessageDao {
 						Message message = (Message) (messageList
 								.get(messageList.size() - 1));
 						message.setReplyList(replyList);
+						messageList.remove(messageList.size() - 1);
 						messageList.add(message);
-						pre = rs.getInt("send_id");
+						System.out.println("replysize==" + replyList.size());
+						// pre = rs.getInt("send_id");
+						// System.out.println("pre==" + pre);
 					} else {
+						System.out.println("replyList != null  -----else");
 						Reply reply = new Reply(rs.getInt("reply_id"),
 								rs.getString("reply_name"),
 								rs.getString("reply_content"));
 						replyList.add(reply);
-						pre = rs.getInt("send_id");
+						// pre = rs.getInt("send_id");
+						// System.out.println("pre==" + pre);
 					}
-				} else {// 前一个结果的send_id与现在的send_id不同，说明不是针对同一个留言的回复
+				} else {
+					// pre != rs.getInt("send_id") 或 messageList.size() ==0的情况
+					System.out.println("else");
+					List<Reply> replyList = new ArrayList<Reply>();
+					Reply reply = new Reply(rs.getInt("reply_id"),
+							rs.getString("reply_name"),
+							rs.getString("reply_content"));
+					replyList.add(reply);
 					Message msg = new Message(rs.getInt("send_id"),
 							rs.getString("send_name"),
-							rs.getString("send_content"));
+							rs.getString("send_content"), replyList);
 					messageList.add(msg);
-					pre = rs.getInt("send_id");
+					System.out.println("else----reply_content"
+							+ messageList.get(0).getReplyList().get(0)
+									.getReplyContent());
+					// pre = rs.getInt("send_id");
+					// System.out.println("pre==" + pre);
 				}
 			}
 		} catch (SQLException e) {

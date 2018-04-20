@@ -9,10 +9,14 @@ public class Message {
 	private List<Reply> replyList;
 
 	public String getAllReply() {
-		for (Reply reply : replyList) {
-			return reply.getReplyName() + ":" + reply.getReplyContent() + ";";
+		String str = "";
+		if (replyList != null) {
+			for (Reply reply : replyList) {
+				str = str + reply.getReplyName() + "  »Ø¸´  " + sendName + "  :"
+						+ reply.getReplyContent() + ";";
+			}
 		}
-		return "";
+		return str;
 	}
 
 	public Message() {
@@ -33,6 +37,11 @@ public class Message {
 		this.sendName = sendName;
 		this.sendContent = sendContent;
 		this.replyList = replyList;
+	}
+
+	public Message(String sendName, String sendContent) {
+		this.sendName = sendName;
+		this.sendContent = sendContent;
 	}
 
 	public int getSendId() {
