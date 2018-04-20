@@ -11,18 +11,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.FileDao;
+
 public class DownLoadServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// 得到要下载的文件名
+		// 得到要下载的文件名 //即ListFile.jsp中的key
 		String fileName = request.getParameter("filename"); // 23239283-92489-阿凡达.avi
-		fileName = new String(fileName.getBytes("iso8859-1"), "UTF-8");
-		// 上传的文件都是保存在/WEB-INF/upload目录下的子目录当中
-		String fileSaveRootPath = this.getServletContext().getRealPath(
-				"/WEB-INF/upload");
-		// 通过文件名找出文件的所在目录
-		String path = findFileSavePathByFileName(fileName, fileSaveRootPath);
+		fileName = new String(fileName.getBytes("iso8859-1"), "UTF-8");// tomcat默认code为iso8859-1，name有中文
+		String path = FileDao.queryRealURL(fileName);
+		System.out.println("servlet download path=" + path);
+		/*
+		 * // 上传的文件都是保存在/WEB-INF/upload目录下的子目录当中 String fileSaveRootPath =
+		 * this.getServletContext().getRealPath( "/WEB-INF/upload"); //
+		 * 通过文件名找出文件的所在目录 String path = findFileSavePathByFileName(fileName,
+		 * fileSaveRootPath);
+		 */
 		// 得到要下载的文件
 		File file = new File(path + "\\" + fileName);
 		// 如果文件不存在
@@ -67,20 +72,14 @@ public class DownLoadServlet extends HttpServlet {
 	 *            上传文件保存的根目录，也就是/WEB-INF/upload目录
 	 * @return 要下载的文件的存储目录
 	 */
-	public String findFileSavePathByFileName(String filename,
-			String saveRootPath) {
-		int hashcode = filename.hashCode();
-		int dir1 = hashcode & 0xf; // 0--15
-		int dir2 = (hashcode & 0xf0) >> 4; // 0-15
-		String dir = saveRootPath + "\\" + dir1 + "\\" + dir2; // upload\2\3
-																// upload\3\5
-		File file = new File(dir);
-		if (!file.exists()) {
-			// 创建目录
-			file.mkdirs();
-		}
-		return dir;
-	}
+	/*
+	 * public String findFileSavePathByFileName(String filename, String
+	 * saveRootPath) { int hashcode = filename.hashCode(); int dir1 = hashcode &
+	 * 0xf; // 0--15 int dir2 = (hashcode & 0xf0) >> 4; // 0-15 String dir =
+	 * saveRootPath + "\\" + dir1 + "\\" + dir2; // upload\2\3 // upload\3\5
+	 * File file = new File(dir); if (!file.exists()) { // 创建目录 file.mkdirs(); }
+	 * return dir; }
+	 */
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
