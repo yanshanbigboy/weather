@@ -40,7 +40,11 @@ public class DataShopping extends HttpServlet {
 		System.out.println("path==" + path);
 		String url = request.getServletPath();
 		System.out.println("url==" + url);
-
+		// Servlet中获取项目的绝对路径
+		String picPath = this.getServletConfig().getServletContext()
+				.getRealPath("/")
+				+ "pay.jpg";
+		System.out.println("picPath==" + picPath);
 		// 获取Jsp提交的数据
 		String[] elem = request.getParameterValues("elements");
 		String[] area = request.getParameterValues("area");
@@ -75,7 +79,8 @@ public class DataShopping extends HttpServlet {
 				// 按要求查询各地数据表并生成地址
 				WeatherDao.priProWeaByElem(area, strElem, fileAddress);
 				// 给用户的邮箱发送邮件，并携带有该生成的xls文件的附件
-				SendMail send = new SendMail(item, fileAddress);
+				int price = 5 * elem.length * area.length * 12;
+				SendMail send = new SendMail(item, fileAddress, price, picPath);
 				send.start();
 				// 发送成功
 				String message = "恭喜您，购买成功，我们已经将您所需要的数据以邮件的形式发送到您的邮箱中，请查收。如果没有收到，可能是网络原因，请耐心等待。";
@@ -92,7 +97,8 @@ public class DataShopping extends HttpServlet {
 				// 按要求查询avg_year表并生成地址
 				WeatherDao.printAvgYearWeather(strElem, area, fileAddress);
 				// 给用户的邮箱发送邮件，并携带有该生成的xls文件的附件
-				SendMail send = new SendMail(item, fileAddress);
+				int price = 5 * elem.length * area.length;
+				SendMail send = new SendMail(item, fileAddress, price, picPath);
 				send.start();
 				// 发送成功
 				String message = "恭喜您，注册成功，我们已经发了一封带了注册信息的电子邮件，请查收，如果没有收到，可能是网络原因，过一会儿就收到了！！";
@@ -115,8 +121,10 @@ public class DataShopping extends HttpServlet {
 				WeatherDao.priProWeaByElem(area, strElem, fileAddress);
 				System.out.println("fileAddress ==" + fileAddress);
 				try {
+					int price = 5 * elem.length * area.length * 12;
 					// 给用户的邮箱发送邮件，并携带有该生成的xls文件的附件
-					SendMail send = new SendMail(item, fileAddress);
+					SendMail send = new SendMail(item, fileAddress, price,
+							picPath);
 					send.start();
 					SendMail.sleep(4000);
 					send.join();
@@ -130,7 +138,9 @@ public class DataShopping extends HttpServlet {
 					// 按要求查询avg_year表并生成地址
 					WeatherDao.printAvgYearWeather(strElem, area, fileAddress1);
 					// 给用户的邮箱发送邮件，并携带有该生成的xls文件的附件
-					SendMail send1 = new SendMail(item, fileAddress1);
+					int price1 = 5 * elem.length * area.length;
+					SendMail send1 = new SendMail(item, fileAddress1, price1,
+							picPath);
 					send1.start();
 
 					// 发送成功
