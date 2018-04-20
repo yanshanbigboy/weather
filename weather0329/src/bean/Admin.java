@@ -1,7 +1,7 @@
 package bean;
 
 public class Admin {
-	private int adminId; // 私有变量，仅有内部类和创建者可以调用
+	
 	private String adminName;
 	private String adminPassword;
 
@@ -29,11 +29,5 @@ public class Admin {
 	public void setadminPassword(String adminPassword) {
 		this.adminPassword = adminPassword;
 	}
-	public int getAdminId() {
-		return adminId;
-	}
-
-	public void setAdminId(int adminId) {
-		this.adminId = adminId;
-	}
+	
 }
