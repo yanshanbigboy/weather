@@ -5,6 +5,13 @@
 <%@ page import="dao.ProvinceDao"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.util.List"%>
+<%@ page import="java.util.HashMap"%>
+<%@ page import="java.util.Map"%>
+<%@ page import="dao.FileDao"%>
+<%@ page import="bean.file" import="java.io.File"
+	import="java.io.IOException" import="java.util.HashMap"
+	import="java.util.Map"%>
+
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -27,19 +34,49 @@
 			<div class="container">
 				<div class="row">
 					<article class="span12">
-					<h4>文件上传</h4>
+					<h4>文件下载</h4>
 					<br>
 					</article>
 					<div class="clear"></div>
 					<div>
-						<!-- 遍历Map集合 -->
-						<c:forEach var="me" items="${fileNameMap}">
-							<c:url value="/DownLoadServlet" var="downurl">
-								<c:param name="filename" value="${me.key}"></c:param>
-							</c:url>
-                            ${me.value}<a href="${downurl}">下载</a>
-							<br />
-						</c:forEach>
+						<%
+							if (request.getAttribute("fileList") == null) {
+						%>
+						<p4>对不起，系统没有文件</p4>
+						<%
+							} else
+						%>
+						<%
+							if (request.getAttribute("fileList") != null) {
+						%>
+						<table width="50%" border="1" cellpadding="0" cellspacing="0"
+							bordercolor="#FFFFFF" bordercolordark="#F6B83B"
+							bordercolorlight="#FFFFFF">
+							<tr align="center" bgcolor="#e3F4F7">
+								<td width="10%" bgcolor="#e7e8e8">文件</td>
+								<td width="10%" bgcolor="#e7e8e8">描述</td>
+							</tr>
+
+							<!-- 遍历Map集合 -->
+							<c:forEach var="me" items="${fileList}">
+								<!-- me当前条目变量名称  item循环的信息-->
+								<tr align="center" bgcolor="#F5F5DC">
+									<td style="padding:5px;"><c:url value="/DownLoadServlet"
+											var="downurl">
+											<c:param name="filename" value="${me.fileName} "></c:param>
+										</c:url> ${me.realFileName} <a href="${downurl}">下载</a> <%-- <c:url value="/DownLoadServlet" var="downurl"> <!-- value.url var.url名 -->
+								        <c:param name="filename" value="${me.key}"></c:param>
+							        </c:url>                            <!-- key：带有乱码的名字（唯一的） -->             
+                                    ${me.value}    <a href="${downurl}">下载</a> --%>
+										<!-- value不带乱码的名字（可能不唯一） --></td>
+									<td style="padding:5px;">${me.fileMess}</td>
+								</tr>
+
+							</c:forEach>
+						</table>
+						<%
+							}
+						%>
 					</div>
 					<!--正文结束-->
 				</div>
@@ -51,8 +88,8 @@
 				<article class="span6">
 				<h3>Shortly about us</h3>
 				<div class="wrapper">
-					<figure class="img-indent">
-					<img src="img/mine/us.jpg " alt="" /></figure>
+					<figure class="img-indent"> <img src="img/mine/us.jpg "
+						alt="" /></figure>
 					<div class="inner-1 overflow extra">
 						<div class="txt-1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 							我们是致力于通过大数据气象统计和数据分析，来给政府部门、社会组织和市民提供精准有效的气象预测和分析。
@@ -64,44 +101,28 @@
 				<h3>Some quick links</h3>
 				<div class="wrapper">
 					<ul class="list list-pad">
-						<li><a href="#">Campaigns</a>
-						</li>
-						<li><a href="#">Portraits</a>
-						</li>
-						<li><a href="#">Fashion</a>
-						</li>
-						<li><a href="#">Fine Art</a>
-						</li>
+						<li><a href="#">Campaigns</a></li>
+						<li><a href="#">Portraits</a></li>
+						<li><a href="#">Fashion</a></li>
+						<li><a href="#">Fine Art</a></li>
 					</ul>
 					<ul class="list list-pad">
-						<li><a href="#">Campaigns</a>
-						</li>
-						<li><a href="#">Portraits</a>
-						</li>
-						<li><a href="#">Fashion</a>
-						</li>
-						<li><a href="#">Fine Art</a>
-						</li>
+						<li><a href="#">Campaigns</a></li>
+						<li><a href="#">Portraits</a></li>
+						<li><a href="#">Fashion</a></li>
+						<li><a href="#">Fine Art</a></li>
 					</ul>
 					<ul class="list list-pad">
-						<li><a href="#">Campaigns</a>
-						</li>
-						<li><a href="#">Portraits</a>
-						</li>
-						<li><a href="#">Fashion</a>
-						</li>
-						<li><a href="#">Fine Art</a>
-						</li>
+						<li><a href="#">Campaigns</a></li>
+						<li><a href="#">Portraits</a></li>
+						<li><a href="#">Fashion</a></li>
+						<li><a href="#">Fine Art</a></li>
 					</ul>
 					<ul class="list">
-						<li><a href="#">Advertising</a>
-						</li>
-						<li><a href="#">Lifestyle</a>
-						</li>
-						<li><a href="#">Love story</a>
-						</li>
-						<li><a href="#">Landscapes</a>
-						</li>
+						<li><a href="#">Advertising</a></li>
+						<li><a href="#">Lifestyle</a></li>
+						<li><a href="#">Love story</a></li>
+						<li><a href="#">Landscapes</a></li>
 					</ul>
 				</div>
 				</article>

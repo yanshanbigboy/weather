@@ -27,8 +27,8 @@
 						<form
 							action="${pageContext.request.contextPath}/UploadHandleServlet"
 							enctype="multipart/form-data" method="post">
-							上传文件1：<input type="file" name="file1"><br /> 上传文件2：<input
-								type="file" name="file2"><br /> <input type="submit"
+							上传文件：<input type="file" name="file1"> 文件描述：<input type="text" name="fileMess"><br /> 
+							<input type="submit"
 								value="提交">
 						</form>
 					</div>
