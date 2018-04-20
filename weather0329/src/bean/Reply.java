@@ -9,6 +9,12 @@ public class Reply {
 		super();
 	}
 
+	public Reply(String replyName, String replyContent) {
+		super();
+		this.replyName = replyName;
+		this.replyContent = replyContent;
+	}
+
 	public Reply(int replyId, String replyName, String replyContent) {
 		super();
 		this.replyId = replyId;

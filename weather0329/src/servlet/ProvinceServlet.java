@@ -49,18 +49,21 @@ public class ProvinceServlet extends HttpServlet {
 			int count2 = WeatherDao.addProvinceTable(provinceName);
 			if (count1 == 1) {
 				System.out.println("添加省份成功");
+				RequestDispatcher rd = request
+						.getRequestDispatcher("WeatherModify.jsp");
+				rd.forward(request, response);
 			} else {
 				System.out.println("添加省份失败");
+				String message = String
+						.format("您输入的省份已存在！请先删除！<meta http-equiv='refresh' content='3;url=%s'/>",
+								request.getContextPath() + "/WeatherModify.jsp");
+				request.setAttribute("message", message);
+				request.getRequestDispatcher("/pattern/Message.jsp").forward(
+						request, response);
 			}
-			if (count2 == 1) {
-				System.out.println("添加省份表成功");
-			} else {
-				System.out.println("添加省份表失败");
-			}
-
-			RequestDispatcher rd = request
-					.getRequestDispatcher("WeatherModify.jsp");
-			rd.forward(request, response);
+			
+			
+			
 		}
 
 		if (url.equals("/del.province")) {
@@ -76,11 +79,7 @@ public class ProvinceServlet extends HttpServlet {
 			} else {
 				System.out.println("删除省失败");
 			}
-			if (count2 == 1) {
-				System.out.println("删除省表成功");
-			} else {
-				System.out.println("删除省表失败");
-			}
+			
 			RequestDispatcher rd = request
 					.getRequestDispatcher("WeatherModify.jsp");
 			rd.forward(request, response);
