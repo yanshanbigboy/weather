@@ -12,8 +12,13 @@ public class Message {
 		String str = "";
 		if (replyList != null) {
 			for (Reply reply : replyList) {
-				str = str + reply.getReplyName() + "  »Ø¸´  " + sendName + "  :"
-						+ reply.getReplyContent() + ";";
+				if (reply.getReplyName().equals("")
+						&& reply.getReplyContent().equals("")) {
+					str = "";
+				} else {
+					str = str + reply.getReplyName() + "  »Ø¸´  " + sendName
+							+ "  :" + reply.getReplyContent() + ";";
+				}
 			}
 		}
 		return str;

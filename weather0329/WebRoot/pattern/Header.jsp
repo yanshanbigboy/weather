@@ -126,7 +126,7 @@
 										<li><a href="ShoppingView.jsp">购买气象数据</a>
 										</li>
 									</ul></li>
-								<li><a href="Messageboard.jsp">意见反馈</a>
+								<li><a href="query.message">意见反馈</a>
 								</li>
 
 								<li><c:if test="${user!=null}">

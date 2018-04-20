@@ -22,11 +22,9 @@
 
 					<h3>Contact us</h3>
 					<div class="inner-1">
-						<form action="MessageAdd" method="post">
-							<!--   姓名：<input type="text" name="name"></br> -->
-							E-mail:<input type="text" name="email"> </br> 内容：<input
-								type="text" name="content"> </br> <input class="cheng"
-								type="submit">Send</input>
+						<form action="add.message" method="post">
+							内容：<input type="text" name="content"> </br> <input
+								class="cheng" type="submit">Send</input>
 						</form>
 					</div>
 
@@ -81,8 +79,7 @@
 											<input type="text" name="reply_Content"> <input
 												type="hidden" name="send_id" value="${message.sendId }"><input
 												type="submit" value="添加">
-										</form>
-									</td>
+										</form></td>
 								</tr>
 							</c:forEach>
 						</table>
