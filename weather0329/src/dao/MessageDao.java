@@ -25,7 +25,7 @@ public class MessageDao {
 			int pre = DBUtil.getMinId("message", "send_id");
 			System.out.println("pre==" + pre);
 			conn = DBConnection.getConn();
-			sql = "select * from message,reply where message.send_id=reply.send_id";
+			sql = "select * from message,reply where message.send_id=reply.send_id ORDER BY message.send_id";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -49,7 +49,7 @@ public class MessageDao {
 						messageList.remove(messageList.size() - 1);
 						messageList.add(message);
 						System.out.println("replysize==" + replyList.size());
-						// pre = rs.getInt("send_id");
+						pre = rs.getInt("send_id");
 						// System.out.println("pre==" + pre);
 					} else {
 						System.out.println("replyList != null  -----else");
@@ -57,7 +57,8 @@ public class MessageDao {
 								rs.getString("reply_name"),
 								rs.getString("reply_content"));
 						replyList.add(reply);
-						// pre = rs.getInt("send_id");
+						System.out.println("replysize==" + replyList.size());
+						pre = rs.getInt("send_id");
 						// System.out.println("pre==" + pre);
 					}
 				} else {
@@ -75,7 +76,8 @@ public class MessageDao {
 					System.out.println("else----reply_content"
 							+ messageList.get(0).getReplyList().get(0)
 									.getReplyContent());
-					// pre = rs.getInt("send_id");
+					System.out.println("replysize==" + replyList.size());
+					pre = rs.getInt("send_id");
 					// System.out.println("pre==" + pre);
 				}
 			}

@@ -78,7 +78,7 @@ public class DataShopping extends HttpServlet {
 				SendMail send = new SendMail(item, fileAddress);
 				send.start();
 				// 发送成功
-				String message = "恭喜您，注册成功，我们已经发了一封带了注册信息的电子邮件，请查收，如果没有收到，可能是网络原因，过一会儿就收到了！！";
+				String message = "恭喜您，购买成功，我们已经将您所需要的数据以邮件的形式发送到您的邮箱中，请查收。如果没有收到，可能是网络原因，请耐心等待。";
 				request.setAttribute("message", message);
 				request.getRequestDispatcher("/pattern/Message.jsp").forward(
 						request, response);

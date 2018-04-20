@@ -4,7 +4,7 @@
 <body>
 <!-- start of header -->
 <jsp:include page="/pattern/Header.jsp"></jsp:include>
-<!-- end of header1 -->
+<!-- end of header -->
 
 
 <div class="bg-content">

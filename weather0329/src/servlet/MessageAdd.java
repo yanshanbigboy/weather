@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import Util.DBUtil;
 import bean.Message;
 import bean.Reply;
 import bean.User;
@@ -62,8 +63,11 @@ public class MessageAdd extends HttpServlet {
 				} else {
 					System.out.println("添加留言板失败");
 				}
+				Reply reply = new Reply("", "");
+				ReplyDao.addReply((DBUtil.getNextId("message", "send_id")) - 1,
+						reply);
 				RequestDispatcher rd = request
-						.getRequestDispatcher("Messageboard.jsp");
+						.getRequestDispatcher("query.message");
 				rd.forward(request, response);
 			}
 			if (url.equals("/addreply.message")) {
@@ -86,7 +90,7 @@ public class MessageAdd extends HttpServlet {
 			}
 		} else {
 			String message = String
-					.format("您还没有以用户身份登录，请先登录。自动跳转到登录页面<meta http-equiv='refresh' content='3;url=%s'/>",
+					.format("您还没有以用户身份登录，请先登录。<br><br>自动跳转到登录页面<meta http-equiv='refresh' content='5;url=%s'/>",
 							request.getContextPath() + "/login.ui");
 			request.setAttribute("message", message);
 			request.getRequestDispatcher("/pattern/Message.jsp").forward(
