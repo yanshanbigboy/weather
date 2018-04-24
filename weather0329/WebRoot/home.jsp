@@ -60,29 +60,22 @@
 						<div class="clear"></div>
 						<ul class="portfolio clearfix">
 							<li class="box"><a href="tempmap.html"><img alt=""
-									src="img/mine/work1.jpg"> </a>
-							</li>
+									src="img/mine/work1.jpg"> </a></li>
 							<li class="box"><a href="pressure.html"><img alt=""
-									src="img/mine/work2.jpg"> </a>
-							</li>
+									src="img/mine/work2.jpg"> </a></li>
 							<li class="box"><a href="wind.html"><img alt=""
-									src="img/mine/work3.jpg"> </a>
-							</li>
-							<li class="box"><a href="http://data.cma.cn/"><img
-									alt="" src="img/mine/work4.jpg"> </a>
-							</li>
+									src="img/mine/work3.jpg"> </a></li>
+							<li class="box"><a href="precipitation.html"><img alt=""
+									src="img/mine/work4.jpg"> </a></li>
+							<li class="box"><a href="humidity.html"><img alt=""
+									src="img/mine/graph3.jpg"> </a></li>
+							<li class="box"><a href="Regression.jsp"><img alt=""
+									src="img/mine/graph4.jpg"> </a></li>
 							<li class="box"><a
 								href="https://www.juhe.cn/docs/api/id/226"><img alt=""
-									src="img/mine/graph1.jpg"> </a>
-							</li>
+									src="img/mine/graph1.jpg"> </a></li>
 							<li class="box"><a href="http://www.cma.gov.cn/"><img
 									alt="" src="img/mine/graph2.jpg"> </a>
-							</li>
-							<li class="box"><a href="humidity.html"><img alt=""
-									src="img/mine/graph3.jpg"> </a>
-							</li>
-							<li class="box"><a href="precipitation.html"><img alt=""
-									src="img/mine/graph4.jpg"> </a>
 							</li>
 						</ul>
 					</div>
@@ -123,7 +116,8 @@
 									<p>设计者：刘震，邢尧，张博文</p>
 									<a href="http://www.bootcss.com/" class="btn btn-1">Read
 										more</a> </section>
-								</div></li>
+								</div>
+							</li>
 							<li class="span3">
 								<div class="thumbnail thumbnail-1">
 									<h3>Graphics</h3>
@@ -143,7 +137,8 @@
 									<p>表格创意来源于echarts插件</p>
 									<a href="http://echarts.baidu.com/" class="btn btn-1">Read
 										More</a> </section>
-								</div></li>
+								</div>
+							</li>
 							<li class="span3">
 								<div class="thumbnail thumbnail-1">
 									<h3>Social Media</h3>
@@ -163,7 +158,8 @@
 									<p>网站已发布，项目也已开源到Github网站</p>
 									<a href="https://github.com/yanshanbigboy/weather"
 										class="btn btn-1">Read More</a> </section>
-								</div></li>
+								</div>
+							</li>
 							<li class="span3">
 								<div class="thumbnail thumbnail-1">
 									<h3 class="title-1 extra">Research Data</h3>
@@ -183,7 +179,8 @@
 									<p>Noaa气象数据下载，详见Read more</p>
 									<a href="ftp://ftp.ncdc.noaa.gov/pub/data/noaa"
 										class="btn btn-1">Read More</a> </section>
-								</div></li>
+								</div>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -192,7 +189,7 @@
 			<div class="container">
 				<div class="row">
 					<article class="span6">
-					<h3>Shortly about us</h3>
+					<h3>简介</h3>
 					<div class="wrapper">
 						<figure class="img-indent"> <img src="img/mine/us.jpg "
 							alt="" /></figure>
@@ -204,50 +201,37 @@
 						</div>
 					</article>
 					<article class="span6">
-					<h3>Some quick links</h3>
+					<h3>友情链接</h3>
 					<div class="wrapper">
 						<ul class="list list-pad">
-							<li><a href="https://500px.com/">500Px</a>
-							</li>
-							<li><a href="http://echarts.baidu.com/">Echarts</a>
-							</li>
-							<li><a href="http://www.bootcss.com/">Bootstrap</a>
-							</li>
-							<li><a href="http://www.hcharts.cn/">Highcharts</a>
-							</li>
+							<li><a href="https://500px.com/">500Px</a></li>
+							<li><a href="http://echarts.baidu.com/">Echarts</a></li>
+							<li><a href="http://www.bootcss.com/">Bootstrap</a></li>
+							<li><a href="http://www.hcharts.cn/">Highcharts</a></li>
 						</ul>
 						<ul class="list list-pad">
-							<li><a href="https://git-scm.com/">Git</a>
-							</li>
-							<li><a href="http://mvnrepository.com/">Maven</a>
-							</li>
-							<li><a href="https://github.com/">GitHub</a>
-							</li>
-							<li><a href="http://www.sdufe.edu.cn/">School</a>
-							</li>
+							<li><a href="https://git-scm.com/">Git</a></li>
+							<li><a href="http://mvnrepository.com/">Maven</a></li>
+							<li><a href="https://github.com/">GitHub</a></li>
+							<li><a href="http://www.sdufe.edu.cn/">山东财经大学</a></li>
 						</ul>
 						<ul class="list list-pad">
 							<li><a href="ftp://ftp.ncdc.noaa.gov/pub/data/noaa">Data</a>
 							</li>
-							<li><a href="http://www.cma.gov.cn/">Weather</a>
+							<li><a href="http://www.cma.gov.cn/">中国气象局</a></li>
+							<li><a
+								href="https://github.com/yanshanbigboy/weather/tree/master/weather0329">我们的github项目</a>
 							</li>
 							<li><a
-								href="https://github.com/yanshanbigboy/weather/tree/master/weather0329">Repository</a>
-							</li>
-							<li><a
-								href="https://cloud.tencent.com/?fromSource=gwzcw.234975.234975.234975">Tecent
-									Cloud</a>
+								href="https://cloud.tencent.com/?fromSource=gwzcw.234975.234975.234975">腾讯云</a>
 							</li>
 						</ul>
 						<ul class="list">
-							<li><a href="http://www.cnki.net/">Thesis</a>
-							</li>
-							<li><a href="https://ww2.mathworks.cn/">MATLAB</a>
-							</li>
-							<li><a href="http://www.mathtype.cn/">MathType</a>
-							</li>
+							<li><a href="http://www.cnki.net/">中国知网</a></li>
+							<li><a href="https://ww2.mathworks.cn/">MATLAB</a></li>
+							<li><a href="http://www.mathtype.cn/">MathType</a></li>
 							<li><a
-								href="https://baike.baidu.com/item/%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90/2625498?fr=aladdin">Regression</a>
+								href="https://baike.baidu.com/item/%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90/2625498?fr=aladdin">回归分析</a>
 							</li>
 						</ul>
 					</div>

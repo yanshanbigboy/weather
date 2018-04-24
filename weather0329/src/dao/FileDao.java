@@ -20,12 +20,13 @@ public class FileDao {
     	int count=0;
     	try{
     		conn=DBConnection.getConn();
-    		sql="insert into file(realFileName,fileName,fileMess,fileURL) values (?,?,?,?)";
+    		sql="insert into file(realFileName,fileName,fileMess,fileURL,fileSize) values (?,?,?,?,?)";
     		pstmt=conn.prepareStatement(sql);
     		pstmt.setString(1,file.getRealFileName());
     		pstmt.setString(2,file.getFileName());
     		pstmt.setString(3,file.getFileMess());
     		pstmt.setString(4,file.getFileURL());
+    		pstmt.setFloat(5, file.getFileSize());
     		count=pstmt.executeUpdate();
     	}catch(SQLException e){
     		e.printStackTrace();
@@ -48,7 +49,7 @@ public class FileDao {
 		    rs=pstmt.executeQuery();
 		    while(rs.next()){
 		    	file files=new file(rs.getString("realFileName"),rs.getString("fileName")
-		    			,rs.getString("fileMess"),rs.getString("fileURL"));
+		    			,rs.getString("fileMess"),rs.getString("fileURL"),rs.getFloat("fileSize"));
 		    	fileList.add(files);
 		    }
     	}catch(Exception e){
