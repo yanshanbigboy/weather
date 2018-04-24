@@ -11,6 +11,7 @@
 <%@ page import="bean.file" import="java.io.File"
 	import="java.io.IOException" import="java.util.HashMap"
 	import="java.util.Map"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <%
 	String path = request.getContextPath();
@@ -55,6 +56,7 @@
 							<tr align="center" bgcolor="#e3F4F7">
 								<td width="10%" bgcolor="#e7e8e8">文件</td>
 								<td width="10%" bgcolor="#e7e8e8">描述</td>
+								<td width="10%" bgcolor="#e7e8e8">大小（单位：MB）</td>
 							</tr>
 
 							<!-- 遍历Map集合 -->
@@ -70,6 +72,10 @@
                                     ${me.value}    <a href="${downurl}">下载</a> --%>
 										<!-- value不带乱码的名字（可能不唯一） --></td>
 									<td style="padding:5px;">${me.fileMess}</td>
+									<td style="padding:5px;">
+									<fmt:formatNumber type="number" value="${me.fileSize}" pattern="0.00" maxFractionDigits="2"/>
+									</td>
+									<%-- <td style="padding:5px;">${me.fileSize}</td> --%>
 								</tr>
 
 							</c:forEach>
