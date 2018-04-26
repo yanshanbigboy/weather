@@ -17,7 +17,7 @@ public class Message {
 					str = "";
 				} else {
 					str = str + reply.getReplyName() + "  »Ø¸´  " + sendName
-							+ "  :" + reply.getReplyContent() + ";";
+							+ "  :" + reply.getReplyContent() + "¡£<br><br>";
 				}
 			}
 		}

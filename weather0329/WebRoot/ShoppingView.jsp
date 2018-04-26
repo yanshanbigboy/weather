@@ -135,7 +135,7 @@
 							<img src="img/mine/us.jpg " alt="" />
 						</figure>
 						<div class="inner-1 overflow extra">
-							<div class="txt-1" style="color:black">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+							<div class="txt-1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 								我们是致力于通过大数据气象统计和数据分析，来给政府部门、社会组织和市民提供精准有效的气象预测和分析。
 								并提供精准的数据查询，方便广大学者和研究人员收集数据进行数据挖掘，同时提供最新的气象研究论文，开放讨论区，
 								支持广大气象爱好者进行科研交流。</div>
