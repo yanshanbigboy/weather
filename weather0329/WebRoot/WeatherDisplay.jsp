@@ -33,7 +33,7 @@
 				<div class="row">
 					<article class="span12">
 					<h4>数据展示</h4>
-					<c:if test="${sessionScope.admin==null&&sessionScope.user!=null }">
+					<c:if test="${sessionScope.admin==null}">
 						<h6>
 							普通用户只能查看前六个月信息，您可以选择购买数据，来获得完整数据 <input type="button"
 								onclick="location.href='ShoppingView.jsp'" value="现在购买"></input>

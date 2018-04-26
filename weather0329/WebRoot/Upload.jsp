@@ -52,60 +52,50 @@
 					</div>
 				</article>
 				<article class="span6">
-				<h3>Some quick links</h3>
-				<div class="wrapper">
-					<ul class="list list-pad">
-						<li><a href="#">Campaigns</a>
-						</li>
-						<li><a href="#">Portraits</a>
-						</li>
-						<li><a href="#">Fashion</a>
-						</li>
-						<li><a href="#">Fine Art</a>
-						</li>
-					</ul>
-					<ul class="list list-pad">
-						<li><a href="#">Campaigns</a>
-						</li>
-						<li><a href="#">Portraits</a>
-						</li>
-						<li><a href="#">Fashion</a>
-						</li>
-						<li><a href="#">Fine Art</a>
-						</li>
-					</ul>
-					<ul class="list list-pad">
-						<li><a href="#">Campaigns</a>
-						</li>
-						<li><a href="#">Portraits</a>
-						</li>
-						<li><a href="#">Fashion</a>
-						</li>
-						<li><a href="#">Fine Art</a>
-						</li>
-					</ul>
-					<ul class="list">
-						<li><a href="#">Advertising</a>
-						</li>
-						<li><a href="#">Lifestyle</a>
-						</li>
-						<li><a href="#">Love story</a>
-						</li>
-						<li><a href="#">Landscapes</a>
-						</li>
-					</ul>
+                    <h3>友情链接</h3>
+					<div class="wrapper">
+						<ul class="list list-pad">
+							<li><a href="https://500px.com/">500Px</a></li>
+							<li><a href="http://echarts.baidu.com/">Echarts</a></li>
+							<li><a href="http://www.bootcss.com/">Bootstrap</a></li>
+							<li><a href="http://www.hcharts.cn/">Highcharts</a></li>
+						</ul>
+						<ul class="list list-pad">
+							<li><a href="https://git-scm.com/">Git</a></li>
+							<li><a href="http://mvnrepository.com/">Maven</a></li>
+							<li><a href="https://github.com/">GitHub</a></li>
+							<li><a href="http://www.sdufe.edu.cn/">山东财经大学</a></li>
+						</ul>
+						<ul class="list list-pad">
+							<li><a href="ftp://ftp.ncdc.noaa.gov/pub/data/noaa">Data</a>
+							</li>
+							<li><a href="http://www.cma.gov.cn/">中国气象局</a></li>
+							<li><a
+								href="https://github.com/yanshanbigboy/weather/tree/master/weather0329">我们的github项目</a>
+							</li>
+							<li><a
+								href="https://cloud.tencent.com/?fromSource=gwzcw.234975.234975.234975">腾讯云</a>
+							</li>
+						</ul>
+						<ul class="list">
+							<li><a href="http://www.cnki.net/">中国知网</a></li>
+							<li><a href="https://ww2.mathworks.cn/">MATLAB</a></li>
+							<li><a href="http://www.mathtype.cn/">MathType</a></li>
+							<li><a
+								href="https://baike.baidu.com/item/%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90/2625498?fr=aladdin">回归分析</a>
+							</li>
+						</ul>
+					</div>
+					</article>
 				</div>
-				</article>
 			</div>
 		</div>
 	</div>
-</div>
 
+	<!--start of footer  -->
+	<jsp:include page="/pattern/Footer.jsp"></jsp:include>
+	<!--end of footer  -->
 
-<!--start of footer  -->
-<jsp:include page="/pattern/Footer.jsp"></jsp:include>
-<!--end of footer  -->
-
-<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
 </body>
 </html>
