@@ -16,4 +16,6 @@
 		style="position:absolute;left:330px;top:130px" height="600px"
 		width="900px">
 	</img>
+	
+	<input type="button" onclick="location.href='javascript:history.go(-1);'" value="返回"></input>
 </html>

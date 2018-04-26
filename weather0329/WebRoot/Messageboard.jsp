@@ -20,7 +20,7 @@
 					<div class="inner-1">
 						<form action="add.message" method="post">
 							内容：<input type="text" name="content"> </br> <input
-								class="cheng" type="submit">Send</input>
+								class="cheng" type="submit"></input>
 						</form>
 					</div>
 

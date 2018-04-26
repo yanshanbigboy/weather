@@ -72,5 +72,8 @@
 
 
 							<script type="text/javascript" src="js/bootstrap.js"></script>
+							<div>
+							   <input type="button" onclick="location.href='javascript:history.go(-1);'" value="返回"></input>
+							</div>
 							</body>
 							</html>

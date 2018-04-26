@@ -122,10 +122,10 @@ public class UploadHandleServlet extends HttpServlet {
 				return;
 			}
 
-			// 设置上传单个文件的大小的最大值，目前是设置为1024*1024*110字节，也就是110MB
-			upload.setFileSizeMax(1024 * 1024 * 110);
-			// 设置上传文件总量的最大值，最大值=同时上传的多个文件的大小的最大值的和，目前设置为110MB
-			upload.setSizeMax(1024 * 1024 * 110);
+			// 设置上传单个文件的大小的最大值，目前是设置为1024*1024*10字节，也就是10MB
+			upload.setFileSizeMax(1024 * 1024 * 10);
+			// 设置上传文件总量的最大值，最大值=同时上传的多个文件的大小的最大值的和，目前设置为10MB
+			upload.setSizeMax(1024 * 1024 * 10);
 			// 4、使用ServletFileUpload解析器解析上传数据，解析结果返回的是一个List<FileItem>集合，每一个FileItem对应一个Form表单的输入项
 			List<FileItem> list = upload.parseRequest(request);
 
@@ -164,12 +164,14 @@ public class UploadHandleServlet extends HttpServlet {
 					String saveFilename = makeFileName(filename);
 					// 得到文件的保存目录
 					String realSavePath = makePath(saveFilename, savePath);
-					float fileSize=(float)Math.round(((float)item.getSize())/1024/1024*100)/100;
+					float fileSize = (float) Math
+							.round(((float) item.getSize()) / 1024 / 1024 * 100) / 100;
 					file.setFileName(filename);
 					file.setFileURL(realSavePath);
 					file.setRealFileName(saveFilename);
 					file.setFileSize(fileSize);
-					System.out.println("servlet upload file.fileSize="+file.getFileSize());
+					System.out.println("servlet upload file.fileSize="
+							+ file.getFileSize());
 					// 创建一个文件输出流
 					FileOutputStream out = new FileOutputStream(realSavePath
 							+ "\\" + saveFilename);
