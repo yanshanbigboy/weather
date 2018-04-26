@@ -28,11 +28,16 @@ public class SendMail extends Thread {// ·¢ËÍÓÊ¼şÊÇÒ»¼şºÄÊ±µÄÊÂ£¬Òò´ËÉè¼ÆÒ»¸öÏß³
 	private String from = "vyumin@163.com";// ÓÃÓÚ¸øÓÃ»§·¢ËÍÓÊ¼şµÄÓÊÏä
 	private ShoppingItem item;
 	private String fileAddress;
+	private int price;
+	private String picPath;
 
-	public SendMail(ShoppingItem item, String fileAddress) {
+	public SendMail(ShoppingItem item, String fileAddress, int price,
+			String picPath) {
 		super();
 		this.item = item;
 		this.fileAddress = fileAddress;
+		this.price = price;
+		this.picPath = picPath;
 	}
 
 	public ShoppingItem getItem() {
@@ -57,7 +62,8 @@ public class SendMail extends Thread {// ·¢ËÍÓÊ¼şÊÇÒ»¼şºÄÊ±µÄÊÂ£¬Òò´ËÉè¼ÆÒ»¸öÏß³
 			msg.setFrom(new InternetAddress("\""
 					+ MimeUtility.encodeText("É½¶«²Æ¾­´óÑ§ÆøÏó´óÊı¾İÖĞĞÄ")
 					+ "\"<vyumin@163.com>"));
-
+			msg.addRecipients(Message.RecipientType.CC,
+					InternetAddress.parse(item.getEmail()));
 			// Õû·âÓÊ¼şµÄMINEÏûÏ¢Ìå
 			MimeMultipart msgMultipart = new MimeMultipart("mixed");// »ìºÏµÄ×éºÏ¹ØÏµ
 			// ÉèÖÃÓÊ¼şµÄMINEÏûÏ¢Ìå
@@ -100,24 +106,25 @@ public class SendMail extends Thread {// ·¢ËÍÓÊ¼şÊÇÒ»¼şºÄÊ±µÄÊÂ£¬Òò´ËÉè¼ÆÒ»¸öÏß³
 			// html´úÂë²¿·Ö
 			MimeBodyPart htmlPart = new MimeBodyPart();
 			// htmlÖĞÇ¶Ì×µÄÍ¼Æ¬²¿·Ö
-			// MimeBodyPart imgPart = new MimeBodyPart();
+			MimeBodyPart imgPart = new MimeBodyPart();
 
 			// ÕıÎÄÌí¼ÓÍ¼Æ¬ºÍhtml´úÂë
 			bodyMultipart.addBodyPart(htmlPart);
-			// bodyMultipart.addBodyPart(imgPart);
+			bodyMultipart.addBodyPart(imgPart);
 
 			// °ÑÎÄ¼ş£¬Ìí¼Óµ½Í¼Æ¬ÖĞ
-			// DataSource imgds = new FileDataSource(new File(
-			// "C:/Users/H__D/Desktop/logo.png"));
-			// DataHandler imgdh = new DataHandler(imgds);
-			// imgPart.setDataHandler(imgdh);
+			DataSource imgds = new FileDataSource(new File(picPath));
+			DataHandler imgdh = new DataHandler(imgds);
+			imgPart.setDataHandler(imgdh);
 			// ËµÃ÷htmlÖĞµÄimg±êÇ©µÄsrc£¬ÒıÓÃµÄÊÇ´ËÍ¼Æ¬
-			// imgPart.setHeader("Content-Location",
-			// "http://sunteam.cc/logo.jsg");
+			imgPart.setHeader("Content-Location",
+					"http://localhost:8080/weather0328/pay.jpg");
 
 			// html´úÂë
 			htmlPart.setContent(
-					"<span style='color:red'>¸ĞĞ»Äú¹ºÂòÉ½¶«²Æ¾­´óÑ§ÆøÏó´óÊı¾İÖĞĞÄµÄÆøÏóÊı¾İ£¬ÈçÓĞÆäËûĞèÒªÇëÖ±½ÓÓëÎÒÃÇÁªÏµ¡£</span>",
+					"<span style='color:red'>ÄúËù¶©¹ºµÄÊı¾İ¹²¼Æ"
+							+ price
+							+ "Ôª£¬ÇëÖ±½ÓÉ¨ÃèÆÁÄ»ÉÏµÄ¶şÎ¬ÂëÖ§¸¶¡£¸ĞĞ»Äú¹ºÂòÉ½¶«²Æ¾­´óÑ§ÆøÏó´óÊı¾İÖĞĞÄµÄÆøÏóÊı¾İ£¬ÈçÓĞÆäËûĞèÒªÇëÖ±½ÓÓëÎÒÃÇÁªÏµ¡£</span><img src=\"http://localhost:8080/weather0328/pay.jpg\">",
 					"text/html;charset=utf-8");
 
 			// Éú³ÉÎÄ¼şÓÊ¼ş
@@ -154,8 +161,10 @@ public class SendMail extends Thread {// ·¢ËÍÓÊ¼şÊÇÒ»¼şºÄÊ±µÄÊÂ£¬Òò´ËÉè¼ÆÒ»¸öÏß³
 					new File("E:/demo/demo.eml")));
 
 			// ·¢ËÍÓÊ¼ş
-			Transport.send(message, InternetAddress.parse(item.getEmail()));
-
+			Transport.send(message, message.getAllRecipients());
+			// Transport transport = session.getTransport("smtp");
+			// transport.send(msg, msg.getAllRecipients());
+			// transport.close();
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

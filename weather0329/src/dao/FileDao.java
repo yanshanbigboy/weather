@@ -44,7 +44,7 @@ public class FileDao {
     	List<file> fileList=new ArrayList<file>();
     	try{
     		conn=DBConnection.getConn();
-    		sql="select * from file";
+    		sql="select * from file order by id";
     		pstmt=conn.prepareStatement(sql);
 		    rs=pstmt.executeQuery();
 		    while(rs.next()){
