@@ -73,9 +73,8 @@ public class MessageAdd extends HttpServlet {
 			if (url.equals("/addreply.message")) {
 
 				int sendId = Integer.parseInt(request.getParameter("send_id"));
-				System.out.println("send_id===" + sendId);
-
 				String reply_Content = request.getParameter("reply_Content");
+				System.out.println("reply_Content" + reply_Content);
 				User user = (User) request.getSession().getAttribute("user");
 				String reply_name = user.getUserName();
 				Reply reply = new Reply(reply_name, reply_Content);

@@ -68,12 +68,12 @@
 
 						<div class="group-ipt user">
 							<input type="text" name="userName" id="user" class="ipt"
-								onblur="checkUserExists()" placeholder="输入一个用户名" required>
+								onblur="checkUserExists()" placeholder="输入一个用户名" required onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')" onpaste="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')" oncontextmenu = "value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')">
 							<div id="mess" style="display:inline"></div>
 						</div>
 						<div class="group-ipt password">
 							<input type="password" name="userPassword" id="password"
-								class="ipt" placeholder="设置登录密码" required>
+								class="ipt" placeholder="设置登录密码" required onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')" onpaste="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')" oncontextmenu = "value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')">
 						</div>
 
 					</div>
